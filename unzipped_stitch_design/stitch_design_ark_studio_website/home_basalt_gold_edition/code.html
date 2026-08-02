@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Geist:wght@100..900&amp;family=Geist+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --basalt: #0B0B0C;
+            --gold: #C2A67D;
+            --travertine: #D6CFC4;
+        }
+        body {
+            background-color: var(--basalt);
+            color: var(--travertine);
+            -webkit-font-smoothing: antialiased;
+        }
+        .drafting-line-h {
+            height: 0.5px;
+            background-color: rgba(194, 166, 125, 0.15);
+            width: 100%;
+        }
+        .drafting-line-v {
+            width: 0.5px;
+            background-color: rgba(194, 166, 125, 0.15);
+            height: 100%;
+        }
+        .marker-plus::before {
+            content: '+';
+            font-family: 'Geist Mono';
+            color: var(--gold);
+            font-size: 14px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+        }
+        .cad-overlay {
+            background-image: radial-gradient(circle at 1px 1px, rgba(194, 166, 125, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#690005",
+                    "primary": "#c8c6c7",
+                    "primary-fixed-dim": "#c8c6c7",
+                    "error-container": "#93000a",
+                    "tertiary": "#ccc6bb",
+                    "inverse-on-surface": "#313030",
+                    "on-surface-variant": "#c7c6ca",
+                    "on-primary-container": "#7b797a",
+                    "on-primary": "#313031",
+                    "inverse-primary": "#5f5e5f",
+                    "on-secondary-fixed-variant": "#584322",
+                    "tertiary-fixed": "#e9e2d6",
+                    "secondary-fixed-dim": "#e0c297",
+                    "secondary": "#e0c297",
+                    "on-surface": "#e5e2e1",
+                    "surface-tint": "#c8c6c7",
+                    "surface-container": "#201f1f",
+                    "surface-container-high": "#2b2a2a",
+                    "tertiary-container": "#0d0b06",
+                    "on-background": "#e5e2e1",
+                    "on-secondary-container": "#ceb187",
+                    "primary-container": "#0b0b0c",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed-variant": "#4a463e",
+                    "on-tertiary-container": "#7e7970",
+                    "on-primary-fixed-variant": "#474647",
+                    "inverse-surface": "#e5e2e1",
+                    "on-primary-fixed": "#1c1b1c",
+                    "on-tertiary": "#333029",
+                    "on-secondary": "#3f2d0e",
+                    "surface-dim": "#141313",
+                    "on-tertiary-fixed": "#1e1b14",
+                    "surface": "#141313",
+                    "on-secondary-fixed": "#281900",
+                    "outline-variant": "#46464a",
+                    "background": "#141313",
+                    "surface-container-highest": "#353434",
+                    "secondary-container": "#584322",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ccc6bb",
+                    "secondary-fixed": "#fddeb1",
+                    "outline": "#919094",
+                    "surface-container-low": "#1c1b1b",
+                    "surface-bright": "#3a3939",
+                    "primary-fixed": "#e5e2e3",
+                    "surface-variant": "#353434"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0rem",
+                    "lg": "0rem",
+                    "xl": "0rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "container-max": "1440px",
+                    "margin-mobile": "20px",
+                    "gutter": "24px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Geist"],
+                    "display-lg": ["Bodoni Moda"],
+                    "headline-lg-mobile": ["Bodoni Moda"],
+                    "body-md": ["Geist"],
+                    "technical-label": ["Geist Mono"],
+                    "headline-md": ["Bodoni Moda"],
+                    "headline-lg": ["Bodoni Moda"],
+                    "coordinate-sm": ["Geist Mono"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "300"}],
+                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "300"}],
+                    "technical-label": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                    "coordinate-sm": ["10px", {"lineHeight": "1", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="selection:bg-secondary selection:text-primary-container">
+<!-- NAVIGATION SHELL -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b-[0.5px] border-secondary/15">
+<div class="flex justify-between items-center w-full px-margin-desktop py-base max-w-container-max mx-auto h-20">
+<div class="font-display-lg text-headline-md text-secondary tracking-tighter uppercase">STUDIO_AXIS</div>
+<nav class="hidden md:flex gap-12">
+<a class="font-coordinate-sm text-coordinate-sm tracking-widest text-secondary border-b border-secondary pb-1" href="#">01 // ATELIER</a>
+<a class="font-coordinate-sm text-coordinate-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors" href="#">02 // WORKS</a>
+<a class="font-coordinate-sm text-coordinate-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors" href="#">03 // BLUEPRINTS</a>
+<a class="font-coordinate-sm text-coordinate-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors" href="#">04 // CONTACT</a>
+</nav>
+<button class="font-coordinate-sm text-coordinate-sm tracking-widest border border-secondary/50 px-6 py-2 hover:bg-secondary hover:text-primary-container transition-all duration-300">
+                INQUIRE
+            </button>
+</div>
+</header>
+<main class="pt-20">
+<!-- HERO SECTION -->
+<section class="min-h-[90vh] grid grid-cols-1 md:grid-cols-2 relative overflow-hidden border-b-[0.5px] border-secondary/15">
+<!-- Left Side: Drafting Content -->
+<div class="relative flex flex-col justify-center px-margin-desktop cad-overlay border-r-[0.5px] border-secondary/15 py-24">
+<div class="absolute top-0 left-0 marker-plus" style="top:64px; left:64px;"></div>
+<!-- AutoCAD Schematic Decorative Overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-10 flex items-center justify-center">
+<svg fill="none" height="80%" viewbox="0 0 400 400" width="80%" xmlns="http://www.w3.org/2000/svg">
+<path d="M50 50L350 350M50 350L350 50" stroke="#C2A67D" stroke-width="0.5"></path>
+<circle cx="200" cy="200" r="100" stroke="#C2A67D" stroke-width="0.5"></circle>
+<rect height="200" stroke="#C2A67D" stroke-width="0.5" width="200" x="100" y="100"></rect>
+<path d="M200 10V390M10 200H390" stroke="#C2A67D" stroke-dasharray="4 4" stroke-width="0.2"></path>
+</svg>
+</div>
+<div class="relative z-10 space-y-8">
+<div class="flex items-center gap-4">
+<span class="w-12 h-[1px] bg-secondary"></span>
+<span class="font-technical-label text-technical-label text-secondary uppercase tracking-[0.2em]">Curated Environments</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-travertine max-w-xl">
+                        Design Ark — <br/>
+<span class="italic text-secondary">Interiors</span> that define space and value.
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                        Architectural rigor met with uncompromising luxury. We engineer atmosphere through physical precision and mathematical harmony.
+                    </p>
+<div class="pt-8">
+<a class="inline-flex items-center gap-6 group" href="#">
+<span class="font-technical-label text-technical-label text-secondary">VIEW THE ARCHIVE</span>
+<span class="material-symbols-outlined text-secondary transform group-hover:translate-x-2 transition-transform duration-300">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Right Side: Luxury Lobby -->
+<div class="relative min-h-[500px] md:min-h-0 overflow-hidden bg-surface-container-low group">
+<img alt="Luxury Lobby" class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida/AP1WRLsznaQQXaoA0tilql0-N-2Vsm8qTCFO4NfPoBKDdh04AYbE4inzEdjdgTg3l-S_VmKy3IOqK_MzFiaEkp0-ftHA10Om52DU9PQKX2GKpMuNqdtYRYN4ybedDb_a1-La6E26CXTdD2mbaKN-CMk_uFqTSZU2_e26914SbkaUcYKYmzljQ3J5BMwlC4b6zOuR803ozZlaaBQKkVgtUZX0h6Q5_qMvX_kFWUkHqkPQDOPRbkZiWq8uNyP_Hg"/>
+<!-- Gold Extension Lines -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+<div class="absolute top-1/4 left-0 w-full drafting-line-h"></div>
+<div class="absolute bottom-1/4 left-0 w-full drafting-line-h"></div>
+<div class="absolute left-1/3 top-0 h-full drafting-line-v"></div>
+<div class="absolute left-2/3 top-0 h-full drafting-line-v"></div>
+</div>
+<div class="absolute bottom-12 right-12 text-right">
+<span class="font-technical-label text-[10px] text-secondary opacity-50 block">PROJECT_REF: DA-2401</span>
+<span class="font-technical-label text-[10px] text-secondary opacity-50 block">LOCATION: CENTRAL_DISTRICT</span>
+</div>
+</div>
+</section>
+<!-- TECHNICAL SERVICES SECTION -->
+<section class="py-24 max-w-container-max mx-auto px-margin-desktop border-l-[0.5px] border-r-[0.5px] border-secondary/15 relative">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-x divide-secondary/15 border-y border-secondary/15">
+<!-- Service 01 -->
+<div class="p-10 group hover:bg-secondary/5 transition-all duration-500">
+<span class="font-technical-label text-secondary mb-8 block">01 //</span>
+<h3 class="font-headline-md text-headline-md text-travertine mb-4">Strategic Design</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Foundational spatial mapping aligned with long-term asset appreciation and utility optimization.</p>
+<div class="w-0 group-hover:w-full h-[1px] bg-secondary transition-all duration-700"></div>
+</div>
+<!-- Service 02 -->
+<div class="p-10 group hover:bg-secondary/5 transition-all duration-500">
+<span class="font-technical-label text-secondary mb-8 block">02 //</span>
+<h3 class="font-headline-md text-headline-md text-travertine mb-4">Functional Spaces</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Ergonomic engineering that prioritizes human movement patterns and intuitive environmental flow.</p>
+<div class="w-0 group-hover:w-full h-[1px] bg-secondary transition-all duration-700"></div>
+</div>
+<!-- Service 03 -->
+<div class="p-10 group hover:bg-secondary/5 transition-all duration-500">
+<span class="font-technical-label text-secondary mb-8 block">03 //</span>
+<h3 class="font-headline-md text-headline-md text-travertine mb-4">Material Curation</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Sourcing of rarest geological specimens and refined textiles for permanent atmospheric resonance.</p>
+<div class="w-0 group-hover:w-full h-[1px] bg-secondary transition-all duration-700"></div>
+</div>
+<!-- Service 04 -->
+<div class="p-10 group hover:bg-secondary/5 transition-all duration-500">
+<span class="font-technical-label text-secondary mb-8 block">04 //</span>
+<h3 class="font-headline-md text-headline-md text-travertine mb-4">Technological Integration</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Discrete implementation of smart-ambient controls and invisible audio-visual architecture.</p>
+<div class="w-0 group-hover:w-full h-[1px] bg-secondary transition-all duration-700"></div>
+</div>
+</div>
+</section>
+<!-- TESTIMONIAL GRID: TRAVERTINE ACCENTS -->
+<section class="py-32 bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="mb-20 text-center space-y-4">
+<h2 class="font-display-lg text-headline-lg text-travertine uppercase tracking-tighter">Verified Perspectives</h2>
+<div class="flex justify-center gap-2">
+<div class="w-1 h-1 bg-secondary rounded-full"></div>
+<div class="w-1 h-1 bg-secondary rounded-full opacity-50"></div>
+<div class="w-1 h-1 bg-secondary rounded-full opacity-25"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="p-12 bg-surface-container border-[0.5px] border-secondary/10 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+<span class="material-symbols-outlined text-secondary text-4xl">architecture</span>
+</div>
+<p class="font-body-lg text-on-surface italic relative z-10 mb-8">
+                            "The level of mathematical precision in their layout is something rarely seen in boutique firms. Studio Axis treats every square millimeter as a sacred unit."
+                        </p>
+<div class="border-t border-secondary/20 pt-6">
+<h4 class="font-technical-label text-secondary text-technical-label uppercase">Julian Vane</h4>
+<p class="font-coordinate-sm text-coordinate-sm text-on-surface-variant uppercase mt-1 tracking-widest">Director, Obsidian Group</p>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="p-12 bg-secondary/5 border-[0.5px] border-secondary/40 relative group">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-secondary text-4xl">format_quote</span>
+</div>
+<p class="font-body-lg text-secondary italic relative z-10 mb-8">
+                            "Travertine and Basalt were used with such restraint that the materials spoke louder than the furniture itself. Permanent elegance achieved."
+                        </p>
+<div class="border-t border-secondary/40 pt-6">
+<h4 class="font-technical-label text-secondary text-technical-label uppercase">Elena Roth</h4>
+<p class="font-coordinate-sm text-coordinate-sm text-on-surface-variant uppercase mt-1 tracking-widest">Private Collector</p>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="p-12 bg-surface-container border-[0.5px] border-secondary/10 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+<span class="material-symbols-outlined text-secondary text-4xl">layers</span>
+</div>
+<p class="font-body-lg text-on-surface italic relative z-10 mb-8">
+                            "Design Ark doesn't just build rooms; they curate experiences that appreciate both in aesthetic and market value over decades."
+                        </p>
+<div class="border-t border-secondary/20 pt-6">
+<h4 class="font-technical-label text-secondary text-technical-label uppercase">Marcus Thorne</h4>
+<p class="font-coordinate-sm text-coordinate-sm text-on-surface-variant uppercase mt-1 tracking-widest">Estate Strategist</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA SECTION -->
+<section class="border-y border-secondary/15 py-32 relative overflow-hidden">
+<div class="absolute inset-0 cad-overlay opacity-20"></div>
+<div class="relative z-10 max-w-container-max mx-auto px-margin-desktop text-center space-y-12">
+<h2 class="font-display-lg text-display-lg text-travertine">Begin the Blueprint.</h2>
+<div class="flex flex-col md:flex-row justify-center items-center gap-12">
+<div class="text-left max-w-xs">
+<span class="font-technical-label text-secondary block mb-2 uppercase">Protocol: Consultation</span>
+<p class="font-body-md text-on-surface-variant">We engage in a rigorous discovery process to align spatial intent with your unique profile.</p>
+</div>
+<div class="h-24 w-[1px] bg-secondary/30 hidden md:block"></div>
+<button class="bg-secondary text-primary-container px-12 py-5 font-technical-label uppercase tracking-widest hover:bg-travertine transition-colors duration-500">
+                        Initiate Dialogue
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="bg-surface-container-lowest border-t border-secondary/30">
+<div class="w-full px-margin-desktop py-gutter flex flex-col md:flex-row justify-between items-end border-l-[1px] border-r-[1px] border-secondary/15 mx-auto max-w-container-max min-h-[200px]">
+<div class="flex flex-col gap-6 w-full md:w-auto mb-12 md:mb-0">
+<div class="font-headline-md text-headline-md text-on-surface tracking-tighter">STUDIO_AXIS</div>
+<div class="font-technical-label text-secondary tracking-widest">
+                    44.7866° N, 20.4489° E
+                </div>
+</div>
+<div class="flex flex-col items-end gap-8 w-full md:w-auto">
+<div class="flex gap-12">
+<a class="font-technical-label text-technical-label uppercase text-on-surface-variant hover:text-secondary underline decoration-secondary/30 transition-all duration-500" href="#">SPECIFICATIONS</a>
+<a class="font-technical-label text-technical-label uppercase text-on-surface-variant hover:text-secondary underline decoration-secondary/30 transition-all duration-500" href="#">LEGAL_FRAMEWORK</a>
+<a class="font-technical-label text-technical-label uppercase text-on-surface-variant hover:text-secondary underline decoration-secondary/30 transition-all duration-500" href="#">COORDINATES</a>
+</div>
+<div class="font-technical-label text-secondary opacity-40 text-[10px]">
+                    ©2024 ARCHITECTURAL RIGOR / ALL RIGHTS RESERVED
+                </div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Subtle parallax on the drafting lines
+        window.addEventListener('mousemove', (e) => {
+            const lines = document.querySelectorAll('.drafting-line-h, .drafting-line-v');
+            const x = (e.clientX - window.innerWidth / 2) / 50;
+            const y = (e.clientY - window.innerHeight / 2) / 50;
+            
+            lines.forEach(line => {
+                line.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Sticky header transition
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('bg-background');
+                header.classList.remove('bg-background/80');
+            } else {
+                header.classList.add('bg-background/80');
+                header.classList.remove('bg-background');
+            }
+        });
+    </script>
+</body></html>

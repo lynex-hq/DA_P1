@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portfolio // Design Ark</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:wght@400;700&amp;family=Hanken+Grotesk:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#1e1b14",
+                    "tertiary-fixed": "#e9e2d6",
+                    "on-tertiary-fixed-variant": "#4a463e",
+                    "surface-container-highest": "#e5e2e1",
+                    "outline": "#77767b",
+                    "on-secondary-container": "#626360",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ccc6bb",
+                    "secondary-fixed": "#e3e2df",
+                    "surface-tint": "#5f5e60",
+                    "inverse-on-surface": "#f4f0ef",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fdf8f8",
+                    "on-secondary-fixed-variant": "#464744",
+                    "secondary-container": "#e0e0dc",
+                    "secondary-fixed-dim": "#c7c7c3",
+                    "secondary": "#5e5f5c",
+                    "background": "#fdf8f8",
+                    "primary-fixed": "#e5e1e4",
+                    "surface-dim": "#ddd9d9",
+                    "on-surface": "#1c1b1b",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f7f3f2",
+                    "on-tertiary-container": "#89837a",
+                    "on-primary-container": "#858386",
+                    "tertiary": "#000000",
+                    "on-surface-variant": "#47464a",
+                    "primary-fixed-dim": "#c8c6c8",
+                    "inverse-primary": "#c8c6c8",
+                    "inverse-surface": "#313030",
+                    "tertiary-container": "#1e1b14",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#c8c5ca",
+                    "on-primary-fixed-variant": "#474649",
+                    "surface-container-high": "#ebe7e7",
+                    "on-primary-fixed": "#1b1b1d",
+                    "surface-container": "#f1edec",
+                    "on-background": "#1c1b1b",
+                    "surface-variant": "#e5e2e1",
+                    "primary": "#000000",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#1b1b1d",
+                    "surface": "#fdf8f8",
+                    "on-secondary-fixed": "#1b1c1a",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "blueprint-grid": "40px",
+                    "unit": "4px",
+                    "margin-desktop": "64px",
+                    "gutter": "24px",
+                    "margin-mobile": "20px",
+                    "stroke-thin": "0.5px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Libre Caslon Text"],
+                    "coordinate-index": ["JetBrains Mono"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-md": ["Libre Caslon Text"],
+                    "display-lg-mobile": ["Libre Caslon Text"],
+                    "label-caps": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "coordinate-index": ["10px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.15em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .blueprint-overlay {
+            background-image: linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .parallax-mask {
+            clip-path: inset(0 0 0 0);
+            transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .parallax-mask:hover {
+            clip-path: inset(10px 10px 10px 10px);
+        }
+        .drawer-transition {
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .stroke-draw {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            transition: stroke-dashoffset 2s ease-in-out;
+        }
+        .group:hover .stroke-draw {
+            stroke-dashoffset: 0;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden selection:bg-tertiary-fixed selection:text-on-tertiary-fixed">
+<div class="fixed inset-0 blueprint-overlay pointer-events-none z-0"></div>
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop bg-surface/90 backdrop-blur-xl h-24 border-b-[0.5px] border-outline-variant">
+<div class="font-display-lg text-headline-md font-bold text-primary dark:text-on-background">Design Ark</div>
+<div class="hidden md:flex gap-12 items-center">
+<a class="font-label-caps text-label-caps tracking-widest uppercase text-on-surface-variant/70 hover:text-primary transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" href="#">01 // Home</a>
+<a class="font-label-caps text-label-caps tracking-widest uppercase text-primary font-bold border-b-2 border-on-tertiary-fixed-variant pb-1" href="#">02 // Projects</a>
+<a class="font-label-caps text-label-caps tracking-widest uppercase text-on-surface-variant/70 hover:text-primary transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" href="#">03 // Studio</a>
+<a class="font-label-caps text-label-caps tracking-widest uppercase text-on-surface-variant/70 hover:text-primary transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" href="#">04 // Process</a>
+</div>
+<button class="px-8 py-3 border-[0.5px] border-primary font-label-caps text-label-caps tracking-widest uppercase hover:bg-primary hover:text-on-primary transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+            REQUEST BRIEF
+        </button>
+</nav>
+<main class="relative z-10 pt-40 px-margin-desktop">
+<header class="mb-24 flex flex-col md:flex-row justify-between items-baseline gap-8">
+<div class="max-w-2xl">
+<span class="font-coordinate-index text-coordinate-index text-on-surface-variant mb-4 block tracking-tighter uppercase">[ PORTFOLIO_INDEX // 2024 ]</span>
+<h1 class="font-display-lg text-display-lg leading-tight mb-8">Selected works across the <span class="italic text-on-tertiary-container">curated</span> landscape.</h1>
+</div>
+<nav class="flex flex-wrap gap-8 items-center border-b-[0.5px] border-outline-variant pb-4 w-full md:w-auto">
+<button class="font-label-caps text-label-caps text-primary border-b border-primary px-2 transition-colors duration-500">ALL</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant/60 hover:text-primary px-2 transition-colors duration-500">RESIDENTIAL</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant/60 hover:text-primary px-2 transition-colors duration-500">WORKSPACE</button>
+<button class="font-label-caps text-label-caps text-on-surface-variant/60 hover:text-primary px-2 transition-colors duration-500">COMMERCIAL</button>
+</nav>
+</header>
+<section class="grid grid-cols-1 md:grid-cols-2 gap-y-32 gap-x-12 mb-40">
+<div class="group cursor-pointer relative" onclick="openDrawer('travertine')">
+<div class="relative overflow-hidden mb-6 aspect-[4/3] parallax-mask">
+<img class="w-full h-full object-cover transition-transform duration-[2000ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" data-alt="Minimalist high-end living room with a large curved beige sofa and floor-to-ceiling windows overlooking a city with a cathedral. The walls are smooth plaster and the flooring is a seamless grey stone. Soft, diffuse natural lighting fills the room, creating a serene and luxurious atmosphere." src="https://lh3.googleusercontent.com/aida/AP1WRLvdXoaudXju0ieaorane9Pf3hPanpVM3xuK1N7yEnrIJera-09zyzUvqb4iFsOscOu8S5ZFDg-bJgE-ZHoE5MGVqrItR0b1Mdp7ZIetderE10_4I60ByqAsyZR7Id3yi-vqA04kGK9JQ02U713SpwbHbmFMP4roUKD8jnC8i51ejoT26An9DL8nXPBhlqImXVij1KuoKgf8xKPcsgrWo2a3DWOXPSU1_LesQd53Mtn5_IcuDboFYdQk"/>
+<div class="absolute top-4 left-4 font-coordinate-index text-coordinate-index text-white/80 mix-blend-difference">SECTION_A // 01</div>
+<div class="absolute bottom-4 right-4 font-coordinate-index text-coordinate-index text-white/80 mix-blend-difference opacity-0 group-hover:opacity-100 transition-opacity duration-700">4500mm x 3200mm</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">The Travertine Haven</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant/60">GENEVA, SWITZERLAND</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-500">arrow_outward</span>
+</div>
+</div>
+<div class="group cursor-pointer relative md:mt-24" onclick="openDrawer('workspace')">
+<div class="relative overflow-hidden mb-6 aspect-[4/3] parallax-mask">
+<img class="w-full h-full object-cover transition-transform duration-[2000ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" data-alt="Modern executive office space with warm wood desks, black leather ergonomic chairs, and large glass partitions. The background shows a historic European city skyline with rivers and old buildings through panoramic windows. The lighting is bright and technical, highlighting the architectural precision of the space." src="https://lh3.googleusercontent.com/aida/AP1WRLsAOn2DZsGVPdViG7puYLU6V-ig0a--VQkOaTTGp3b-W3h4Pc0zHDa_WELpr7sVB3HZPQYhiiCXYYkrNbjQq2CKcqzusgPhUbKh6PFMN-jcn1KqSQNdB3pBvLyo4akNmxDB1AH22ukV5O1NoUDiBxpfrnxNMXyZb7G23TtE4wEkkBTuZaTMT7S6O7GH6tyYe8uXqHYd3RXoQM2pesHos_FhUcS2WKLaLBmw8yCLDoSevVkt4gKla5cvTw"/>
+<div class="absolute top-4 left-4 font-coordinate-index text-coordinate-index text-white/80 mix-blend-difference">SECTION_A // 02</div>
+<div class="absolute bottom-4 right-4 font-coordinate-index text-coordinate-index text-white/80 mix-blend-difference opacity-0 group-hover:opacity-100 transition-opacity duration-700">12000mm x 8500mm</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Executive Workspace</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant/60">VIENNA, AUSTRIA</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-500">arrow_outward</span>
+</div>
+</div>
+<div class="group cursor-pointer relative" onclick="openDrawer('sable')">
+<div class="relative overflow-hidden mb-6 aspect-[4/3] parallax-mask">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-[2000ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" data-alt="A luxurious master suite with walls clad in warm travertine stone. The room features a curved ivory boucle sofa, soft amber cove lighting integrated into the ceiling, and minimalist shelving displaying ceramic vases. A large window offers a misty view of a lake and distant mountains. The overall mood is quiet, expensive, and tranquil." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBk5UV5XbhNKDiXIS4jgfQGLeB-STNWwS6-y52VLkfPvNt0t_GqGG6_b_zOjl2PMtkVzDEzDIe3cMG27d2Tujr_lQ4_oet7xYFpztdPiZHnETFdh26PA7_pmNWxLyH5srW-eMYE1EbQRrwYb75_7jHraQ8dOY4kZS-YdYis-nL2maQ8An_b6xuIYCfSI61bJc9Em85Hb9l8TkhHdjKah8IecdOyBg46gyHZwl2Hjo3ShAGU_PW8z3M')"></div>
+<div class="absolute top-4 left-4 font-coordinate-index text-coordinate-index text-white/80 mix-blend-difference">SECTION_B // 03</div>
+<div class="absolute bottom-4 right-4 font-coordinate-index text-coordinate-index text-white/80 mix-blend-difference opacity-0 group-hover:opacity-100 transition-opacity duration-700">6200mm x 5800mm</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Sable Master Suite</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant/60">ZURICH, SWITZERLAND</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-500">arrow_outward</span>
+</div>
+</div>
+<div class="group cursor-pointer relative md:mt-24" onclick="openDrawer('sienna')">
+<div class="relative overflow-hidden mb-6 aspect-[4/3] parallax-mask">
+<div class="w-full h-full bg-cover bg-center transition-transform duration-[2000ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105" data-alt="Sophisticated restaurant interior featuring dark wood textures, brushed bronze metal accents, and low-slung leather seating. Large arched windows reveal a rainy Munich street scene with warm glowing streetlamps. The interior lighting is focused and atmospheric, highlighting curated art pieces on basalt charcoal walls." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA9U21RRYOueeU7zFH7yUp6xxso_BnTQYd26YKn8IqiMg-smvgHrAT9165b6gLVZiKfncJaixP348UyJ8DTgdu-y4bzeZb82nhkQPYghJpDzL4EflNpaVwGXZkoDCZGy_03xmIoKCUo_moTb3IW5h_pvruXwjM84YcyyZsqfvAtouPVrHnGrOYkuJWGmyVvuCVsQSbe3s67557apg2BwOvjiKYaR-cZR63aI_SbLNAZm4VQTiXIjf4')"></div>
+<div class="absolute top-4 left-4 font-coordinate-index text-coordinate-index text-white/80 mix-blend-difference">SECTION_B // 04</div>
+<div class="absolute bottom-4 right-4 font-coordinate-index text-coordinate-index text-white/80 mix-blend-difference opacity-0 group-hover:opacity-100 transition-opacity duration-700">18500mm x 14000mm</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-2">Sienna Restaurant</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant/60">MUNICH, GERMANY</p>
+</div>
+<span class="material-symbols-outlined text-outline-variant group-hover:text-primary transition-colors duration-500">arrow_outward</span>
+</div>
+</div>
+</section>
+</main>
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-end bg-surface-container-low border-t-[0.5px] border-outline-variant mt-20">
+<div class="flex flex-col gap-8">
+<div class="font-label-caps text-label-caps text-primary tracking-widest uppercase">DESIGN ARK // EST. 2012</div>
+<div class="font-coordinate-index text-coordinate-index tracking-tighter text-on-surface-variant">© 2024 DESIGN ARK // ALL RIGHTS RESERVED</div>
+</div>
+<div class="flex gap-12 mt-8 md:mt-0">
+<a class="font-coordinate-index text-coordinate-index tracking-tighter text-on-surface-variant/70 hover:text-primary transition-colors duration-500" href="#">IMPRINT</a>
+<a class="font-coordinate-index text-coordinate-index tracking-tighter text-on-surface-variant/70 hover:text-primary transition-colors duration-500" href="#">TERMS</a>
+<a class="font-coordinate-index text-coordinate-index tracking-tighter text-on-surface-variant/70 hover:text-primary transition-colors duration-500" href="#">PRIVACY</a>
+<span class="font-coordinate-index text-coordinate-index tracking-tighter text-on-surface-variant/70">COORDINATES: 51.5074° N, 0.1278° W</span>
+</div>
+</footer>
+<div class="fixed inset-y-0 right-0 w-full md:w-[600px] bg-surface z-[100] translate-x-full drawer-transition border-l-[0.5px] border-outline-variant shadow-2xl flex flex-col" id="detailDrawer">
+<div class="h-24 border-b-[0.5px] border-outline-variant flex items-center justify-between px-10">
+<span class="font-coordinate-index text-coordinate-index uppercase tracking-tighter text-on-surface-variant">[ PROJECT_DETAILS ]</span>
+<button class="group flex items-center gap-2 font-label-caps text-label-caps hover:text-primary transition-colors" onclick="closeDrawer()">
+                CLOSE <span class="material-symbols-outlined text-[20px] group-hover:rotate-90 transition-transform duration-500">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto px-10 py-16 custom-scrollbar">
+<div id="drawerContent">
+<header class="mb-12">
+<span class="font-coordinate-index text-coordinate-index text-primary block mb-2 tracking-widest" id="drawerLocation"></span>
+<h2 class="font-display-lg text-display-lg leading-tight" id="drawerTitle"></h2>
+</header>
+<div class="grid grid-cols-2 gap-8 mb-16 border-y-[0.5px] border-outline-variant py-8">
+<div>
+<p class="font-coordinate-index text-[10px] text-on-surface-variant/50 uppercase mb-1">Scale</p>
+<p class="font-label-caps text-label-caps" id="drawerScale"></p>
+</div>
+<div>
+<p class="font-coordinate-index text-[10px] text-on-surface-variant/50 uppercase mb-1">Status</p>
+<p class="font-label-caps text-label-caps">COMPLETED</p>
+</div>
+<div>
+<p class="font-coordinate-index text-[10px] text-on-surface-variant/50 uppercase mb-1">Duration</p>
+<p class="font-label-caps text-label-caps">14 MONTHS</p>
+</div>
+<div>
+<p class="font-coordinate-index text-[10px] text-on-surface-variant/50 uppercase mb-1">Type</p>
+<p class="font-label-caps text-label-caps" id="drawerType"></p>
+</div>
+</div>
+<div class="space-y-12">
+<section>
+<h4 class="font-label-caps text-label-caps mb-4 flex items-center gap-2">
+<span class="w-1 h-1 bg-primary"></span> THE STORY
+                        </h4>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed" id="drawerStory"></p>
+</section>
+<section>
+<h4 class="font-label-caps text-label-caps mb-4 flex items-center gap-2">
+<span class="w-1 h-1 bg-primary"></span> MATERIAL PALETTE
+                        </h4>
+<div class="flex gap-4">
+<div class="group relative">
+<div class="w-16 h-16 bg-[#F5F4F0] border-[0.5px] border-outline-variant"></div>
+<span class="absolute -bottom-6 left-0 font-coordinate-index text-[8px] opacity-0 group-hover:opacity-100 transition-opacity">CHALK PLASTER</span>
+</div>
+<div class="group relative">
+<div class="w-16 h-16 bg-[#E9E2D6] border-[0.5px] border-outline-variant"></div>
+<span class="absolute -bottom-6 left-0 font-coordinate-index text-[8px] opacity-0 group-hover:opacity-100 transition-opacity">TRAVERTINE</span>
+</div>
+<div class="group relative">
+<div class="w-16 h-16 bg-[#5F5E60] border-[0.5px] border-outline-variant"></div>
+<span class="absolute -bottom-6 left-0 font-coordinate-index text-[8px] opacity-0 group-hover:opacity-100 transition-opacity">BASALT</span>
+</div>
+<div class="group relative">
+<div class="w-16 h-16 bg-[#CDA874] border-[0.5px] border-outline-variant"></div>
+<span class="absolute -bottom-6 left-0 font-coordinate-index text-[8px] opacity-0 group-hover:opacity-100 transition-opacity">BRUSHED BRONZE</span>
+</div>
+</div>
+</section>
+<section class="pb-12">
+<h4 class="font-label-caps text-label-caps mb-6 flex items-center gap-2">
+<span class="w-1 h-1 bg-primary"></span> TECHNICAL SKETCH
+                        </h4>
+<div class="border-[0.5px] border-outline-variant p-8 bg-surface-container-lowest relative overflow-hidden h-48 flex items-center justify-center">
+<svg class="opacity-30" height="100" width="200">
+<path class="stroke-draw" d="M10,50 L190,50 M10,10 L10,90 M190,10 L190,90" fill="none" stroke="currentColor" stroke-width="0.5"></path>
+<text class="font-coordinate-index text-[8px] fill-current" text-anchor="middle" x="100" y="45">AXIS_HORIZONTAL // 01</text>
+</svg>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+<div class="fixed inset-0 bg-black/10 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-700" id="drawerOverlay" onclick="closeDrawer()"></div>
+<script>
+        const projectData = {
+            travertine: {
+                title: "The Travertine Haven",
+                location: "GENEVA, SWITZERLAND",
+                scale: "480 SQM",
+                type: "RESIDENTIAL",
+                story: "A masterful exploration of materiality and light. This project centered around the seamless integration of raw travertine stone with expansive panoramic views of Lake Geneva. Every intersection was considered at the millimeter level to ensure absolute architectural purity."
+            },
+            workspace: {
+                title: "Executive Workspace",
+                location: "VIENNA, AUSTRIA",
+                scale: "1,250 SQM",
+                type: "WORKSPACE",
+                story: "Reimagining the corporate landscape as a series of curated 'blueprint' zones. Using technical glass partitions and warm oak textures, we created an environment that balances intense focus with artisanal hospitality. High-performance acoustics meet high-end aesthetics."
+            },
+            sable: {
+                title: "Sable Master Suite",
+                location: "ZURICH, SWITZERLAND",
+                scale: "120 SQM",
+                type: "RESIDENTIAL",
+                story: "A private sanctuary designed for total sensory deprivation from the outside world. The suite features integrated lighting that follows the circadian rhythm, clad entirely in hand-picked slabs of Italian sable stone. Silent luxury in its most concentrated form."
+            },
+            sienna: {
+                title: "Sienna Restaurant",
+                location: "MUNICH, GERMANY",
+                scale: "350 SQM",
+                type: "COMMERCIAL",
+                story: "Brutalist bones met with Mediterranean soul. We stripped the building back to its raw concrete structural elements and layered them with premium leather, custom bronze hardware, and deep sienna wood tones to create a dining experience of tactile depth."
+            }
+        };
+
+        function openDrawer(id) {
+            const data = projectData[id];
+            document.getElementById('drawerTitle').innerText = data.title;
+            document.getElementById('drawerLocation').innerText = data.location;
+            document.getElementById('drawerScale').innerText = data.scale;
+            document.getElementById('drawerType').innerText = data.type;
+            document.getElementById('drawerStory').innerText = data.story;
+
+            const drawer = document.getElementById('detailDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                drawer.classList.remove('translate-x-full');
+                overlay.classList.add('opacity-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDrawer() {
+            const drawer = document.getElementById('detailDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+
+            drawer.classList.add('translate-x-full');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 700);
+        }
+
+        // Custom micro-interactions for coordinate system
+        document.addEventListener('mousemove', (e) => {
+            // Optional: Subtle parallax or technical cursor tracker
+        });
+    </script>
+</body></html>

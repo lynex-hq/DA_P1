@@ -1,0 +1,12 @@
+{
+  "name": "da_p1",
+  "version": "1.0.0",
+  "description": "Node.js application for Design Ark",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>STUDIO_AXIS // SERVICES</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&amp;family=Geist:wght@100;300;400&amp;family=Geist+Mono:wght@100;300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #0B0B0C;
+            color: #e5e2e1;
+            overflow-x: hidden;
+        }
+        .drafting-line-v {
+            width: 0.5px;
+            background: linear-gradient(to bottom, transparent, rgba(224, 194, 151, 0.15), transparent);
+        }
+        .drafting-line-h {
+            height: 0.5px;
+            background: linear-gradient(to right, transparent, rgba(224, 194, 151, 0.15), transparent);
+        }
+        .travertine-texture {
+            background-color: #1c1b1b;
+            background-image: url("https://www.transparenttextures.com/patterns/pinstriped-suit.png");
+            background-blend-mode: overlay;
+        }
+        .marker-plus::before {
+            content: '+';
+            font-family: 'Geist Mono';
+            color: #e0c297;
+            font-size: 14px;
+            position: absolute;
+        }
+        .service-card-hover:hover .service-num {
+            color: #e0c297;
+            transform: translateX(4px);
+        }
+        .service-card-hover:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#c8c6c7",
+                        "secondary": "#e0c297",
+                        "on-surface": "#e5e2e1",
+                        "on-surface-variant": "#c7c6ca",
+                        "background": "#0B0B0C",
+                        "surface": "#141313",
+                        "surface-container-low": "#1c1b1b",
+                        "surface-container-lowest": "#0e0e0e"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "container-max": "1440px",
+                        "gutter": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "display-lg": ["Bodoni Moda"],
+                        "technical-label": ["Geist Mono"],
+                        "headline-md": ["Bodoni Moda"],
+                        "coordinate-sm": ["Geist Mono"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "300"}],
+                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                        "technical-label": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "coordinate-sm": ["10px", {"lineHeight": "1", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body-lg">
+<!-- Header / TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur-md border-b-[0.5px] border-secondary/15">
+<div class="flex justify-between items-center w-full px-margin-desktop py-base max-w-container-max mx-auto relative overflow-hidden">
+<div class="font-display-lg text-headline-md text-primary tracking-tighter">STUDIO_AXIS</div>
+<nav class="hidden md:flex items-center space-x-12">
+<a class="font-coordinate-sm text-coordinate-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors" href="#">01 // ATELIER</a>
+<a class="font-coordinate-sm text-coordinate-sm tracking-widest text-secondary border-b border-secondary pb-1" href="#">02 // WORKS</a>
+<a class="font-coordinate-sm text-coordinate-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors" href="#">03 // BLUEPRINTS</a>
+<a class="font-coordinate-sm text-coordinate-sm tracking-widest text-on-surface-variant hover:text-secondary transition-colors" href="#">04 // CONTACT</a>
+</nav>
+<button class="px-6 py-2 border border-secondary text-secondary font-technical-label text-technical-label hover:bg-secondary hover:text-background transition-all duration-300">
+                INQUIRE
+            </button>
+<!-- Structural Accent Line -->
+<div class="absolute bottom-0 left-0 w-full h-[1px] bg-[repeating-linear-gradient(90deg,transparent,transparent_1px,#e0c297_1px,#e0c297_2px)] opacity-20"></div>
+</div>
+</header>
+<main class="pt-32 pb-20 px-margin-desktop max-w-container-max mx-auto relative">
+<!-- Background Grid Markers -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none opacity-10">
+<div class="absolute top-0 left-margin-desktop h-full drafting-line-v"></div>
+<div class="absolute top-0 right-margin-desktop h-full drafting-line-v"></div>
+<div class="absolute top-48 left-0 w-full drafting-line-h"></div>
+</div>
+<!-- Section Title -->
+<div class="relative z-10 mb-20 grid grid-cols-12 gap-gutter">
+<div class="col-span-12 md:col-span-8">
+<span class="font-technical-label text-secondary block mb-4 tracking-[0.3em]">SERVICES_CATALOGUE_V.04</span>
+<h1 class="font-display-lg text-display-lg text-primary">Structural Integrity &amp; <br/><span class="italic">Material Intelligence</span></h1>
+</div>
+<div class="col-span-12 md:col-span-4 flex flex-col justify-end items-end text-right border-l border-secondary/10 pl-gutter">
+<p class="font-technical-label text-on-surface-variant mb-2">COORD: 40.7128° N, 74.0060° W</p>
+<p class="font-body-md text-on-surface-variant max-w-xs">Our practice is built on the mathematical rigor of basalt foundations and the timeless elegance of gold-tinted precision.</p>
+</div>
+</div>
+<!-- Services Modular Grid -->
+<div class="grid grid-cols-12 gap-0 border-t border-l border-secondary/20 relative">
+<!-- Service 01: Space Planning -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 border-r border-b border-secondary/20 p-gutter service-card-hover relative overflow-hidden group">
+<div class="marker-plus -top-2 -left-2 z-20"></div>
+<div class="absolute inset-0 travertine-texture opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<span class="font-technical-label text-on-surface-variant service-num transition-transform duration-500">01_SPACE_LOGIC</span>
+<span class="material-symbols-outlined text-secondary text-4xl service-icon transition-transform duration-500" data-icon="architecture">architecture</span>
+</div>
+<h3 class="font-headline-md text-primary mb-4 uppercase tracking-wider">Space Planning</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Rigorous spatial analysis utilizing algorithmic optimization to maximize flow, light, and mathematical harmony within high-density environments.</p>
+<div class="h-[1px] w-full bg-secondary/10 group-hover:bg-secondary/40 transition-colors"></div>
+</div>
+</div>
+<!-- Service 02: Material Curation -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 border-r border-b border-secondary/20 p-gutter service-card-hover relative overflow-hidden group">
+<div class="marker-plus -top-2 -left-2 z-20"></div>
+<div class="absolute inset-0 travertine-texture opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<span class="font-technical-label text-on-surface-variant service-num transition-transform duration-500">02_MAT_SPEC</span>
+<span class="material-symbols-outlined text-secondary text-4xl service-icon transition-transform duration-500" data-icon="layers">layers</span>
+</div>
+<h3 class="font-headline-md text-primary mb-4 uppercase tracking-wider">Material Curation</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Sourcing rare basalt, travertine, and champagne-gold alloys from exclusive quarries to ensure tactile permanence and visual depth.</p>
+<div class="h-[1px] w-full bg-secondary/10 group-hover:bg-secondary/40 transition-colors"></div>
+</div>
+</div>
+<!-- Service 03: Precision Drafting -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 border-r border-b border-secondary/20 p-gutter service-card-hover relative overflow-hidden group">
+<div class="marker-plus -top-2 -left-2 z-20"></div>
+<div class="absolute inset-0 travertine-texture opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<span class="font-technical-label text-on-surface-variant service-num transition-transform duration-500">03_BLUEPRINT_AXIS</span>
+<span class="material-symbols-outlined text-secondary text-4xl service-icon transition-transform duration-500" data-icon="edit_note">edit_note</span>
+</div>
+<h3 class="font-headline-md text-primary mb-4 uppercase tracking-wider">Precision Drafting</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Ultra-high-fidelity 2D and 3D technical documentation that serves as the immutable DNA for the construction lifecycle.</p>
+<div class="h-[1px] w-full bg-secondary/10 group-hover:bg-secondary/40 transition-colors"></div>
+</div>
+</div>
+<!-- Service 04: Visual Renderings (Double Width) -->
+<div class="col-span-12 md:col-span-12 lg:col-span-8 border-r border-b border-secondary/20 p-0 service-card-hover relative overflow-hidden group min-h-[400px]">
+<div class="marker-plus -top-2 -left-2 z-20"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105 filter grayscale hover:grayscale-0" data-alt="An ultra-modern architectural interior with dark basalt walls and floating gold staircases. Minimalist lighting casts long, dramatic shadows across the travertine floor. The atmosphere is quiet, opulent, and geometrically perfect, reflecting the high-end luxury aesthetic of a professional design firm." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBNStP4-kI8aXZHqPDTkD_Ih0EWSZk2y6mV_CAs22G2sVcLVP5L4nMCmfTte_cBOXGEDtiL4aXLJaEPeIHiyjIDeHYqOHTznzdvoMua2qyvptPA5Typ0yWN94dmBeunzdTzFxj7pVOYvdphrhyHzoJMhZUDELRzebLZjtGvoVimSlJRb75c3D4kEgigkyNaD_T8WLYe2mgnjt64L0ckw7V-XXLUTnTyXJ8lvGsKCB0R76KlH_wkFQE')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
+<div class="relative z-10 h-full flex flex-col justify-end p-gutter">
+<div class="flex justify-between items-end">
+<div class="max-w-md">
+<span class="font-technical-label text-secondary service-num transition-transform duration-500 block mb-2">04_VISUAL_ATMOSPHERE</span>
+<h3 class="font-display-lg text-headline-md text-primary mb-4 uppercase tracking-widest">Atmos Visualization</h3>
+<p class="font-body-md text-on-surface-variant">Hyper-realistic lighting simulations and atmospheric studies that capture the soul of the structure before a single stone is laid.</p>
+</div>
+<span class="material-symbols-outlined text-secondary text-6xl opacity-50 group-hover:opacity-100 transition-opacity" data-icon="visibility">visibility</span>
+</div>
+</div>
+</div>
+<!-- Service 05: Lighting Engineering -->
+<div class="col-span-12 md:col-span-6 lg:col-span-4 border-r border-b border-secondary/20 p-gutter service-card-hover relative overflow-hidden group">
+<div class="marker-plus -top-2 -left-2 z-20"></div>
+<div class="absolute inset-0 travertine-texture opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<span class="font-technical-label text-on-surface-variant service-num transition-transform duration-500">05_LUX_FLOW</span>
+<span class="material-symbols-outlined text-secondary text-4xl service-icon transition-transform duration-500" data-icon="light">light</span>
+</div>
+<h3 class="font-headline-md text-primary mb-4 uppercase tracking-wider">Lighting Engineering</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Sculpting shadows and highlight paths through integrated fixtures and recessed gold-foil reflectors for perpetual twilight elegance.</p>
+<div class="h-[1px] w-full bg-secondary/10 group-hover:bg-secondary/40 transition-colors"></div>
+</div>
+</div>
+<!-- Service 06: Bespoke Millwork -->
+<div class="col-span-12 md:col-span-6 lg:col-span-6 border-r border-b border-secondary/20 p-gutter service-card-hover relative overflow-hidden group">
+<div class="marker-plus -top-2 -left-2 z-20"></div>
+<div class="absolute inset-0 travertine-texture opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<span class="font-technical-label text-on-surface-variant service-num transition-transform duration-500">06_WOOD_CRAFT</span>
+<span class="material-symbols-outlined text-secondary text-4xl service-icon transition-transform duration-500" data-icon="carpenter">carpenter</span>
+</div>
+<h3 class="font-headline-md text-primary mb-4 uppercase tracking-wider">Bespoke Millwork</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Custom joinery using carbonized oak and metallic inlays, designed as structural art that integrates seamlessly into the architectural frame.</p>
+<div class="h-[1px] w-full bg-secondary/10 group-hover:bg-secondary/40 transition-colors"></div>
+</div>
+</div>
+<!-- Service 07: Project Governance -->
+<div class="col-span-12 md:col-span-12 lg:col-span-6 border-r border-b border-secondary/20 p-gutter service-card-hover relative overflow-hidden group">
+<div class="marker-plus -top-2 -left-2 z-20"></div>
+<div class="absolute inset-0 travertine-texture opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-12">
+<span class="font-technical-label text-on-surface-variant service-num transition-transform duration-500">07_GOVERNANCE</span>
+<span class="material-symbols-outlined text-secondary text-4xl service-icon transition-transform duration-500" data-icon="assignment">assignment</span>
+</div>
+<div class="grid md:grid-cols-2 gap-gutter">
+<div>
+<h3 class="font-headline-md text-primary mb-4 uppercase tracking-wider">Project Governance</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Total oversight of the construction process, ensuring every millimeter of the original blueprint is executed with uncompromising fidelity.</p>
+</div>
+<div class="hidden md:block">
+<div class="w-full h-full border border-secondary/20 p-4 flex flex-col justify-center items-center text-center">
+<span class="font-technical-label text-secondary mb-2">TIMELINE_ESTIMATION</span>
+<div class="w-full h-[2px] bg-secondary/10 relative overflow-hidden mb-2">
+<div class="absolute top-0 left-0 h-full w-[65%] bg-secondary"></div>
+</div>
+<span class="font-coordinate-sm text-on-surface-variant">STAGE: CONSTRUCTION_READY</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-40 border-t border-secondary/30 bg-surface-container-lowest">
+<div class="w-full px-margin-desktop py-gutter flex flex-col md:flex-row justify-between items-end border-l-[1px] border-r-[1px] border-secondary/15 mx-auto max-w-container-max relative">
+<div class="flex flex-col mb-8 md:mb-0">
+<div class="font-headline-md text-headline-md text-on-surface mb-4">STUDIO_AXIS</div>
+<div class="font-technical-label text-technical-label text-on-surface-variant uppercase space-x-6">
+<a class="hover:text-secondary underline decoration-secondary/30 transition-all duration-500" href="#">SPECIFICATIONS</a>
+<a class="hover:text-secondary underline decoration-secondary/30 transition-all duration-500" href="#">LEGAL_FRAMEWORK</a>
+<a class="hover:text-secondary underline decoration-secondary/30 transition-all duration-500" href="#">COORDINATES</a>
+</div>
+</div>
+<div class="text-right">
+<p class="font-technical-label text-technical-label text-secondary mb-2">©2024 ARCHITECTURAL RIGOR / ALL RIGHTS RESERVED</p>
+<div class="flex space-x-2 justify-end">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<div class="w-2 h-2 rounded-full bg-secondary/40"></div>
+<div class="w-2 h-2 rounded-full bg-secondary/10"></div>
+</div>
+</div>
+<!-- Corner Accents -->
+<div class="marker-plus -top-2 -left-2"></div>
+<div class="marker-plus -top-2 -right-2"></div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for drafting lines
+        document.addEventListener('mousemove', (e) => {
+            const lines = document.querySelectorAll('.drafting-line-v, .drafting-line-h');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            lines.forEach(line => {
+                if (line.classList.contains('drafting-line-v')) {
+                    line.style.opacity = 0.1 + (mouseX * 0.1);
+                } else {
+                    line.style.opacity = 0.1 + (mouseY * 0.1);
+                }
+            });
+        });
+
+        // Technical number increment effect on hover
+        const serviceCards = document.querySelectorAll('.service-card-hover');
+        serviceCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const label = card.querySelector('.service-num');
+                const originalText = label.innerText;
+                let iterations = 0;
+                
+                const interval = setInterval(() => {
+                    label.innerText = label.innerText
+                        .split("")
+                        .map((letter, index) => {
+                            if(index < iterations) {
+                                return originalText[index];
+                            }
+                            return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                        })
+                        .join("");
+                    
+                    if(iterations >= originalText.length) clearInterval(interval);
+                    iterations += 1/3;
+                }, 30);
+            });
+        });
+    </script>
+</body></html>

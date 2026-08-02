@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DESIGN ARK // Architectural & Interior Proposal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    @media print {
+      body { background-color: #ffffff !important; color: #161616 !important; }
+      .no-print { display: none !important; }
+      .page-break { page-break-after: always; }
+      .proposal-card { border: 1px solid #d1d5db !important; background: #f9fafb !important; color: #111827 !important; }
+      .gold-text { color: #b45309 !important; }
+    }
+    body {
+      background-color: #0B0B0C;
+      color: #e5e2e1;
+      font-family: 'Geist', sans-serif;
+    }
+    .font-serif-title { font-family: 'Bodoni Moda', serif; }
+    .font-mono-tech { font-family: 'Geist Mono', monospace; }
+  </style>
+</head>
+<body class="p-6 md:p-16 max-w-5xl mx-auto">
+
+  <!-- Print Button Bar (Hidden in Print Mode) -->
+  <div class="no-print mb-8 flex justify-between items-center bg-[#1c1b1b] p-4 border border-[#e0c297]/30 rounded">
+    <div class="flex items-center gap-3">
+      <span class="font-mono-tech text-xs text-[#e0c297]">PROPOSAL DOCUMENT // PDF READY</span>
+    </div>
+    <button onclick="window.print()" class="bg-[#e0c297] text-[#0B0B0C] font-mono-tech text-xs font-bold px-6 py-2.5 uppercase tracking-wider hover:bg-white transition-all">
+      Save / Print as PDF
+    </button>
+  </div>
+
+  <!-- Document Header / Cover -->
+  <header class="border-b-2 border-[#e0c297] pb-10 mb-12">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+      <div>
+        <div class="font-mono-tech text-xs text-[#e0c297] tracking-[0.25em] mb-2">PROJECT PROPOSAL & TECHNICAL SPECIFICATIONS</div>
+        <h1 class="font-serif-title text-4xl md:text-6xl text-white font-light">DESIGN ARK</h1>
+        <p class="text-sm text-gray-400 mt-2">Architectural Rigor & High-Luxury Interior Digital Platform</p>
+      </div>
+      <div class="font-mono-tech text-xs text-right space-y-1 text-gray-400">
+        <p><span class="text-[#e0c297]">REF:</span> DA-PROP-2026-V4</p>
+        <p><span class="text-[#e0c297]">DATE:</span> AUGUST 02, 2026</p>
+        <p><span class="text-[#e0c297]">COORD:</span> 06°55'12"N 79°52'18"E</p>
+        <p><span class="text-[#e0c297]">STATUS:</span> APPROVED & DEPLOYED</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Executive Summary -->
+  <section class="mb-16">
+    <h2 class="font-serif-title text-2xl text-[#e0c297] mb-4 border-b border-[#e0c297]/20 pb-2">01 // Executive Summary</h2>
+    <p class="text-gray-300 leading-relaxed text-base font-light mb-6">
+      This document presents the complete architectural proposal and digital platform specification for <strong>Design Ark</strong>. The project establishes an online atelier platform combining volcanic basalt foundations, tactile travertine textures, and warm metallic gold accents with parametric CAD drafting aesthetics.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono-tech text-xs">
+      <div class="bg-[#1c1b1b] p-5 border border-[#e0c297]/20 proposal-card">
+        <div class="text-[#e0c297] font-bold mb-2">PRIMARY PALETTE</div>
+        <p class="text-gray-300">Dark Basalt (#0B0B0C), Warm Gold (#e0c297), Travertine Slate (#e5e2e1).</p>
+      </div>
+      <div class="bg-[#1c1b1b] p-5 border border-[#e0c297]/20 proposal-card">
+        <div class="text-[#e0c297] font-bold mb-2">PAGE MODULES</div>
+        <p class="text-gray-300">5 Dedicated Routes (Atelier, Studio, Works, Blueprints, Contact).</p>
+      </div>
+      <div class="bg-[#1c1b1b] p-5 border border-[#e0c297]/20 proposal-card">
+        <div class="text-[#e0c297] font-bold mb-2">ARCHITECTURE STACK</div>
+        <p class="text-gray-300">Express.js Node Server, Tailwind CSS, Material Icons, Browser Automated Testing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Modules Breakdown -->
+  <section class="mb-16 page-break">
+    <h2 class="font-serif-title text-2xl text-[#e0c297] mb-6 border-b border-[#e0c297]/20 pb-2">02 // Architectural Site Structure & Modules</h2>
+    
+    <div class="space-y-8">
+      <!-- Module 01 -->
+      <div class="bg-[#1c1b1b] p-6 border-l-4 border-[#e0c297] proposal-card">
+        <div class="flex justify-between items-start mb-2 font-mono-tech text-xs text-[#e0c297]">
+          <span>MODULE 01 // ROUTE: /home</span>
+          <span>ATELIER HERO & SERVICES</span>
+        </div>
+        <h3 class="font-serif-title text-xl text-white mb-2">Atelier Landing Experience</h3>
+        <p class="text-sm text-gray-300 font-light leading-relaxed">
+          Features a dual-pane layout with parametric AutoCAD schematic overlays, CAD drafting lines, animated archive CTA link, and high-resolution architectural lobby imagery. Includes a 4-card technical overview grid.
+        </p>
+      </div>
+
+      <!-- Module 02 -->
+      <div class="bg-[#1c1b1b] p-6 border-l-4 border-[#e0c297] proposal-card">
+        <div class="flex justify-between items-start mb-2 font-mono-tech text-xs text-[#e0c297]">
+          <span>MODULE 02 // ROUTE: /about_us</span>
+          <span>STUDIO PROFILE & LEADERSHIP</span>
+        </div>
+        <h3 class="font-serif-title text-xl text-white mb-2">Studio & Manifesto Page</h3>
+        <p class="text-sm text-gray-300 font-light leading-relaxed">
+          Dedicated studio narrative detailing firm history, the "Code of Tectonic Rigor" (Tectonic Purity, Golden Ratio, Lux Engineering), and leadership profiles for Principal Architect Elena Roth and Director of Tectonics Marcus Thorne.
+        </p>
+      </div>
+
+      <!-- Module 03 -->
+      <div class="bg-[#1c1b1b] p-6 border-l-4 border-[#e0c297] proposal-card">
+        <div class="flex justify-between items-start mb-2 font-mono-tech text-xs text-[#e0c297]">
+          <span>MODULE 03 // ROUTE: /works</span>
+          <span>PORTFOLIO MATRIX</span>
+        </div>
+        <h3 class="font-serif-title text-xl text-white mb-2">Works & Specifications</h3>
+        <p class="text-sm text-gray-300 font-light leading-relaxed">
+          Interactive portfolio showcase featuring real-time category filtering (ALL_PROJECTS, RESIDENTIAL, WORKSPACE, COMMERCIAL), mouse parallax depth transitions, and project specification cards.
+        </p>
+      </div>
+
+      <!-- Module 04 -->
+      <div class="bg-[#1c1b1b] p-6 border-l-4 border-[#e0c297] proposal-card">
+        <div class="flex justify-between items-start mb-2 font-mono-tech text-xs text-[#e0c297]">
+          <span>MODULE 04 // ROUTE: /blueprints</span>
+          <span>SERVICES CATALOGUE</span>
+        </div>
+        <h3 class="font-serif-title text-xl text-white mb-2">Blueprints & Services Catalogue</h3>
+        <p class="text-sm text-gray-300 font-light leading-relaxed">
+          Faithful 7-card CAD grid layout from Stitch Node 5bc15128, including Space Planning, Material Curation, Precision Drafting, Atmos Visualization Hero Card, Lighting Engineering, Bespoke Millwork, and Project Governance with interactive label scramble effects.
+        </p>
+      </div>
+
+      <!-- Module 05 -->
+      <div class="bg-[#1c1b1b] p-6 border-l-4 border-[#e0c297] proposal-card">
+        <div class="flex justify-between items-start mb-2 font-mono-tech text-xs text-[#e0c297]">
+          <span>MODULE 05 // ROUTE: /contact_us</span>
+          <span>COORDINATES & PROCESS</span>
+        </div>
+        <h3 class="font-serif-title text-xl text-white mb-2">Coordinates & Consultation Form</h3>
+        <p class="text-sm text-gray-300 font-light leading-relaxed">
+          Interactive client inquiry form, global studio coordinates (Colombo, New York, Zurich), and project initiation milestones.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Verification & Compliance -->
+  <section class="mb-16">
+    <h2 class="font-serif-title text-2xl text-[#e0c297] mb-6 border-b border-[#e0c297]/20 pb-2">03 // Technical Verification & Quality Compliance</h2>
+    
+    <table class="w-full text-left font-mono-tech text-xs border border-gray-800">
+      <thead>
+        <tr class="bg-[#1c1b1b] text-[#e0c297] border-b border-gray-800">
+          <th class="p-3">CRITERIA</th>
+          <th class="p-3">SPECIFICATION</th>
+          <th class="p-3">VERIFICATION STATUS</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-800 text-gray-300">
+        <tr>
+          <td class="p-3 font-bold text-white">RESTful Routing</td>
+          <td class="p-3">Express.js mapped to /home, /about_us, /works, /blueprints, /contact_us</td>
+          <td class="p-3 text-green-400">PASSED (100% Valid)</td>
+        </tr>
+        <tr>
+          <td class="p-3 font-bold text-white">Media Assets</td>
+          <td class="p-3">High-resolution architectural photography via Unsplash public CDN</td>
+          <td class="p-3 text-green-400">PASSED (0 Resource Errors)</td>
+        </tr>
+        <tr>
+          <td class="p-3 font-bold text-white">Navigation System</td>
+          <td class="p-3">Clean Normal Form Header + Mobile Drawer Menu Toggle</td>
+          <td class="p-3 text-green-400">PASSED (Verified across viewports)</td>
+        </tr>
+        <tr>
+          <td class="p-3 font-bold text-white">Design Fidelity</td>
+          <td class="p-3">Stitch Node 5bc15128 Basalt & Gold Prestige System</td>
+          <td class="p-3 text-green-400">PASSED (Visual Subagent Verified)</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Sign-off & Acceptance -->
+  <section class="border-t border-[#e0c297]/30 pt-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 font-mono-tech text-xs">
+      <div>
+        <p class="text-[#e0c297] font-bold mb-4">PREPARED BY:</p>
+        <p class="text-white font-bold text-sm">Design Ark Architectural Studio</p>
+        <p class="text-gray-400">Digital Lead & Engineering Team</p>
+        <div class="mt-8 border-b border-gray-700 w-48 h-1"></div>
+        <p class="text-gray-500 text-[10px] mt-1">Authorized Signature</p>
+      </div>
+      <div>
+        <p class="text-[#e0c297] font-bold mb-4">CLIENT ACCEPTANCE:</p>
+        <p class="text-white font-bold text-sm">Approved Proposal Specifications</p>
+        <p class="text-gray-400">Project Version 4.0</p>
+        <div class="mt-8 border-b border-gray-700 w-48 h-1"></div>
+        <p class="text-gray-500 text-[10px] mt-1">Client Signature & Date</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

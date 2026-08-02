@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Design Ark // Process &amp; Contact</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#1e1b14",
+                      "tertiary-fixed": "#e9e2d6",
+                      "on-tertiary-fixed-variant": "#4a463e",
+                      "surface-container-highest": "#e5e2e1",
+                      "outline": "#77767b",
+                      "on-secondary-container": "#626360",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#ccc6bb",
+                      "secondary-fixed": "#e3e2df",
+                      "surface-tint": "#5f5e60",
+                      "inverse-on-surface": "#f4f0ef",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#fdf8f8",
+                      "on-secondary-fixed-variant": "#464744",
+                      "secondary-container": "#e0e0dc",
+                      "secondary-fixed-dim": "#c7c7c3",
+                      "secondary": "#5e5f5c",
+                      "background": "#fdf8f8",
+                      "primary-fixed": "#e5e1e4",
+                      "surface-dim": "#ddd9d9",
+                      "on-surface": "#1c1b1b",
+                      "error-container": "#ffdad6",
+                      "surface-container-low": "#f7f3f2",
+                      "on-tertiary-container": "#89837a",
+                      "on-primary-container": "#858386",
+                      "tertiary": "#000000",
+                      "on-surface-variant": "#47464a",
+                      "primary-fixed-dim": "#c8c6c8",
+                      "inverse-primary": "#c8c6c8",
+                      "inverse-surface": "#313030",
+                      "tertiary-container": "#1e1b14",
+                      "on-error": "#ffffff",
+                      "outline-variant": "#c8c5ca",
+                      "on-primary-fixed-variant": "#474649",
+                      "surface-container-high": "#ebe7e7",
+                      "on-primary-fixed": "#1b1b1d",
+                      "surface-container": "#f1edec",
+                      "on-background": "#1c1b1b",
+                      "surface-variant": "#e5e2e1",
+                      "primary": "#000000",
+                      "on-primary": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#1b1b1d",
+                      "surface": "#fdf8f8",
+                      "on-secondary-fixed": "#1b1c1a",
+                      "on-secondary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "blueprint-grid": "40px",
+                      "unit": "4px",
+                      "margin-desktop": "64px",
+                      "gutter": "24px",
+                      "margin-mobile": "20px",
+                      "stroke-thin": "0.5px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Hanken Grotesk"],
+                      "display-lg": ["Libre Caslon Text"],
+                      "coordinate-index": ["JetBrains Mono"],
+                      "body-md": ["Hanken Grotesk"],
+                      "headline-md": ["Libre Caslon Text"],
+                      "display-lg-mobile": ["Libre Caslon Text"],
+                      "label-caps": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                      "coordinate-index": ["10px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "label-caps": ["12px", {"lineHeight": "1.4", "letterSpacing": "0.15em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .blueprint-bg {
+            background-image: 
+                linear-gradient(to right, rgba(119, 118, 123, 0.05) 0.5px, transparent 0.5px),
+                linear-gradient(to bottom, rgba(119, 118, 123, 0.05) 0.5px, transparent 0.5px);
+            background-size: 40px 40px;
+        }
+
+        .tick-mark::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 0.5px;
+            background: #77767b;
+            transform: rotate(-45deg);
+        }
+
+        .transition-heavy {
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-bottom-color: #000 !important;
+        }
+
+        .hover-stroke:hover {
+            border-width: 1px;
+            border-color: #D4AF37; /* Bronze accent */
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md blueprint-bg min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop bg-surface/90 backdrop-blur-xl h-24 border-b-[0.5px] border-outline-variant">
+<div class="font-display-lg text-headline-md font-bold text-primary dark:text-on-background">Design Ark</div>
+<div class="hidden md:flex gap-12">
+<a class="font-label-caps text-label-caps tracking-widest uppercase text-on-surface-variant/70 hover:text-primary transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" href="#">01 // Home</a>
+<a class="font-label-caps text-label-caps tracking-widest uppercase text-on-surface-variant/70 hover:text-primary transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" href="#">02 // Projects</a>
+<a class="font-label-caps text-label-caps tracking-widest uppercase text-on-surface-variant/70 hover:text-primary transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]" href="#">03 // Studio</a>
+<a class="font-label-caps text-label-caps tracking-widest uppercase text-primary font-bold border-b-2 border-on-tertiary-fixed-variant pb-1" href="#">04 // Process</a>
+</div>
+<button class="font-label-caps text-label-caps tracking-widest uppercase border-[0.5px] border-outline px-6 py-3 hover:bg-primary hover:text-on-primary transition-heavy">
+            REQUEST BRIEF
+        </button>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-20 px-margin-desktop max-w-[1440px] mx-auto">
+<!-- Section Header -->
+<header class="mb-24 flex flex-col md:flex-row md:items-end justify-between border-l-[0.5px] border-outline-variant pl-8">
+<div>
+<span class="font-coordinate-index text-coordinate-index text-on-surface-variant mb-4 block">COORD: 51.5072° N, 0.1276° W // PAGE_04</span>
+<h1 class="font-display-lg text-display-lg text-primary max-w-2xl">Refining the technical artistry of living.</h1>
+</div>
+<div class="mt-8 md:mt-0 max-w-xs text-on-surface-variant">
+<p class="font-body-md italic opacity-70">"Precision is the bedrock of luxury. Every millimeter is considered before the first stone is laid."</p>
+</div>
+</header>
+<!-- Process Section (01-04) -->
+<section class="mb-32 relative">
+<div class="flex items-center mb-12">
+<span class="font-coordinate-index text-coordinate-index bg-tertiary-fixed text-on-tertiary-fixed px-2 py-1 mr-4">SECTION_A</span>
+<h2 class="font-label-caps text-label-caps tracking-widest uppercase">The Architectural Workflow</h2>
+</div>
+<!-- Horizontal Timeline Diagram -->
+<div class="relative py-20 overflow-x-auto no-scrollbar">
+<!-- AutoCAD Dotted Line -->
+<div class="absolute top-1/2 left-0 w-full h-[0.5px] border-t border-dashed border-outline-variant -translate-y-1/2"></div>
+<div class="flex justify-between min-w-[1000px] relative z-10">
+<!-- Step 01 -->
+<div class="group w-1/4 px-4">
+<div class="relative mb-8">
+<span class="font-coordinate-index text-coordinate-index absolute -top-8 left-0">STAGE_01</span>
+<div class="w-4 h-4 bg-primary rounded-full mb-6 ring-4 ring-surface"></div>
+<h3 class="font-headline-md text-headline-md mb-2">01 Consult</h3>
+</div>
+<p class="text-on-surface-variant font-body-md pr-8">A comprehensive analysis of spatial requirements, lifestyle patterns, and material preferences.</p>
+</div>
+<!-- Step 02 -->
+<div class="group w-1/4 px-4">
+<div class="relative mb-8">
+<span class="font-coordinate-index text-coordinate-index absolute -top-8 left-0">STAGE_02</span>
+<div class="w-4 h-4 border border-primary bg-surface rounded-full mb-6 group-hover:bg-primary transition-heavy ring-4 ring-surface"></div>
+<h3 class="font-headline-md text-headline-md mb-2">02 Concept</h3>
+</div>
+<p class="text-on-surface-variant font-body-md pr-8">Translating vision into preliminary schematic sketches, mood boards, and tactile material studies.</p>
+</div>
+<!-- Step 03 -->
+<div class="group w-1/4 px-4">
+<div class="relative mb-8">
+<span class="font-coordinate-index text-coordinate-index absolute -top-8 left-0">STAGE_03</span>
+<div class="w-4 h-4 border border-primary bg-surface rounded-full mb-6 group-hover:bg-primary transition-heavy ring-4 ring-surface"></div>
+<h3 class="font-headline-md text-headline-md mb-2">03 Develop</h3>
+</div>
+<p class="text-on-surface-variant font-body-md pr-8">High-fidelity 3D renderings, technical detailing, and procurement of bespoke components.</p>
+</div>
+<!-- Step 04 -->
+<div class="group w-1/4 px-4">
+<div class="relative mb-8">
+<span class="font-coordinate-index text-coordinate-index absolute -top-8 left-0">STAGE_04</span>
+<div class="w-4 h-4 border border-primary bg-surface rounded-full mb-6 group-hover:bg-primary transition-heavy ring-4 ring-surface"></div>
+<h3 class="font-headline-md text-headline-md mb-2">04 Deliver</h3>
+</div>
+<p class="text-on-surface-variant font-body-md pr-8">Final execution supervision, white-glove installation, and architectural handover.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid: FAQ & Contact -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- FAQ Section -->
+<section class="lg:col-span-5 space-y-12">
+<div>
+<div class="flex items-center mb-8">
+<span class="font-coordinate-index text-coordinate-index bg-secondary-fixed text-on-secondary-fixed px-2 py-1 mr-4">SECTION_B</span>
+<h2 class="font-label-caps text-label-caps tracking-widest uppercase">Specifications // FAQ</h2>
+</div>
+<div class="space-y-10">
+<div class="border-b-[0.5px] border-outline-variant pb-6">
+<h4 class="font-label-caps text-on-surface mb-3">01 // WHAT IS THE TYPICAL PROJECT TIMELINE?</h4>
+<p class="font-body-md text-on-surface-variant">Residential projects typically span 8-15 weeks from discovery to final tender, depending on technical complexity and procurement requirements.</p>
+</div>
+<div class="border-b-[0.5px] border-outline-variant pb-6">
+<h4 class="font-label-caps text-on-surface mb-3">02 // HOW ARE MATERIAL REVISIONS HANDLED?</h4>
+<p class="font-body-md text-on-surface-variant">We offer two comprehensive material revision rounds during the Concept phase. Subsequent changes are assessed based on procurement Lead times.</p>
+</div>
+<div class="border-b-[0.5px] border-outline-variant pb-6">
+<h4 class="font-label-caps text-on-surface mb-3">03 // DO YOU MANAGE ON-SITE CONSTRUCTION?</h4>
+<p class="font-body-md text-on-surface-variant">We act as the Lead Architectural Consultant, overseeing contractor adherence to the technical blueprint and finish quality.</p>
+</div>
+</div>
+</div>
+<!-- Studio Info -->
+<div class="bg-surface-container p-8 border-[0.5px] border-outline-variant relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-7xl">architecture</span>
+</div>
+<h3 class="font-label-caps mb-4">THE STUDIO</h3>
+<p class="font-body-md mb-6">124 Savile Row, Mayfair<br/>London, W1S 3PR</p>
+<div class="flex flex-col gap-2">
+<a class="font-coordinate-index hover:text-primary transition-heavy" href="mailto:studio@designark.com">studio@designark.com</a>
+<a class="font-coordinate-index hover:text-primary transition-heavy" href="tel:+442079460123">+44 (0) 20 7946 0123</a>
+</div>
+<!-- Gold WhatsApp Button -->
+<a class="mt-8 inline-flex items-center gap-3 bg-tertiary-fixed text-on-tertiary-fixed px-6 py-4 rounded-none font-label-caps hover:bg-primary hover:text-on-primary transition-heavy group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+                        SECURE CONSULTATION
+                    </a>
+</div>
+</section>
+<!-- Contact Form Section -->
+<section class="lg:col-span-7 bg-white p-12 border-[0.5px] border-outline-variant shadow-sm relative">
+<!-- Drafting Ledger Aesthetic -->
+<div class="absolute top-4 right-8 font-coordinate-index text-outline-variant">FORM_REF: DA_2024_01</div>
+<div class="flex items-center mb-12">
+<span class="font-coordinate-index text-coordinate-index bg-primary-fixed text-on-primary-fixed px-2 py-1 mr-4">SECTION_C</span>
+<h2 class="font-label-caps text-label-caps tracking-widest uppercase">Project Ledger // Intake</h2>
+</div>
+<form class="space-y-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="relative group">
+<label class="font-coordinate-index text-on-surface-variant uppercase mb-2 block transition-heavy group-focus-within:text-primary">NAME / IDENTITY</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b-[0.5px] border-outline-variant p-0 pb-2 font-label-caps text-primary placeholder:text-outline-variant/50 focus:ring-0" placeholder="ENTERING DATA..." type="text"/>
+</div>
+<div class="relative group">
+<label class="font-coordinate-index text-on-surface-variant uppercase mb-2 block transition-heavy group-focus-within:text-primary">ELECTRONIC MAIL</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b-[0.5px] border-outline-variant p-0 pb-2 font-label-caps text-primary placeholder:text-outline-variant/50 focus:ring-0" placeholder="USER@DOMAIN.COM" type="email"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="relative group">
+<label class="font-coordinate-index text-on-surface-variant uppercase mb-2 block transition-heavy group-focus-within:text-primary">PROJECT SCOPE</label>
+<select class="w-full bg-transparent border-t-0 border-x-0 border-b-[0.5px] border-outline-variant p-0 pb-2 font-label-caps text-primary focus:ring-0 appearance-none">
+<option>SELECT CLASSIFICATION</option>
+<option>RESIDENTIAL FULL-BUILD</option>
+<option>INTERIOR ARCHITECTURE</option>
+<option>HOSPITALITY BESPOKE</option>
+<option>CONSULTATION ONLY</option>
+</select>
+</div>
+<div class="relative group">
+<label class="font-coordinate-index text-on-surface-variant uppercase mb-2 block transition-heavy group-focus-within:text-primary">INVESTMENT RANGE (USD)</label>
+<select class="w-full bg-transparent border-t-0 border-x-0 border-b-[0.5px] border-outline-variant p-0 pb-2 font-label-caps text-primary focus:ring-0 appearance-none">
+<option>SELECT CAPACITY</option>
+<option>$100K - $250K</option>
+<option>$250K - $500K</option>
+<option>$500K - $1M</option>
+<option>$1M+</option>
+</select>
+</div>
+</div>
+<div class="relative group">
+<label class="font-coordinate-index text-on-surface-variant uppercase mb-2 block transition-heavy group-focus-within:text-primary">ARCHITECTURAL REQUIREMENTS</label>
+<textarea class="w-full bg-transparent border-t-0 border-x-0 border-b-[0.5px] border-outline-variant p-0 pb-2 font-label-caps text-primary placeholder:text-outline-variant/50 focus:ring-0 resize-none" placeholder="DESCRIBE THE VISION AND SPATIAL PARAMETERS..." rows="4"></textarea>
+</div>
+<div class="flex items-center justify-between pt-8">
+<div class="flex items-center gap-4">
+<input class="w-4 h-4 text-primary border-outline-variant rounded-none focus:ring-0" id="nda" type="checkbox"/>
+<label class="font-coordinate-index text-on-surface-variant" for="nda">REQUEST NDA PRIOR TO DISCLOSURE</label>
+</div>
+<button class="group flex items-center gap-4 bg-primary text-on-primary px-10 py-5 transition-heavy hover:bg-on-surface-variant" type="submit">
+<span class="font-label-caps">TRANSMIT BRIEF</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-heavy">arrow_forward</span>
+</button>
+</div>
+</form>
+</section>
+</div>
+<!-- Material Selection Teaser -->
+<section class="mt-32 grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="relative group h-96 overflow-hidden">
+<img class="w-full h-full object-cover transition-heavy group-hover:scale-105" data-alt="Close-up macro shot of a slab of travertine stone with deep textures, light beige and cream tones, architectural studio lighting, minimalist luxury aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0MsnRscg0Ba86NTDi5NGCbVpiun7hh0jSzvkti3D9vy233hm901jY2g-5BUsWYILScecUez4987iTIusDA_q0PhEVCGi7uVXG33j6hikG-OET73HZ6D1j1agpfl4eb9vNyKvGzDeIPgHKFHyeiYKiv53ZvEKQytpXAGmNYYA33oVpqzn-H22gt7YuE5p0KuVpCp3DFz6ZwWGDOy0WMvheNHAE02Nhdqf_ai6Qg4VgNHowJp0SyKU"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-heavy flex items-center justify-center">
+<span class="font-label-caps text-white border border-white px-4 py-2">VIEW SWATCHES</span>
+</div>
+<div class="absolute bottom-4 left-4 font-coordinate-index text-white bg-black/50 px-2 py-1">STONE_SPEC: T-01</div>
+</div>
+<div class="relative group h-96 overflow-hidden">
+<img class="w-full h-full object-cover transition-heavy group-hover:scale-105" data-alt="High-end architectural metal finishes, brushed bronze and champagne gold samples laid out on a technical blueprint, precise detail, luxury studio setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG0xpL_AE5gj5khHOdZMm_31PEPXyIzzWbJ5tw9zkVcUC9zM-1mPiLrJhm_PPrsUT887sFfWPmdC007i7b2RAxxcWGZyUsgQ2-RlNRJ3V5X-VCxayjmR9CxMCpl6UvAQ6BGnpq5zfBV5x3HtFv5KWRhr2eif0HsiMcQVgsgimZsZCTL3ir4K1GdVP9ThVivkPtlYtkH0l2txdqiTOgBC0KoVNp3giQUPEOlYYGyHwQwlq_7tF1Fy4"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-heavy flex items-center justify-center">
+<span class="font-label-caps text-white border border-white px-4 py-2">VIEW FINISHES</span>
+</div>
+<div class="absolute bottom-4 left-4 font-coordinate-index text-white bg-black/50 px-2 py-1">METAL_SPEC: B-04</div>
+</div>
+<div class="relative group h-96 overflow-hidden">
+<img class="w-full h-full object-cover transition-heavy group-hover:scale-105" data-alt="Premium dark walnut wood grain texture, architectural joinery detail, matte finish, elegant lighting, professional interior photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVgpBaCgnfdRUmrjgAPAWDJdGJAlHq3Xp_kjtKEYPPVI6YxhAngcITy_EhGQbizu859z5WErt4QWqYrg9h-swrCTqXUetCNRed3jEKhH2grT2pgXrP06vIASNOpih1ZU7xIuCDkJsNcyNE7w5ZOEpQ9bSn3x-HxhgOl2UP3ijMMMeJ7FitGxRLIYQ0eSbZL0KJ28zSZNS3EhApdw4hkmgdjrW-Pc0zIpG-StzPipK4iUB1UZFzqZk"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-heavy flex items-center justify-center">
+<span class="font-label-caps text-white border border-white px-4 py-2">VIEW TIMBER</span>
+</div>
+<div class="absolute bottom-4 left-4 font-coordinate-index text-white bg-black/50 px-2 py-1">WOOD_SPEC: W-09</div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<footer class="w-full py-12 px-margin-desktop flex flex-col md:flex-row justify-between items-end bg-surface-container-low border-t-[0.5px] border-outline-variant mt-20">
+<div class="flex flex-col gap-4">
+<div class="font-label-caps text-label-caps text-primary uppercase">Design Ark // Studio</div>
+<p class="font-coordinate-index text-coordinate-index tracking-tighter text-on-surface-variant/70 uppercase">© 2024 DESIGN ARK // ALL RIGHTS RESERVED</p>
+</div>
+<div class="flex flex-wrap gap-8 mt-8 md:mt-0 items-end">
+<a class="font-coordinate-index text-coordinate-index text-on-surface-variant/70 hover:text-primary transition-colors duration-500 uppercase" href="#">IMPRINT</a>
+<a class="font-coordinate-index text-coordinate-index text-on-surface-variant/70 hover:text-primary transition-colors duration-500 uppercase" href="#">TERMS</a>
+<a class="font-coordinate-index text-coordinate-index text-on-surface-variant/70 hover:text-primary transition-colors duration-500 uppercase" href="#">PRIVACY</a>
+<div class="font-coordinate-index text-coordinate-index text-on-surface-variant uppercase">COORDINATES: 51.5074° N, 0.1278° W</div>
+</div>
+</footer>
+<!-- Interactive Elements Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Soft parallax or subtle movement for blueprint background
+            window.addEventListener('mousemove', (e) => {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.005;
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.005;
+                document.body.style.backgroundPosition = `${moveX}px ${moveY}px`;
+            });
+
+            // Smooth reveal animations for stages
+            const stages = document.querySelectorAll('.group');
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('opacity-100');
+                            entry.target.classList.remove('translate-y-4');
+                        }, index * 200);
+                    }
+                });
+            }, observerOptions);
+
+            stages.forEach(stage => {
+                stage.classList.add('opacity-0', 'translate-y-4', 'transition-heavy');
+                observer.observe(stage);
+            });
+        });
+    </script>
+</body></html>
