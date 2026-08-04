@@ -36,10 +36,27 @@ export default function SiteFooter() {
     
         <div className="md:col-span-4 space-y-3 font-technical-label text-xs text-slate/70">
           <div className="text-secondary font-bold text-[10px] tracking-[0.2em] mb-2">PRACTICE LOCATIONS</div>
-          <p>COLOMBO // 142 Tectonic Way, District 03</p>
-          <p>NEW YORK // 450 Hudson Street, Suite 800</p>
-          <p>ZURICH // Basaltstrasse 12, 8001</p>
-          
+          <p>
+            <a href="https://www.google.com/maps/search/?api=1&query=142+Tectonic+Way%2C+Colombo+03%2C+Sri+Lanka" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors">
+              COLOMBO // 142 Tectonic Way, District 03
+            </a>
+          </p>
+          <p>
+            <a href="https://www.google.com/maps/search/?api=1&query=450+Hudson+Street%2C+Suite+800%2C+New+York" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors">
+              NEW YORK // 450 Hudson Street, Suite 800
+            </a>
+          </p>
+          <p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Basaltstrasse+12%2C+8001+Zurich" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors">
+              ZURICH // Basaltstrasse 12, 8001
+            </a>
+          </p>
+          <p>
+            <a href="tel:+94112345678" className="hover:text-secondary transition-colors">+94 11 234 5678</a>
+            {' // '}
+            <a href="mailto:inquiry@designark.com" className="hover:text-secondary transition-colors">INQUIRY@DESIGNARK.COM</a>
+          </p>
+
           {/* CAD Social Annotations */}
           <div className="pt-4 border-t border-slate/15 flex items-center gap-6 font-technical-label text-[10px] text-slate/70">
             <a href="https://www.tiktok.com/@designark" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-secondary transition-colors duration-200">

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { images } from '@/lib/images';
@@ -154,12 +155,12 @@ export default function ServicesView() {
               <span>{d.scale}</span>
             </div>
 
-            <div className="img-cad-frame">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+            <div className="img-cad-frame relative w-full h-[220px]">
+              <Image
                 src={d.image}
                 alt={d.title}
-                className="w-full h-[220px] object-cover grayscale smooth-hover"
+                fill
+                className="object-cover grayscale smooth-hover"
               />
             </div>
 

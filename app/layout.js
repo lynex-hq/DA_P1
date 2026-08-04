@@ -4,6 +4,7 @@ import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import CadScramble from '@/components/CadScramble';
 import ClientDoorLoadingScreen from '@/components/ClientDoorLoadingScreen';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const bodoni = Bodoni_Moda({
   subsets: ['latin'],
@@ -46,6 +47,7 @@ export default function RootLayout({ children }) {
         <SiteHeader />
         {children}
         <SiteFooter />
+        <WhatsAppButton />
         <CadScramble />
       </body>
     </html>

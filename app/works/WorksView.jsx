@@ -1,7 +1,7 @@
 'use client';
 
 import { images } from '@/lib/images';
-
+import Image from 'next/image';
 import { useState } from 'react';
 
 export default function WorksView() {
@@ -34,7 +34,9 @@ export default function WorksView() {
           {/* Project Card 1 */}
           <div className="project-item border border-slate/15 bg-white p-5 shadow-sm group" data-category="residential" style={{ display: cat === 'all' || cat === 'residential' ? 'block' : 'none' }}>
             <div className="relative overflow-hidden mb-4 border border-slate/10">
-              <img src={images.workTravertinePavilion} alt="Travertine Pavilion" className="w-full h-80 object-cover grayscale group-hover:grayscale-0 smooth-hover" />
+              <div className="relative w-full h-80">
+                <Image src={images.workTravertinePavilion} alt="Travertine Pavilion" fill className="object-cover grayscale group-hover:grayscale-0 smooth-hover" />
+              </div>
               <span className="absolute top-3 left-3 bg-[#FAF9F6] px-2 py-1 font-technical-label text-[9px] text-secondary font-bold border border-slate/20">PROJ_01</span>
             </div>
             <div className="space-y-2">
@@ -48,11 +50,13 @@ export default function WorksView() {
               </p>
             </div>
           </div>
-      
+
           {/* Project Card 2 */}
           <div className="project-item border border-slate/15 bg-white p-5 shadow-sm group" data-category="workspace" style={{ display: cat === 'all' || cat === 'workspace' ? 'block' : 'none' }}>
             <div className="relative overflow-hidden mb-4 border border-slate/10">
-              <img src={images.workBasaltWorkspace} alt="Basalt Workspace" className="w-full h-80 object-cover grayscale group-hover:grayscale-0 smooth-hover" />
+              <div className="relative w-full h-80">
+                <Image src={images.workBasaltWorkspace} alt="Basalt Workspace" fill className="object-cover grayscale group-hover:grayscale-0 smooth-hover" />
+              </div>
               <span className="absolute top-3 left-3 bg-[#FAF9F6] px-2 py-1 font-technical-label text-[9px] text-secondary font-bold border border-slate/20">PROJ_02</span>
             </div>
             <div className="space-y-2">
@@ -63,6 +67,26 @@ export default function WorksView() {
               <h3 className="font-headline-md text-2xl text-slate">Volcanic Basalt Corporate Suite</h3>
               <p className="text-xs text-slate/70 font-light leading-relaxed">
                 Private executive suite with dark volcanic stone walling, recessed metallic brass accents, and acoustic wood slabbing.
+              </p>
+            </div>
+          </div>
+
+          {/* Project Card 3 — same commission featured on the homepage gallery */}
+          <div className="project-item border border-slate/15 bg-white p-5 shadow-sm group" data-category="commercial" style={{ display: cat === 'all' || cat === 'commercial' ? 'block' : 'none' }}>
+            <div className="relative overflow-hidden mb-4 border border-slate/10">
+              <div className="relative w-full h-80">
+                <Image src={images.projectAtelierNine} alt="Atelier Nine" fill className="object-cover grayscale group-hover:grayscale-0 smooth-hover" />
+              </div>
+              <span className="absolute top-3 left-3 bg-[#FAF9F6] px-2 py-1 font-technical-label text-[9px] text-secondary font-bold border border-slate/20">PROJ_03</span>
+            </div>
+            <div className="space-y-2">
+              <div className="flex justify-between items-center font-technical-label text-[10px] text-slate/60">
+                <span>HOSPITALITY RETAIL FLAGSHIP</span>
+                <span>LOCATION: GALLE FORT</span>
+              </div>
+              <h3 className="font-headline-md text-2xl text-slate">Atelier Nine</h3>
+              <p className="text-xs text-slate/70 font-light leading-relaxed">
+                A heritage-fort retail flagship rebuilt around brand experience — sculpted display joinery, warm brass fixtures and a footprint engineered for how visitors actually move through it.
               </p>
             </div>
           </div>

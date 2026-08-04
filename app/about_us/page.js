@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import { images } from '@/lib/images';
-export const metadata = { title: "DESIGN ARK // Studio & Manifesto" };
+export const metadata = {
+  title: 'DESIGN ARK // Studio & Manifesto',
+  description:
+    'Meet the studio behind Design Ark — our practice pillars, principal architects, and the material and geometric principles that shape every commission.',
+};
 
 export default function AboutPage() {
   return (

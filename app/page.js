@@ -336,8 +336,8 @@ export default function HomePage() {
             </div>
           </div>
       
-          {/* Three Testimonials */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 pt-10">
+          {/* Six Testimonials, two rows */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 md:gap-x-10 gap-y-12 pt-10">
             <figure className="space-y-5">
               <div className="font-display-lg text-5xl text-secondary leading-none">&ldquo;</div>
               <blockquote className="text-base text-slate/85 font-light leading-relaxed">
@@ -348,7 +348,7 @@ export default function HomePage() {
                 <div className="font-technical-label text-[10px] tracking-[0.14em] text-slate/55 uppercase mt-1">Residential // Colombo 07</div>
               </figcaption>
             </figure>
-      
+
             <figure className="space-y-5 md:border-l md:border-slate/15 md:pl-10">
               <div className="font-display-lg text-5xl text-secondary leading-none">&ldquo;</div>
               <blockquote className="text-base text-slate/85 font-light leading-relaxed">
@@ -359,7 +359,7 @@ export default function HomePage() {
                 <div className="font-technical-label text-[10px] tracking-[0.14em] text-slate/55 uppercase mt-1">Office Fit-Out // Colombo 03</div>
               </figcaption>
             </figure>
-      
+
             <figure className="space-y-5 md:border-l md:border-slate/15 md:pl-10">
               <div className="font-display-lg text-5xl text-secondary leading-none">&ldquo;</div>
               <blockquote className="text-base text-slate/85 font-light leading-relaxed">
@@ -368,6 +368,39 @@ export default function HomePage() {
               <figcaption className="pt-4 border-t border-slate/15">
                 <div className="font-technical-label text-[11px] tracking-[0.16em] text-slate font-bold uppercase">Ayesha Fernando</div>
                 <div className="font-technical-label text-[10px] tracking-[0.14em] text-slate/55 uppercase mt-1">Retail // Galle Fort</div>
+              </figcaption>
+            </figure>
+
+            <figure className="space-y-5 md:pt-10 md:border-t md:border-slate/15">
+              <div className="font-display-lg text-5xl text-secondary leading-none">&ldquo;</div>
+              <blockquote className="text-base text-slate/85 font-light leading-relaxed">
+                Design Ark transformed our commercial space with mathematical precision. The way they manipulated natural light and raw materials completely redefined our brand experience.
+              </blockquote>
+              <figcaption className="pt-4 border-t border-slate/15">
+                <div className="font-technical-label text-[11px] tracking-[0.16em] text-slate font-bold uppercase">Julian Vance</div>
+                <div className="font-technical-label text-[10px] tracking-[0.14em] text-slate/55 uppercase mt-1">Commercial // Verdant Holdings</div>
+              </figcaption>
+            </figure>
+
+            <figure className="space-y-5 md:border-l md:border-slate/15 md:pl-10 md:pt-10 md:border-t">
+              <div className="font-display-lg text-5xl text-secondary leading-none">&ldquo;</div>
+              <blockquote className="text-base text-slate/85 font-light leading-relaxed">
+                Their approach to residential architecture is unparalleled. The balance of warm textures and restrained minimalism created a sanctuary that feels both timeless and deeply personal.
+              </blockquote>
+              <figcaption className="pt-4 border-t border-slate/15">
+                <div className="font-technical-label text-[11px] tracking-[0.16em] text-slate font-bold uppercase">Sarah Chen</div>
+                <div className="font-technical-label text-[10px] tracking-[0.14em] text-slate/55 uppercase mt-1">Residential // Private Client</div>
+              </figcaption>
+            </figure>
+
+            <figure className="space-y-5 md:border-l md:border-slate/15 md:pl-10 md:pt-10 md:border-t">
+              <div className="font-display-lg text-5xl text-secondary leading-none">&ldquo;</div>
+              <blockquote className="text-base text-slate/85 font-light leading-relaxed">
+                We specified Design Ark for a high-end hospitality project. The tectonic rigor they applied to the joinery and spatial flow exceeded every expectation.
+              </blockquote>
+              <figcaption className="pt-4 border-t border-slate/15">
+                <div className="font-technical-label text-[11px] tracking-[0.16em] text-slate font-bold uppercase">Marcus Reynolds</div>
+                <div className="font-technical-label text-[10px] tracking-[0.14em] text-slate/55 uppercase mt-1">Hospitality // Lumen Hotels</div>
               </figcaption>
             </figure>
           </div>
@@ -431,49 +464,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== SHEET A-10 // CLIENT TESTIMONIALS ===== */}
-      <section className="py-24 border-t border-slate/15">
-        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em] mb-12">
-            <span className="w-8 h-[1px] bg-secondary"></span>
-            <span>SHEET A-10 // CLIENT TESTIMONIALS</span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="p-8 border border-slate/15 bg-white shadow-sm flex flex-col justify-between">
-              <p className="text-sm text-slate/80 font-light leading-relaxed italic mb-8">
-                &quot;Design Ark transformed our commercial space with mathematical precision. The way they manipulated natural light and raw materials completely redefined our brand experience.&quot;
-              </p>
-              <div>
-                <span className="font-technical-label text-xs text-slate tracking-widest block">JULIAN VANCE</span>
-                <span className="font-technical-label text-[10px] text-secondary tracking-widest">CEO, VERDANT HOLDINGS</span>
-              </div>
-            </div>
-
-            <div className="p-8 border border-slate/15 bg-white shadow-sm flex flex-col justify-between">
-              <p className="text-sm text-slate/80 font-light leading-relaxed italic mb-8">
-                &quot;Their approach to residential architecture is unparalleled. The balance of warm textures and restrained minimalism created a sanctuary that feels both timeless and deeply personal.&quot;
-              </p>
-              <div>
-                <span className="font-technical-label text-xs text-slate tracking-widest block">SARAH CHEN</span>
-                <span className="font-technical-label text-[10px] text-secondary tracking-widest">PRIVATE CLIENT</span>
-              </div>
-            </div>
-
-            <div className="p-8 border border-slate/15 bg-white shadow-sm flex flex-col justify-between">
-              <p className="text-sm text-slate/80 font-light leading-relaxed italic mb-8">
-                &quot;We specified Design Ark for a high-end hospitality project. The tectonic rigor they applied to the joinery and spatial flow exceeded every expectation.&quot;
-              </p>
-              <div>
-                <span className="font-technical-label text-xs text-slate tracking-widest block">MARCUS REYNOLDS</span>
-                <span className="font-technical-label text-[10px] text-secondary tracking-widest">DIRECTOR, LUMEN HOTELS</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ===== SHEET A-11 // SOCIAL ARCHIVE ===== */}
+      {/* ===== SHEET A-10 // SOCIAL ARCHIVE ===== */}
       <section className="py-24 border-t border-slate/15">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center mb-12">
           <span className="font-technical-label text-xs text-secondary tracking-[0.25em] block mb-4">SOCIAL ARCHIVE</span>
@@ -481,27 +472,41 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 w-full">
           <div className="aspect-square border border-slate/15 overflow-hidden relative">
-             <Image src={images.detailBed} alt="Instagram 1" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
+             <Image src={images.detailBed} alt="Bedroom detail from a recent commission" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
           </div>
           <div className="aspect-square border border-slate/15 overflow-hidden relative">
-             <Image src={images.detailCoffee} alt="Instagram 2" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
+             <Image src={images.detailCoffee} alt="Coffee table styling detail" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
           </div>
           <div className="aspect-square border border-slate/15 overflow-hidden relative">
-             <Image src={images.detailSink} alt="Instagram 3" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
+             <Image src={images.detailSink} alt="Kitchen sink and fixture detail" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
           </div>
           <div className="aspect-square border border-slate/15 overflow-hidden relative">
-             <Image src={images.detailLaptop} alt="Instagram 4" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
+             <Image src={images.detailLaptop} alt="Workspace styling detail" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
           </div>
+        </div>
+
+        {/* Real social channels — TikTok and Facebook are the studio's actual
+            profiles (see footer). No Instagram feed is wired up: that needs a
+            real handle from the client before it can be built. */}
+        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-8 flex items-center justify-center gap-8 font-technical-label text-[10px] tracking-[0.2em] text-slate/70">
+          <a href="https://www.tiktok.com/@designark" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-secondary transition-colors">
+            <svg className="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+            FOLLOW ON TIKTOK
+          </a>
+          <a href="https://www.facebook.com/share/18vZ3rsKJR/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-secondary transition-colors">
+            <svg className="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            FOLLOW ON FACEBOOK
+          </a>
         </div>
           </section>
 
-      {/* ===== SHEET A-12 // LET'S WORK ===== */}
-      <section id="sheet-12" className="w-full bg-[#161616] text-[#FAF9F6] border-t border-secondary/30">
+      {/* ===== SHEET A-11 // LET'S WORK ===== */}
+      <section id="sheet-11" className="w-full bg-[#161616] text-[#FAF9F6] border-t border-secondary/30">
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-4">
 
           <div className="flex items-center gap-2 font-technical-label text-[9px] text-secondary tracking-[0.25em]">
             <span className="w-6 h-[1px] bg-secondary"></span>
-            <span>SHEET A-12 // COMMENCEMENT</span>
+            <span>SHEET A-11 // COMMENCEMENT</span>
           </div>
 
           <h2 className="font-display-lg text-lg sm:text-xl md:text-2xl font-light leading-tight mt-2 max-w-xl">
