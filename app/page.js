@@ -525,8 +525,6 @@ export default function HomePage() {
         </div>
       </section>
       
-      
-      {/* CHARCOAL SLATE ANCHOR FOOTER */}
     </>
   );
 }

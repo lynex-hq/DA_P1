@@ -17,17 +17,10 @@ const NAV = [
   { label: 'CONTACT', href: '/contact_us', match: ['/contact_us'] },
 ];
 
-// Each static page carried its own drawing number in the title block
-const DWG = {
-  '/blog': 'DWG.05',
-  '/insights': 'DWG.05',
-};
-
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const isActive = (item) => item.match.includes(pathname);
-  const dwg = DWG[pathname] || 'DWG.01';
 
   const headerRef = useRef(null);
   const [triggered, setTriggered] = useState(false);
@@ -69,11 +62,8 @@ export default function SiteHeader() {
     <header ref={headerRef} style={{ opacity: 0 }} className="fixed top-0 left-0 w-full z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-slate/15">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
 
-        {/* Title Block / CAD Reference Tag */}
-        <Link href="/" className="flex items-center gap-3 group" aria-label="Design Ark — home">
-          {/* Monogram, not the full lockup: the title block already sets
-              "DESIGN ARK" in type beside it, and the lockup's wordmark renders
-              under 6px tall at this size. /logo.png keeps the full lockup. */}
+        {/* Logo only — no wordmark or coordinate line beside it */}
+        <Link href="/" className="flex items-center group" aria-label="Design Ark — home">
           <Image
             src="/images/brand/design-ark-mark.png"
             alt="Design Ark"
@@ -82,9 +72,6 @@ export default function SiteHeader() {
             priority
             className="w-11 h-11 object-contain"
           />
-          <div className="flex flex-col border-l border-slate/20 pl-3 justify-center">
-            <span className="font-technical-label text-[11px] font-bold tracking-[0.2em] text-slate">DESIGN ARK</span>
-          </div>
         </Link>
 
         {/* CAD Plan Annotations Desktop Nav */}
