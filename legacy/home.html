@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>DESIGN ARK // Atelier & Architectural Rigor</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ivory: #FAF9F6;
+      --ivory-alt: #F5F4F0;
+      --slate: #252525;
+      --charcoal: #161616;
+      --brass: #C5A880;
+    }
+    body {
+      background-color: var(--ivory);
+      color: var(--slate);
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Subtle 2% CAD Graph Paper Overlay */
+    .cad-blueprint-grid {
+      background-color: #FAF9F6;
+      background-image: 
+        linear-gradient(to right, rgba(37, 37, 37, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 37, 37, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .panel-ivory-alt {
+      background-color: #F5F4F0;
+    }
+    .line-slate {
+      border-color: rgba(37, 37, 37, 0.15);
+    }
+    .marker-plus::before {
+      content: '+';
+      font-family: 'Geist Mono', monospace;
+      color: var(--brass);
+      font-size: 13px;
+      position: absolute;
+    }
+    /* CAD Dimension Line for Active/Hover Nav Links */
+    .cad-dim-line {
+      position: relative;
+    }
+    .cad-dim-line::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--brass);
+    }
+    .cad-dim-line::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      border-left: 1px solid var(--brass);
+      border-right: 1px solid var(--brass);
+    }
+    /* Fast, smooth hover transitions (150-250ms ease-out) */
+    .smooth-hover {
+      transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-brass-outline {
+      border: 1px solid var(--brass);
+      color: var(--slate);
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      font-weight: 500;
+      transition: all 200ms ease-out;
+    }
+    .btn-brass-outline:hover {
+      background-color: var(--brass);
+      color: #161616;
+    }
+    /* ===== SHEET A-07 // CONTINUOUS IMAGE FEED ===== */
+    .detail-sheet {
+      position: relative;
+      height: 100vh;
+      height: 100svh;
+      overflow: hidden;
+      background-color: #FAF9F6;
+      cursor: crosshair;
+    }
+    .detail-columns {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: start;   /* stretch would equalise column heights and break the -50% loop */
+      gap: 8px;
+      padding: 0 8px;
+    }
+    /* Each column holds its plates twice over. The track is offset by the
+       visitor's own scrolling and wrapped modulo one set, so it never runs
+       out of content in either direction. Margins (not flex gap) keep the
+       two halves identical in height — a gap would leave a half-gap seam. */
+    .detail-col {
+      display: block;
+      will-change: transform;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .detail-plate {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 8px;
+      border: 1px solid rgba(37, 37, 37, 0.10);
+      transition: border-color 250ms ease-out;
+    }
+    .detail-plate img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1), filter 400ms ease-out;
+    }
+    .detail-plate:hover { border-color: var(--brass); }
+    .detail-plate:hover img { transform: scale(1.05); }
+    /* Neighbours recede a little so the hovered plate reads clearly.
+       Pure CSS — no JS class needed now that the readout is gone. */
+    .detail-columns:hover .detail-plate:not(:hover) img {
+      filter: brightness(0.72) saturate(0.75);
+    }
+    @media (hover: none) {
+      .detail-sheet { cursor: default; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .detail-plate:hover img { transform: none; }
+    }
+
+    /* Button variants for charcoal panels */
+    .btn-brass-on-dark,
+    .btn-brass-solid {
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 14px 30px;
+      font-weight: 500;
+      border: 1px solid var(--brass);
+      display: inline-block;
+      transition: all 200ms ease-out;
+    }
+    .btn-brass-on-dark { color: #FAF9F6; }
+    .btn-brass-on-dark:hover { background-color: var(--brass); color: #161616; }
+    .btn-brass-solid { background-color: var(--brass); color: #161616; }
+    .btn-brass-solid:hover { background-color: transparent; color: var(--brass); }
+
+    /* ===== SHEET A-05 // FULL-BLEED SLIDER ===== */
+    .slider-sheet {
+      height: 100vh;
+      height: 100svh;
+    }
+    .slide {
+      position: absolute;
+      inset: 0;
+      transform: translate3d(100%, 0, 0);
+    }
+    /* Three independent transform layers keep the motion on the compositor:
+       .slide = the travelling frame, .slide-media = counter-parallax, img = scale drift */
+    .slide,
+    .slide-media {
+      transition: transform var(--slide-ease-duration, 1100ms) cubic-bezier(0.62, 0.02, 0.16, 1);
+      will-change: transform;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    /* Used for the instant re-park before a transition — never animates */
+    .slide.no-anim,
+    .slide.no-anim .slide-media {
+      transition: none;
+    }
+    .slide-media {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.06);
+      filter: grayscale(25%);
+    }
+    /* Slow scale drift on the resting frame only */
+    .slide.is-active img {
+      animation: slideDrift 9000ms linear forwards;
+    }
+    @keyframes slideDrift {
+      from { transform: scale(1.03); }
+      to   { transform: scale(1.10); }
+    }
+    /* Single fixed scrim above the moving frames — anchors the bottom rail, never travels */
+    .slider-scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+      background:
+        linear-gradient(to top, rgba(22,22,22,0.88) 0%, rgba(22,22,22,0.55) 11%, rgba(22,22,22,0.12) 30%, rgba(22,22,22,0) 55%),
+        linear-gradient(to bottom, rgba(22,22,22,0.35) 0%, rgba(22,22,22,0) 22%);
+    }
+    /* Custom CAD line-and-circle arrow controls */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #FAF9F6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 20;
+      padding: 8px;
+      opacity: 0.85;
+    }
+    .slider-arrow:hover {
+      color: var(--brass);
+      opacity: 1;
+      transform: translateY(-50%) scale(1.08);
+    }
+    .slider-arrow:focus-visible {
+      outline: 1px solid var(--brass);
+      outline-offset: 4px;
+    }
+    .slider-arrow-prev { left: 16px; }
+    .slider-arrow-next { right: 16px; }
+    @media (min-width: 768px) {
+      .slider-arrow-prev { left: 32px; }
+      .slider-arrow-next { right: 32px; }
+    }
+    /* Tick indicators — 1px rules, but with a 20px tall hit area */
+    .slider-tick {
+      width: 40px;
+      height: 20px;
+      position: relative;
+      background-color: transparent;
+    }
+    .slider-tick::before,
+    .slider-tick::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+    }
+    .slider-tick::before {
+      background-color: rgba(250, 249, 246, 0.3);
+      transition: background-color 250ms ease-out;
+    }
+    .slider-tick:hover::before { background-color: rgba(250, 249, 246, 0.7); }
+    .slider-tick::after {
+      background-color: var(--brass);
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+    .slider-tick.is-active::after {
+      animation: tickFill var(--slide-duration, 6500ms) linear forwards;
+    }
+    @keyframes tickFill {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    /* Pause all timing-driven motion while the user is inspecting a frame */
+    .slider-sheet.is-paused .slide.is-active img,
+    .slider-sheet.is-paused .slider-tick.is-active::after {
+      animation-play-state: paused;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .slide.is-active img,
+      .slider-tick.is-active::after {
+        animation: none;
+      }
+      .slide,
+      .slide-media {
+        transition-duration: 1ms;
+      }
+      .slider-tick.is-active::after { transform: scaleX(1); }
+    }
+
+    /* Full-viewport drawing sheets — each section fills the screen below the 80px fixed header */
+    .sheet-full {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      scroll-margin-top: 80px;
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#252525",
+            "secondary": "#C5A880",
+            "on-surface": "#252525",
+            "on-surface-variant": "#252525",
+            "background": "#FAF9F6",
+            "surface": "#F5F4F0",
+            "surface-container-low": "#161616",
+            "surface-container-lowest": "#161616"
+          },
+          spacing: {
+            "margin-desktop": "64px",
+            "container-max": "1440px",
+            "margin-mobile": "20px",
+            "gutter": "24px"
+          },
+          fontFamily: {
+            "display-lg": ["Bodoni Moda", "serif"],
+            "headline-md": ["Bodoni Moda", "serif"],
+            "technical-label": ["Geist Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+  
+
+  <!-- STITCH CAD MICRO-ANIMATIONS (60/30/10 SCHEME PRESERVED) -->
+  <style id="stitch-cad-animations">
+    /* 1. CAD Dimension Line Draw-In Animation */
+    .cad-dim-line {
+      position: relative;
+    }
+    .cad-dim-line::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--brass);
+      animation: dimLineExpand 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .cad-dim-line::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      border-left: 1px solid var(--brass);
+      border-right: 1px solid var(--brass);
+      animation: dimTickFade 300ms ease-out forwards;
+    }
+    @keyframes dimLineExpand {
+      from { width: 0%; opacity: 0; }
+      to { width: 100%; opacity: 1; }
+    }
+    @keyframes dimTickFade {
+      from { opacity: 0; transform: scaleY(0); }
+      to { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* 2. Photo Hover Zoom & Border Draw */
+    .img-cad-frame {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(37, 37, 37, 0.15);
+      transition: border-color 250ms ease-out;
+    }
+    .img-cad-frame:hover {
+      border-color: var(--brass);
+    }
+    .img-cad-frame img {
+      transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), filter 600ms ease-out;
+    }
+    .img-cad-frame:hover img {
+      transform: scale(1.03);
+      filter: grayscale(0%) !important;
+    }
+
+    /* 3. Section Fade-In Keyframe on Initial Load */
+    @keyframes cadSectionFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .cad-load-reveal {
+      animation: cadSectionFadeIn 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* 4. Interactive Scramble / Counter Hover Trigger */
+    .cad-tag-scramble {
+      display: inline-block;
+      transition: color 200ms ease-out;
+    }
+    .cad-tag-scramble:hover {
+      color: var(--brass);
+    }
+  </style>
+
+</head>
+<body class="cad-blueprint-grid">
+
+<!-- ARCHITECTURAL DRAFTING SHEET NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-slate/15">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
+    
+    <!-- Title Block / CAD Reference Tag (Replaces oversized logo) -->
+    <a href="/home" class="flex items-center gap-3 group">
+      <span class="font-technical-label text-secondary text-sm font-bold">+</span>
+      <div class="flex flex-col border-l border-slate/20 pl-3">
+        <span class="font-technical-label text-[11px] font-bold tracking-[0.2em] text-slate">DESIGN ARK</span>
+        <span class="font-technical-label text-[8px] tracking-[0.12em] text-slate/60">COORD: 06°55'12"N // DWG.01</span>
+      </div>
+    </a>
+
+    <!-- CAD Plan Annotations Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-10">
+      <a href="/home" class="font-technical-label text-[11px] tracking-[0.18em] py-1 cad-dim-line text-slate font-semibold">HOME</a>
+      <a href="/about_us" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">ABOUT</a>
+      <a href="/works" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">PORTFOLIO</a>
+      <a href="/blueprints" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">SERVICES</a>
+      <a href="/blog" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">BLOG</a>
+      <a href="/contact_us" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">CONTACT</a>
+    </nav>
+
+    <!-- Right Action CTA & Mobile Drawer Button -->
+    <div class="flex items-center gap-4">
+      
+    <!-- Top-Right CAD Social Annotations -->
+    <div class="hidden md:flex items-center gap-3 pr-4 border-r border-slate/15">
+      <a href="https://www.tiktok.com/@designark" target="_blank" rel="noopener noreferrer" class="text-slate/70 hover:text-secondary transition-colors duration-200" title="TikTok // @designark">
+        <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+      </a>
+      <a href="https://www.facebook.com/share/18vZ3rsKJR/" target="_blank" rel="noopener noreferrer" class="text-slate/70 hover:text-secondary transition-colors duration-200" title="Facebook // Design Ark">
+        <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+      </a>
+    </div>
+
+      <a href="/contact_us" class="btn-brass-outline hidden sm:inline-block">
+        INQUIRE
+      </a>
+      <button onclick="toggleMobileMenu()" class="lg:hidden text-slate p-1 focus:outline-none" aria-label="Toggle drawer">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Pull-Out Drawing Sheet Drawer -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-[#FAF9F6] border-b border-secondary/30 px-margin-mobile py-6 flex-col gap-2">
+    <a href="/home" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-secondary font-bold">HOME</a>
+    <a href="/about_us" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">ABOUT</a>
+    <a href="/works" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">PORTFOLIO</a>
+    <a href="/blueprints" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">SERVICES</a>
+    <a href="/blog" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">BLOG</a>
+    <a href="/contact_us" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">CONTACT</a>
+    <a href="/contact_us" class="mt-4 text-center btn-brass-outline bg-secondary/10">
+      INQUIRE NOW
+    </a>
+  </div>
+</header>
+
+
+<!-- CROPPED HERO SECTION WITH ARCHITECTURAL IMAGE BACKDROP -->
+<section class="relative w-full min-h-[70vh] md:min-h-[78vh] flex items-center bg-[#161616] text-[#FAF9F6] border-b border-slate/80 overflow-hidden group pt-24 pb-16">
+  
+  <!-- Full-Bleed Edge-to-Edge Architectural Background Photograph -->
+  <div class="absolute inset-0 z-0 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2600&q=80" alt="Full Architectural Hero Backdrop" class="w-full h-full object-cover transition-all duration-700 opacity-85 scale-100 group-hover:scale-105"/>
+    
+    <!-- Subtle Legibility Overlay for Text without Blocking Image at Bottom -->
+    <div class="absolute inset-0 bg-linear-to-r from-black/85 via-black/50 to-black/20 z-10"></div>
+    <div class="absolute inset-0 bg-black/20 z-10"></div>
+  </div>
+
+  <!-- Ambient Golden Blueprint Spotlight Overlays -->
+  <div class="absolute -top-32 -right-32 w-125 h-125 bg-secondary/20 rounded-full blur-3xl pointer-events-none z-10"></div>
+  <div class="absolute -bottom-32 -left-32 w-125 h-125 bg-secondary/15 rounded-full blur-3xl pointer-events-none z-10"></div>
+
+  <!-- Hero Editorial Copy Content -->
+  <div class="max-w-container-max w-full mx-auto px-margin-mobile md:px-margin-desktop py-4 relative z-20">
+    <div class="max-w-3xl space-y-6">
+      
+      <h1 class="font-display-lg text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[#FAF9F6] font-light leading-[1.05] tracking-tight">
+        Architectural Rigor <br/>
+        <span class="italic text-secondary">met with Material Intelligence.</span>
+      </h1>
+
+      <p class="text-base sm:text-lg md:text-xl text-[#FAF9F6]/85 font-light leading-relaxed max-w-2xl">
+        Restraint in structure, warmth in execution. We craft high-luxury living environments by pairing volcanic stone foundations with algorithmic precision and warm metallic accents.
+      </p>
+
+      <div class="pt-2 flex flex-wrap items-center gap-6">
+        <a href="/works" class="btn-brass-solid shadow-xl text-xs sm:text-sm px-8 py-4">
+          VIEW THE WORKS
+        </a>
+        <a href="/contact_us" class="btn-brass-outline text-[#FAF9F6] hover:bg-secondary hover:text-[#161616] backdrop-blur-md bg-black/30 text-xs sm:text-sm px-8 py-4">
+          INQUIRE NOW
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+
+  <!-- SCOPE OF PRACTICE // WHAT THE STUDIO DELIVERS -->
+  <section class="sheet-full pt-24 pb-10 border-b border-slate/15">
+    <!-- Section Title Block -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-end pb-6 border-b border-slate/15">
+      <div class="md:col-span-7 space-y-4">
+        <div class="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
+          <span class="w-8 h-px bg-secondary"></span>
+          <span>SHEET A-02 // SCOPE OF PRACTICE</span>
+        </div>
+        <h2 class="font-display-lg text-3xl sm:text-4xl text-slate font-light leading-tight">
+          An interior design studio<br/>
+          <span class="italic text-secondary">across three disciplines.</span>
+        </h2>
+      </div>
+      <div class="md:col-span-5">
+        <p class="text-sm text-slate/80 font-light leading-relaxed">
+          Design Ark crafts inspiring, timeless spaces — from concept and spatial planning through material specification, joinery detailing and site execution. Every commission falls into one of three drawing sets.
+        </p>
+      </div>
+    </div>
+
+    <!-- Three Discipline Sheets -->
+    <div class="grid grid-cols-1 md:grid-cols-3 border-l border-slate/15">
+      <!-- SVC.01 // RESIDENTIAL -->
+      <article class="group border-r border-b border-slate/15 p-6 hover:bg-[#F5F4F0] smooth-hover">
+        <div class="flex items-baseline justify-between font-technical-label text-[10px] tracking-[0.2em] text-slate/50">
+          <span class="text-secondary font-bold">SVC.01</span>
+          <span>SCALE 1:50</span>
+        </div>
+
+        <div class="img-cad-frame mt-5">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" alt="Residential interior design" class="w-full h-32.5 object-cover grayscale smooth-hover"/>
+        </div>
+
+        <h3 class="font-display-lg text-xl text-slate mt-4">Residential Interior Design</h3>
+        <p class="text-sm text-slate/75 font-light leading-relaxed mt-3">
+          Private homes composed around light, proportion and the way a family actually lives in a space.
+        </p>
+
+        <ul class="mt-4 space-y-1.5 font-technical-label text-[10px] tracking-[0.14em] text-slate/70 uppercase">
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>House Design</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Apartment Design</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Living Room Design</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Kitchen Design</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Bedroom Design</li>
+        </ul>
+      </article>
+
+      <!-- SVC.02 // OFFICE -->
+      <article class="group border-r border-b border-slate/15 p-6 hover:bg-[#F5F4F0] smooth-hover">
+        <div class="flex items-baseline justify-between font-technical-label text-[10px] tracking-[0.2em] text-slate/50">
+          <span class="text-secondary font-bold">SVC.02</span>
+          <span>SCALE 1:100</span>
+        </div>
+
+        <div class="img-cad-frame mt-5">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80" alt="Office interior design" class="w-full h-32.5 object-cover grayscale smooth-hover"/>
+        </div>
+
+        <h3 class="font-display-lg text-xl text-slate mt-4">Office Interior Design</h3>
+        <p class="text-sm text-slate/75 font-light leading-relaxed mt-3">
+          Workplaces planned for focus and flow — efficient footprints that still read as considered and calm.
+        </p>
+
+        <ul class="mt-4 space-y-1.5 font-technical-label text-[10px] tracking-[0.14em] text-slate/70 uppercase">
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Workspace Planning</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Reception Design</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Meeting Room Design</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Furniture Planning</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Lighting Planning</li>
+        </ul>
+      </article>
+
+      <!-- SVC.03 // COMMERCIAL -->
+      <article class="group border-r border-b border-slate/15 p-6 hover:bg-[#F5F4F0] smooth-hover">
+        <div class="flex items-baseline justify-between font-technical-label text-[10px] tracking-[0.2em] text-slate/50">
+          <span class="text-secondary font-bold">SVC.03</span>
+          <span>SCALE 1:200</span>
+        </div>
+
+        <div class="img-cad-frame mt-5">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80" alt="Commercial interior design" class="w-full h-32.5 object-cover grayscale smooth-hover"/>
+        </div>
+
+        <h3 class="font-display-lg text-xl text-slate mt-4">Commercial Interior Design</h3>
+        <p class="text-sm text-slate/75 font-light leading-relaxed mt-3">
+          Retail, hospitality and brand environments built to hold attention and carry a brand in three dimensions.
+        </p>
+
+        <ul class="mt-4 space-y-1.5 font-technical-label text-[10px] tracking-[0.14em] text-slate/70 uppercase">
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Retail Design</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Showroom Design</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Hospitality Design</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Brand Experience Spaces</li>
+          <li class="flex items-center gap-3 border-t border-slate/10 pt-2"><span class="text-secondary">+</span>Space Optimization</li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Section Footer Strip -->
+    <div class="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <span class="font-technical-label text-[10px] text-slate/50 tracking-[0.15em]">FIG. 02 // DISCIPLINE INDEX — RES / OFF / COM</span>
+      <a href="/contact_us" class="btn-brass-outline">
+        REQUEST A CONSULTATION
+      </a>
+    </div>
+  </section>
+
+  <!-- Floor Plan Walkthrough Image Flow (Section 1: Left Image, Right Text) -->
+  <section class="sheet-full py-16 border-b border-slate/15">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      <div class="md:col-span-6 order-2 md:order-1 relative group">
+        <div class="border border-slate/20 p-2 bg-white shadow-lg">
+          <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=80" alt="Material Curation Spec" class="w-full h-100 md:h-[58vh] object-cover grayscale group-hover:grayscale-0 smooth-hover"/>
+        </div>
+        <span class="font-technical-label text-[10px] text-secondary mt-2 block">FIG. 03 // MATERIAL CURATION & TEXTURE TINTS</span>
+      </div>
+
+      <div class="md:col-span-6 order-1 md:order-2 space-y-4">
+        <span class="font-technical-label text-xs text-secondary tracking-[0.2em]">01 // MATERIAL TACTILITY</span>
+        <h2 class="font-display-lg text-3xl text-slate">Tectonic Purity & Structural Grain</h2>
+        <p class="text-sm text-slate/80 font-light leading-relaxed">
+          Sourcing unrefined basalt and hand-honed travertine directly from European quarries. Every surface is specified to age with dignity, absorbing natural daylight to create quiet, atmospheric depth.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floor Plan Walkthrough Image Flow (Section 2: Right Image, Left Text) -->
+  <section class="sheet-full py-16">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+      <div class="md:col-span-6 space-y-4">
+        <span class="font-technical-label text-xs text-secondary tracking-[0.2em]">02 // LUX ENGINEERING</span>
+        <h2 class="font-display-lg text-3xl text-slate">Algorithmic Lighting & Shadow Paths</h2>
+        <p class="text-sm text-slate/80 font-light leading-relaxed">
+          Precision recessed lighting engineered along golden ratio grid lines. Ambient reflections cast soft twilight hues across metallic brass fixtures throughout the day.
+        </p>
+      </div>
+
+      <div class="md:col-span-6 relative group">
+        <div class="border border-slate/20 p-2 bg-white shadow-lg">
+          <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?auto=format&fit=crop&w=1600&q=80" alt="Lighting Engineering Spec" class="w-full h-100 md:h-[58vh] object-cover grayscale group-hover:grayscale-0 smooth-hover"/>
+        </div>
+        <span class="font-technical-label text-[10px] text-secondary mt-2 block">FIG. 04 // LUX FLOW & AMBIENT HARMONY</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<!-- ===== SHEET A-05 // FULL-BLEED PROJECT SLIDER ===== -->
+<section id="sheet-05"
+         class="slider-sheet relative w-full overflow-hidden bg-[#161616]"
+         aria-roledescription="carousel"
+         aria-label="Design Ark selected works">
+
+  <!-- Slide Frames -->
+  <div id="slider-track" class="absolute inset-0">
+
+    <article class="slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 5">
+      <div class="slide-media">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=80" alt="Residential living space with layered natural light"/>
+      </div>
+    </article>
+
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="2 of 5">
+      <div class="slide-media">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2000&q=80" alt="Office interior with glazed partitions"/>
+      </div>
+    </article>
+
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="3 of 5">
+      <div class="slide-media">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2000&q=80" alt="Retail environment with sculpted display joinery"/>
+      </div>
+    </article>
+
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="4 of 5">
+      <div class="slide-media">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=2000&q=80" alt="Close study of stone and timber material texture"/>
+      </div>
+    </article>
+
+    <article class="slide" role="group" aria-roledescription="slide" aria-label="5 of 5">
+      <div class="slide-media">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=80" alt="Atmospheric interior architecture at dusk"/>
+      </div>
+    </article>
+  </div>
+
+  <!-- Fixed scrim above the travelling frames -->
+  <div class="slider-scrim"></div>
+
+  <!-- Left / Right CAD Line-and-Circle Controls -->
+  <button type="button" id="slider-prev" class="slider-arrow slider-arrow-prev group" aria-label="Previous slide" aria-controls="slider-track">
+    <svg class="w-14 h-11 text-[#FAF9F6] group-hover:text-[#C5A880] transition-colors duration-300" viewBox="0 0 56 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22" cy="22" r="18" stroke="currentColor" stroke-width="1.2" />
+      <line x1="48" y1="22" x2="26" y2="22" stroke="currentColor" stroke-width="1.5" />
+      <polygon points="28,16 16,22 28,28" fill="currentColor" />
+    </svg>
+  </button>
+  <button type="button" id="slider-next" class="slider-arrow slider-arrow-next group" aria-label="Next slide" aria-controls="slider-track">
+    <svg class="w-14 h-11 text-[#FAF9F6] group-hover:text-[#C5A880] transition-colors duration-300" viewBox="0 0 56 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="34" cy="22" r="18" stroke="currentColor" stroke-width="1.2" />
+      <line x1="8" y1="22" x2="30" y2="22" stroke="currentColor" stroke-width="1.5" />
+      <polygon points="28,16 40,22 28,28" fill="currentColor" />
+    </svg>
+  </button>
+
+  <!-- Bottom Annotation Rail: counter + tick indicators -->
+  <div class="absolute bottom-0 left-0 w-full z-20 border-t border-[#FAF9F6]/15">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-5 flex items-center justify-between gap-6">
+      <div class="font-technical-label text-[10px] md:text-xs tracking-[0.2em] text-[#FAF9F6]/70" data-no-scramble>
+        <span id="slider-index" class="text-secondary font-bold">01</span>
+        <span class="mx-1 text-[#FAF9F6]/40">/</span>
+        <span>05</span>
+      </div>
+
+      <div id="slider-ticks" class="flex items-center gap-2 md:gap-3" role="tablist" aria-label="Select slide">
+        <button type="button" class="slider-tick is-active" role="tab" aria-label="Go to slide 1" aria-selected="true"></button>
+        <button type="button" class="slider-tick" role="tab" aria-label="Go to slide 2" aria-selected="false"></button>
+        <button type="button" class="slider-tick" role="tab" aria-label="Go to slide 3" aria-selected="false"></button>
+        <button type="button" class="slider-tick" role="tab" aria-label="Go to slide 4" aria-selected="false"></button>
+        <button type="button" class="slider-tick" role="tab" aria-label="Go to slide 5" aria-selected="false"></button>
+      </div>
+
+      <span class="hidden md:block font-technical-label text-[10px] tracking-[0.2em] text-[#FAF9F6]/40">SHEET A-05 // SELECTED WORKS</span>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== SHEET A-06 // CAPABILITY INDEX + PROJECT GALLERY ===== -->
+<section id="sheet-06" class="sheet-full cad-blueprint-grid w-full border-t border-slate/15">
+  <div class="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
+
+    <!-- Title Block -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-end pb-6 border-b border-slate/15">
+      <div class="md:col-span-7 space-y-4">
+        <div class="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
+          <span class="w-8 h-px bg-secondary"></span>
+          <span>SHEET A-06 // CAPABILITY INDEX</span>
+        </div>
+        <h2 class="font-display-lg text-3xl sm:text-4xl text-slate font-light leading-tight">
+          What we are <span class="italic text-secondary">capable of.</span>
+        </h2>
+      </div>
+      <div class="md:col-span-5">
+        <p class="text-sm text-slate/80 font-light leading-relaxed">
+          A single studio carries the work from first sketch to final handover — no drawings lost between consultants, no detail left to chance on site.
+        </p>
+      </div>
+    </div>
+
+    <!-- Capability Strip -->
+    <div class="grid grid-cols-2 md:grid-cols-6 border-l border-slate/15 mb-8">
+      <div class="border-r border-b border-slate/15 px-4 py-4">
+        <div class="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.01</div>
+        <div class="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Concept &amp; Spatial Planning</div>
+      </div>
+      <div class="border-r border-b border-slate/15 px-4 py-4">
+        <div class="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.02</div>
+        <div class="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">3D Visualisation</div>
+      </div>
+      <div class="border-r border-b border-slate/15 px-4 py-4">
+        <div class="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.03</div>
+        <div class="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Material Specification</div>
+      </div>
+      <div class="border-r border-b border-slate/15 px-4 py-4">
+        <div class="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.04</div>
+        <div class="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Joinery Detailing</div>
+      </div>
+      <div class="border-r border-b border-slate/15 px-4 py-4">
+        <div class="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.05</div>
+        <div class="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Lighting Design</div>
+      </div>
+      <div class="border-r border-b border-slate/15 px-4 py-4">
+        <div class="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.06</div>
+        <div class="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Site Execution</div>
+      </div>
+    </div>
+
+    <!-- Project Gallery — 3 Cards -->
+    <div class="flex items-baseline justify-between mb-4">
+      <span class="font-technical-label text-[10px] tracking-[0.2em] text-slate/50">FIG. 06 // PROJECT GALLERY</span>
+      <a href="/works" class="font-technical-label text-[10px] tracking-[0.2em] text-secondary hover:text-slate transition-colors">VIEW ALL WORKS +</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- PRJ.01 -->
+      <a href="/works" class="group block">
+        <div class="img-cad-frame">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Basalt House residential project" class="w-full h-47.5 object-cover grayscale smooth-hover"/>
+        </div>
+        <div class="flex items-baseline justify-between mt-3">
+          <h3 class="font-display-lg text-lg text-slate group-hover:text-secondary transition-colors">Basalt House</h3>
+          <span class="font-technical-label text-[10px] text-secondary">PRJ.01</span>
+        </div>
+        <p class="font-technical-label text-[10px] tracking-[0.14em] text-slate/60 uppercase mt-1">Residential // Colombo 07</p>
+      </a>
+
+      <!-- PRJ.02 -->
+      <a href="/works" class="group block">
+        <div class="img-cad-frame">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" alt="Meridian Workspace office project" class="w-full h-47.5 object-cover grayscale smooth-hover"/>
+        </div>
+        <div class="flex items-baseline justify-between mt-3">
+          <h3 class="font-display-lg text-lg text-slate group-hover:text-secondary transition-colors">Meridian Workspace</h3>
+          <span class="font-technical-label text-[10px] text-secondary">PRJ.02</span>
+        </div>
+        <p class="font-technical-label text-[10px] tracking-[0.14em] text-slate/60 uppercase mt-1">Office // Colombo 03</p>
+      </a>
+
+      <!-- PRJ.03 -->
+      <a href="/works" class="group block">
+        <div class="img-cad-frame">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80" alt="Atelier Nine hospitality project" class="w-full h-47.5 object-cover grayscale smooth-hover"/>
+        </div>
+        <div class="flex items-baseline justify-between mt-3">
+          <h3 class="font-display-lg text-lg text-slate group-hover:text-secondary transition-colors">Atelier Nine</h3>
+          <span class="font-technical-label text-[10px] text-secondary">PRJ.03</span>
+        </div>
+        <p class="font-technical-label text-[10px] tracking-[0.14em] text-slate/60 uppercase mt-1">Commercial // Galle Fort</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== SHEET A-07 // CONTINUOUS IMAGE FEED ===== -->
+<section id="sheet-07" class="detail-sheet w-full border-t border-slate/15" aria-label="Detail image feed">
+
+  <div class="detail-columns">
+
+    <div class="detail-col" data-factor="0.55">
+        <figure class="detail-plate h-[30vh]">
+        <img src="https://images.unsplash.com/photo-1549388604-817d15aa0110?w=700&fit=crop&auto=format" alt="Bed" loading="lazy"/>
+        </figure>
+        <figure class="detail-plate h-[22vh]">
+        <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=700&fit=crop&auto=format" alt="Kitchen" loading="lazy"/>
+        </figure>
+        <figure class="detail-plate h-[26vh]">
+        <img src="https://images.unsplash.com/photo-1530731141654-5993c3016c77?w=700&fit=crop&auto=format" alt="Laptop" loading="lazy"/>
+        </figure>
+        <figure class="detail-plate h-[24vh]">
+        <img src="https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?w=700&fit=crop&auto=format" alt="Storage" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[30vh]">
+        <img src="https://images.unsplash.com/photo-1549388604-817d15aa0110?w=700&fit=crop&auto=format" alt="Bed" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[22vh]">
+        <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?w=700&fit=crop&auto=format" alt="Kitchen" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[26vh]">
+        <img src="https://images.unsplash.com/photo-1530731141654-5993c3016c77?w=700&fit=crop&auto=format" alt="Laptop" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[24vh]">
+        <img src="https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee?w=700&fit=crop&auto=format" alt="Storage" loading="lazy"/>
+        </figure>
+    </div>
+
+    <div class="detail-col" data-factor="-0.34">
+        <figure class="detail-plate h-[24vh]">
+        <img src="https://images.unsplash.com/photo-1525097487452-6278ff080c31?w=700&fit=crop&auto=format" alt="Books" loading="lazy"/>
+        </figure>
+        <figure class="detail-plate h-[32vh]">
+        <img src="https://images.unsplash.com/photo-1588436706487-9d55d73a39e3?w=700&fit=crop&auto=format" alt="Blinds" loading="lazy"/>
+        </figure>
+        <figure class="detail-plate h-[20vh]">
+        <img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61?w=700&fit=crop&auto=format" alt="Doors" loading="lazy"/>
+        </figure>
+        <figure class="detail-plate h-[27vh]">
+        <img src="https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62?w=700&fit=crop&auto=format" alt="Candle" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[24vh]">
+        <img src="https://images.unsplash.com/photo-1525097487452-6278ff080c31?w=700&fit=crop&auto=format" alt="Books" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[32vh]">
+        <img src="https://images.unsplash.com/photo-1588436706487-9d55d73a39e3?w=700&fit=crop&auto=format" alt="Blinds" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[20vh]">
+        <img src="https://images.unsplash.com/photo-1481277542470-605612bd2d61?w=700&fit=crop&auto=format" alt="Doors" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[27vh]">
+        <img src="https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62?w=700&fit=crop&auto=format" alt="Candle" loading="lazy"/>
+        </figure>
+    </div>
+
+    <div class="detail-col" data-factor="0.42">
+        <figure class="detail-plate h-[26vh]">
+        <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?w=700&fit=crop&auto=format" alt="Sink" loading="lazy"/>
+        </figure>
+        <figure class="detail-plate h-[23vh]">
+        <img src="https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=700&fit=crop&auto=format" alt="Chairs" loading="lazy"/>
+        </figure>
+        <figure class="detail-plate h-[30vh]">
+        <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=700&fit=crop&auto=format" alt="Coffee" loading="lazy"/>
+        </figure>
+        <figure class="detail-plate h-[22vh]">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=700&fit=crop&auto=format" alt="Coffee table" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[26vh]">
+        <img src="https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?w=700&fit=crop&auto=format" alt="Sink" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[23vh]">
+        <img src="https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=700&fit=crop&auto=format" alt="Chairs" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[30vh]">
+        <img src="https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=700&fit=crop&auto=format" alt="Coffee" loading="lazy"/>
+        </figure>
+        <figure aria-hidden="true" class="detail-plate h-[22vh]">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=700&fit=crop&auto=format" alt="Coffee table" loading="lazy"/>
+        </figure>
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ===== SHEET A-08 // TESTIMONIALS ===== -->
+<section id="sheet-08" class="sheet-full panel-ivory-alt w-full border-t border-slate/15">
+  <div class="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
+
+    <!-- Title Block -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-end pb-10 border-b border-slate/15">
+      <div class="md:col-span-7 space-y-4">
+        <div class="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
+          <span class="w-8 h-px bg-secondary"></span>
+          <span>SHEET A-08 // CLIENT RECORD</span>
+        </div>
+        <h2 class="font-display-lg text-3xl sm:text-4xl text-slate font-light leading-tight">
+          Signed off by the <span class="italic text-secondary">people who live in them.</span>
+        </h2>
+      </div>
+      <div class="md:col-span-5">
+        <p class="text-sm text-slate/80 font-light leading-relaxed">
+          Every commission closes with a handover walkthrough. These are the notes that came back afterwards.
+        </p>
+      </div>
+    </div>
+
+    <!-- Three Testimonials -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 pt-10">
+      <figure class="space-y-5">
+        <div class="font-display-lg text-5xl text-secondary leading-none">&ldquo;</div>
+        <blockquote class="text-base text-slate/85 font-light leading-relaxed">
+          They drew the whole house before a single wall moved. We knew exactly what we were getting, and the finished rooms are calmer than the renders promised.
+        </blockquote>
+        <figcaption class="pt-4 border-t border-slate/15">
+          <div class="font-technical-label text-[11px] tracking-[0.16em] text-slate font-bold uppercase">Nirmala &amp; Rushan P.</div>
+          <div class="font-technical-label text-[10px] tracking-[0.14em] text-slate/55 uppercase mt-1">Residential // Colombo 07</div>
+        </figcaption>
+      </figure>
+
+      <figure class="space-y-5 md:border-l md:border-slate/15 md:pl-10">
+        <div class="font-display-lg text-5xl text-secondary leading-none">&ldquo;</div>
+        <blockquote class="text-base text-slate/85 font-light leading-relaxed">
+          Our floor holds forty people and still feels quiet. The lighting plan alone changed how the team works — nobody asks to move desks any more.
+        </blockquote>
+        <figcaption class="pt-4 border-t border-slate/15">
+          <div class="font-technical-label text-[11px] tracking-[0.16em] text-slate font-bold uppercase">Dilhara Weerasinghe</div>
+          <div class="font-technical-label text-[10px] tracking-[0.14em] text-slate/55 uppercase mt-1">Office Fit-Out // Colombo 03</div>
+        </figcaption>
+      </figure>
+
+      <figure class="space-y-5 md:border-l md:border-slate/15 md:pl-10">
+        <div class="font-display-lg text-5xl text-secondary leading-none">&ldquo;</div>
+        <blockquote class="text-base text-slate/85 font-light leading-relaxed">
+          They handled the heritage constraints better than we hoped and still delivered on the opening date. The store photographs beautifully from every angle.
+        </blockquote>
+        <figcaption class="pt-4 border-t border-slate/15">
+          <div class="font-technical-label text-[11px] tracking-[0.16em] text-slate font-bold uppercase">Ayesha Fernando</div>
+          <div class="font-technical-label text-[10px] tracking-[0.14em] text-slate/55 uppercase mt-1">Retail // Galle Fort</div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== SHEET A-09 // CLIENT & PARTNER REGISTER ===== -->
+<section id="sheet-09" class="sheet-full cad-blueprint-grid w-full border-t border-slate/15">
+  <div class="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
+
+    <!-- Title Block -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-end pb-10 border-b border-slate/15">
+      <div class="md:col-span-7 space-y-4">
+        <div class="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
+          <span class="w-8 h-px bg-secondary"></span>
+          <span>SHEET A-09 // PARTNER REGISTER</span>
+        </div>
+        <h2 class="font-display-lg text-3xl sm:text-4xl text-slate font-light leading-tight">
+          The brands we <span class="italic text-secondary">build with.</span>
+        </h2>
+      </div>
+      <div class="md:col-span-5">
+        <p class="text-sm text-slate/80 font-light leading-relaxed">
+          Developers, hospitality groups and furniture houses we specify alongside — long enough that the detailing is second nature.
+        </p>
+      </div>
+    </div>
+
+    <!-- Wordmark Grid -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 border-l border-t border-slate/15 mt-10">
+      <div class="border-r border-b border-slate/15 h-24 flex items-center justify-center hover:bg-[#F5F4F0] smooth-hover">
+        <span class="font-display-lg text-xl text-slate/70 tracking-wide">Arbor &amp; Co</span>
+      </div>
+      <div class="border-r border-b border-slate/15 h-24 flex items-center justify-center hover:bg-[#F5F4F0] smooth-hover">
+        <span class="font-technical-label text-sm tracking-[0.3em] text-slate/70">MERIDIAN</span>
+      </div>
+      <div class="border-r border-b border-slate/15 h-24 flex items-center justify-center hover:bg-[#F5F4F0] smooth-hover">
+        <span class="font-display-lg text-xl italic text-slate/70">Casa Verde</span>
+      </div>
+      <div class="border-r border-b border-slate/15 h-24 flex items-center justify-center hover:bg-[#F5F4F0] smooth-hover">
+        <span class="font-technical-label text-sm tracking-[0.3em] text-slate/70">NORTHFIELD</span>
+      </div>
+      <div class="border-r border-b border-slate/15 h-24 flex items-center justify-center hover:bg-[#F5F4F0] smooth-hover">
+        <span class="font-display-lg text-xl text-slate/70">Stone + Oak</span>
+      </div>
+      <div class="border-r border-b border-slate/15 h-24 flex items-center justify-center hover:bg-[#F5F4F0] smooth-hover">
+        <span class="font-technical-label text-sm tracking-[0.3em] text-slate/70">LUMEN HOTELS</span>
+      </div>
+      <div class="border-r border-b border-slate/15 h-24 flex items-center justify-center hover:bg-[#F5F4F0] smooth-hover">
+        <span class="font-display-lg text-xl italic text-slate/70">Altitude</span>
+      </div>
+      <div class="border-r border-b border-slate/15 h-24 flex items-center justify-center hover:bg-[#F5F4F0] smooth-hover">
+        <span class="font-technical-label text-sm tracking-[0.3em] text-slate/70">VERDANT</span>
+      </div>
+    </div>
+
+    <div class="pt-6">
+      <span class="font-technical-label text-[10px] text-slate/50 tracking-[0.15em]">FIG. 09 // REGISTER OF SPECIFIED PARTNERS</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== SHEET A-10 // LET'S WORK ===== -->
+<section id="sheet-10" class="sheet-full w-full bg-[#161616] text-[#FAF9F6] border-t border-secondary/30">
+  <div class="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
+
+    <div class="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
+      <span class="w-8 h-px bg-secondary"></span>
+      <span>SHEET A-10 // COMMENCEMENT</span>
+    </div>
+
+    <h2 class="font-display-lg text-4xl sm:text-6xl md:text-7xl font-light leading-[1.05] mt-8 max-w-4xl">
+      Let&rsquo;s work.<br/>
+      <span class="italic text-secondary">Bring us the plot, the plan or the problem.</span>
+    </h2>
+
+    <p class="text-sm md:text-base text-[#FAF9F6]/70 font-light leading-relaxed mt-8 max-w-xl">
+      First consultation is a conversation, not a quotation. Tell us the space, the timeline and roughly where the budget sits — we will tell you honestly what is possible.
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4">
+      <a href="/contact_us" class="btn-brass-solid">START A PROJECT</a>
+      <a href="/works" class="btn-brass-on-dark">SEE THE PORTFOLIO</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- CHARCOAL SLATE ANCHOR FOOTER -->
+<footer class="bg-[#FAF9F6] text-slate border-t border-secondary/40 pt-16 pb-12">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-10">
+    <div class="md:col-span-5 space-y-4">
+      <div class="flex items-center gap-2 font-technical-label text-xs text-secondary">
+        <span>+</span>
+        <span class="tracking-[0.2em] font-bold">DESIGN ARK ARCHITECTURAL STUDIO</span>
+      </div>
+      <p class="font-light text-xs text-slate/70 leading-relaxed max-w-sm">
+        Formulating mathematical atmospheres through volcanic basalt foundations, tactile travertine textures, and precision metallic joinery.
+      </p>
+      <p class="font-technical-label text-[10px] text-secondary opacity-80">
+        LAT: 06°55'12"N // LONG: 79°52'18"E // SPEC.V5
+      </p>
+    </div>
+    
+    <div class="md:col-span-3 space-y-3 font-technical-label text-xs uppercase tracking-wider text-slate/80">
+      <div class="text-secondary font-bold text-[10px] tracking-[0.2em] mb-2">QUICK COORDINATES</div>
+      <p><a href="/home" class="hover:text-secondary transition-colors">01 HOME</a></p>
+      <p><a href="/about_us" class="hover:text-secondary transition-colors">02 ABOUT</a></p>
+      <p><a href="/works" class="hover:text-secondary transition-colors">03 PORTFOLIO</a></p>
+      <p><a href="/blueprints" class="hover:text-secondary transition-colors">04 SERVICES</a></p>
+      <p><a href="/blog" class="hover:text-secondary transition-colors">05 BLOG</a></p>
+      <p><a href="/contact_us" class="hover:text-secondary transition-colors">06 CONTACT</a></p>
+    </div>
+
+    <div class="md:col-span-4 space-y-3 font-technical-label text-xs text-slate/70">
+      <div class="text-secondary font-bold text-[10px] tracking-[0.2em] mb-2">PRACTICE LOCATIONS</div>
+      <p>COLOMBO // 142 Tectonic Way, District 03</p>
+      <p>NEW YORK // 450 Hudson Street, Suite 800</p>
+      <p>ZURICH // Basaltstrasse 12, 8001</p>
+      
+      <!-- CAD Social Annotations -->
+      <div class="pt-4 border-t border-slate/15 flex items-center gap-6 font-technical-label text-[10px] text-slate/70">
+        <a href="https://www.tiktok.com/@designark" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-secondary transition-colors duration-200">
+          <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+          <span class="tracking-[0.15em]">TIKTOK // @DESIGNARK</span>
+        </a>
+        <a href="https://www.facebook.com/share/18vZ3rsKJR/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-secondary transition-colors duration-200">
+          <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          <span class="tracking-[0.15em]">FACEBOOK // OFFICIAL</span>
+        </a>
+      </div>
+
+      <p class="pt-4 text-[10px] text-slate/50">©2026 DESIGN ARK (PVT) LTD. ALL RIGHTS RESERVED.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) menu.classList.toggle('hidden');
+  }
+</script>
+
+<!-- SHEET A-05 SLIDER CONTROLLER -->
+<script id="sheet-05-slider">
+  (function () {
+    const sheet  = document.getElementById('sheet-05');
+    if (!sheet) return;
+
+    const track  = document.getElementById('slider-track');
+    const slides = Array.from(sheet.querySelectorAll('.slide'));
+    const ticks  = Array.from(sheet.querySelectorAll('.slider-tick'));
+    const label  = document.getElementById('slider-index');
+    const prev   = document.getElementById('slider-prev');
+    const next   = document.getElementById('slider-next');
+    if (slides.length < 2) return;
+
+    const DURATION = 6500;   // rest time on each frame
+    const TRAVEL   = 1100;   // slide transition length, matches --slide-ease-duration
+    const PARALLAX = 0.28;   // media drifts at 28% of the frame's travel, opposite direction
+    const reduced  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let index  = 0;
+    let timer  = null;
+    let paused = false;
+
+    // Position a frame and counter-shift its media for depth
+    function place(slide, pct) {
+      slide._pct = pct;
+      slide.style.transform = 'translate3d(' + pct + '%,0,0)';
+      const media = slide.querySelector('.slide-media');
+      if (media) media.style.transform = 'translate3d(' + (-pct * PARALLAX) + '%,0,0)';
+    }
+
+    function goTo(target, dir) {
+      const next_ = (target + slides.length) % slides.length;
+      if (next_ === index) return;
+
+      // Default direction follows the shortest sensible path for autoplay/tick jumps
+      if (typeof dir !== 'number') dir = next_ > index ? 1 : -1;
+
+      const current  = slides[index];
+      const incoming = slides[next_];
+
+      // Park every uninvolved frame instantly so an interrupted transition can't strand one on screen
+      slides.forEach(slide => {
+        if (slide !== current && slide !== incoming) {
+          slide.classList.add('no-anim');
+          // Snap to whichever edge it is already nearest, so an interrupted
+          // frame never flies back across the screen
+          place(slide, (slide._pct || 0) < 0 ? -100 : 100);
+          slide.style.zIndex = '0';
+        }
+      });
+
+      // Park the incoming frame just off the entry edge — no animation yet
+      incoming.classList.add('no-anim');
+      place(incoming, dir > 0 ? 100 : -100);
+
+      // Flush the parked positions before re-enabling transitions
+      void track.offsetWidth;
+      slides.forEach(slide => slide.classList.remove('no-anim'));
+
+      current.style.zIndex  = '1';
+      incoming.style.zIndex = '2';
+
+      // Both frames travel together — outgoing pushed off, incoming pulled in
+      place(current, dir > 0 ? -100 : 100);
+      place(incoming, 0);
+
+      current.classList.remove('is-active');
+      incoming.classList.add('is-active');
+
+      index = next_;
+
+      ticks.forEach((tick, i) => {
+        // Re-add the class so the fill animation restarts from zero each time
+        tick.classList.remove('is-active');
+        void tick.offsetWidth;
+        tick.classList.toggle('is-active', i === index);
+        tick.setAttribute('aria-selected', String(i === index));
+      });
+
+      if (label) label.textContent = String(index + 1).padStart(2, '0');
+      schedule();
+    }
+
+    function schedule() {
+      clearTimeout(timer);
+      if (paused || reduced) return;
+      timer = setTimeout(() => goTo(index + 1, 1), DURATION);
+    }
+
+    function setPaused(state) {
+      paused = state;
+      sheet.classList.toggle('is-paused', state);
+      if (state) clearTimeout(timer); else schedule();
+    }
+
+    prev.addEventListener('click', () => goTo(index - 1, -1));
+    next.addEventListener('click', () => goTo(index + 1, 1));
+    ticks.forEach((tick, i) => tick.addEventListener('click', () => goTo(i, i > index ? 1 : -1)));
+
+    // Hold the frame while the visitor is reading or inspecting it
+    sheet.addEventListener('mouseenter', () => setPaused(true));
+    sheet.addEventListener('mouseleave', () => setPaused(false));
+    sheet.addEventListener('focusin',    () => setPaused(true));
+    sheet.addEventListener('focusout',   () => setPaused(false));
+
+    // Arrow keys, but only while the slider is the section on screen
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      const box = sheet.getBoundingClientRect();
+      if (box.top > window.innerHeight * 0.5 || box.bottom < window.innerHeight * 0.5) return;
+      if (e.key === 'ArrowLeft') goTo(index - 1, -1); else goTo(index + 1, 1);
+    });
+
+    // Touch swipe
+    let startX = null;
+    sheet.addEventListener('touchstart', (e) => { startX = e.changedTouches[0].clientX; }, { passive: true });
+    sheet.addEventListener('touchend', (e) => {
+      if (startX === null) return;
+      const dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 50) {
+        if (dx < 0) goTo(index + 1, 1); else goTo(index - 1, -1);
+      }
+      startX = null;
+    }, { passive: true });
+
+    // Don't burn cycles autoplaying a slider nobody is looking at
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        entries.forEach(entry => setPaused(!entry.isIntersecting));
+      }, { threshold: 0.25 }).observe(sheet);
+    }
+
+    document.addEventListener('visibilitychange', () => setPaused(document.hidden));
+
+    // Initial park: first frame on screen, the rest waiting off the right edge
+    sheet.style.setProperty('--slide-duration', DURATION + 'ms');
+    sheet.style.setProperty('--slide-ease-duration', TRAVEL + 'ms');
+    slides.forEach((slide, i) => {
+      slide.classList.add('no-anim');
+      place(slide, i === 0 ? 0 : 100);
+      slide.style.zIndex = i === 0 ? '2' : '0';
+    });
+    void track.offsetWidth;
+    slides.forEach(slide => slide.classList.remove('no-anim'));
+
+    schedule();
+  })();
+</script>
+
+  <!-- SHEET A-07 // SCROLL-DRIVEN FEED -->
+  <script id="sheet-07-detail-wall">
+    (function () {
+      const sheet = document.getElementById('sheet-07');
+      if (!sheet) return;
+
+      const cols = Array.from(sheet.querySelectorAll('.detail-col'));
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* The visitor's own scrolling drives the feed */
+      let ticking = false;
+
+      function applyScroll() {
+        ticking = false;
+        const rect = sheet.getBoundingClientRect();
+        // Nothing to do while the section is well away from the screen
+        if (rect.bottom < -300 || rect.top > window.innerHeight + 300) return;
+
+        cols.forEach(col => {
+          const factor = parseFloat(col.dataset.factor) || 0;
+          const setH = col.offsetHeight / 2;          // one full set of plates
+          if (!setH) return;
+          // Wrap modulo one set so the feed never runs out, scrolling either way
+          const raw = window.scrollY * factor;
+          const y = ((raw % setH) + setH) % setH;
+          col.style.transform = 'translate3d(0,' + (-y).toFixed(2) + 'px,0)';
+        });
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(applyScroll);
+      }
+
+      if (!reduced) {
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        applyScroll();
+      }
+    })();
+  </script>
+
+
+  <!-- CAD TAG SCRAMBLE INTERACTION SCRIPT -->
+  <script id="cad-tag-scramble-script">
+    document.addEventListener('DOMContentLoaded', () => {
+      const tags = document.querySelectorAll('.cad-tag-scramble, .font-technical-label');
+      tags.forEach(tag => {
+        const text = tag.innerText;
+        if (!text || text.length > 30 || text.includes('\n')) return;
+        // Scrambling rewrites innerText, which would destroy live child nodes (e.g. the slide counter)
+        if (tag.hasAttribute('data-no-scramble') || tag.children.length) return;
+        
+        let timer = null;
+        tag.addEventListener('mouseenter', () => {
+          if (timer) clearInterval(timer);
+          let iterations = 0;
+          timer = setInterval(() => {
+            tag.innerText = text
+              .split("")
+              .map((char, i) => {
+                if (i < iterations || char === ' ' || char === '/' || char === ':' || char === '+' || char === '.') {
+                  return text[i];
+                }
+                return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+              })
+              .join("");
+
+            if (iterations >= text.length) {
+              tag.innerText = text;
+              clearInterval(timer);
+            }
+            iterations += 1/2;
+          }, 25);
+        });
+
+        tag.addEventListener('mouseleave', () => {
+          if (timer) clearInterval(timer);
+          tag.innerText = text;
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

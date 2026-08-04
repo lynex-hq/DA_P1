@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>DESIGN ARK // Blog & Architectural Insights</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ivory: #FAF9F6;
+      --ivory-alt: #F5F4F0;
+      --slate: #252525;
+      --charcoal: #161616;
+      --brass: #C5A880;
+    }
+    body {
+      background-color: var(--ivory);
+      color: var(--slate);
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Subtle 2% CAD Graph Paper Overlay */
+    .cad-blueprint-grid {
+      background-color: #FAF9F6;
+      background-image: 
+        linear-gradient(to right, rgba(37, 37, 37, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 37, 37, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .panel-ivory-alt {
+      background-color: #F5F4F0;
+    }
+    .line-slate {
+      border-color: rgba(37, 37, 37, 0.15);
+    }
+    .marker-plus::before {
+      content: '+';
+      font-family: 'Geist Mono', monospace;
+      color: var(--brass);
+      font-size: 13px;
+      position: absolute;
+    }
+    /* CAD Dimension Line for Active/Hover Nav Links */
+    .cad-dim-line {
+      position: relative;
+    }
+    .cad-dim-line::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--brass);
+    }
+    .cad-dim-line::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      border-left: 1px solid var(--brass);
+      border-right: 1px solid var(--brass);
+    }
+    /* Fast, smooth hover transitions (150-250ms ease-out) */
+    .smooth-hover {
+      transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-brass-outline {
+      border: 1px solid var(--brass);
+      color: var(--slate);
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      font-weight: 500;
+      transition: all 200ms ease-out;
+    }
+    .btn-brass-outline:hover {
+      background-color: var(--brass);
+      color: #161616;
+    }
+    .btn-brass-solid {
+      background-color: var(--brass);
+      color: #161616;
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      font-weight: 600;
+      transition: all 200ms ease-out;
+      display: inline-block;
+    }
+    .btn-brass-solid:hover {
+      background-color: #b5956a;
+      color: #000;
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#252525",
+            "secondary": "#C5A880",
+            "on-surface": "#252525",
+            "on-surface-variant": "#252525",
+            "background": "#FAF9F6",
+            "surface": "#F5F4F0",
+            "surface-container-low": "#161616",
+            "surface-container-lowest": "#161616"
+          },
+          spacing: {
+            "margin-desktop": "64px",
+            "container-max": "1440px",
+            "margin-mobile": "20px",
+            "gutter": "24px"
+          },
+          fontFamily: {
+            "display-lg": ["Bodoni Moda", "serif"],
+            "headline-md": ["Bodoni Moda", "serif"],
+            "technical-label": ["Geist Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- STITCH CAD MICRO-ANIMATIONS -->
+  <style id="stitch-cad-animations">
+    .img-cad-frame {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(37, 37, 37, 0.15);
+      transition: border-color 250ms ease-out;
+    }
+    .img-cad-frame:hover {
+      border-color: var(--brass);
+    }
+    .img-cad-frame img {
+      transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), filter 600ms ease-out;
+    }
+    .img-cad-frame:hover img {
+      transform: scale(1.03);
+      filter: grayscale(0%) !important;
+    }
+    .blog-filter-btn.active {
+      background-color: #C5A880;
+      color: #161616;
+      border-color: #C5A880;
+    }
+  </style>
+</head>
+
+<body class="cad-blueprint-grid antialiased text-slate">
+
+<!-- ARCHITECTURAL DRAFTING SHEET NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-slate/15">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
+    
+    <!-- Title Block / CAD Reference Tag -->
+    <a href="/home" class="flex items-center gap-3 group">
+      <span class="font-technical-label text-secondary text-sm font-bold">+</span>
+      <div class="flex flex-col border-l border-slate/20 pl-3">
+        <span class="font-technical-label text-[11px] font-bold tracking-[0.2em] text-slate">DESIGN ARK</span>
+        <span class="font-technical-label text-[8px] tracking-[0.12em] text-slate/60">COORD: 06°55'12"N // DWG.05</span>
+      </div>
+    </a>
+
+    <!-- CAD Plan Annotations Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-10">
+      <a href="/home" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">HOME</a>
+      <a href="/about_us" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">ABOUT</a>
+      <a href="/works" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">PORTFOLIO</a>
+      <a href="/blueprints" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">SERVICES</a>
+      <a href="/blog" class="font-technical-label text-[11px] tracking-[0.18em] py-1 cad-dim-line text-slate font-semibold">BLOG</a>
+      <a href="/contact_us" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">CONTACT</a>
+    </nav>
+
+    <!-- Right Action CTA & Mobile Drawer Button -->
+    <div class="flex items-center gap-4">
+      
+    <!-- Top-Right CAD Social Annotations -->
+    <div class="hidden md:flex items-center gap-3 pr-4 border-r border-slate/15">
+      <a href="https://www.tiktok.com/@designark" target="_blank" rel="noopener noreferrer" class="text-slate/70 hover:text-secondary transition-colors duration-200" title="TikTok // @designark">
+        <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+      </a>
+      <a href="https://www.facebook.com/share/18vZ3rsKJR/" target="_blank" rel="noopener noreferrer" class="text-slate/70 hover:text-secondary transition-colors duration-200" title="Facebook // Design Ark">
+        <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+      </a>
+    </div>
+
+      <a href="/contact_us" class="btn-brass-outline hidden sm:inline-block">
+        INQUIRE
+      </a>
+      <button onclick="toggleMobileMenu()" class="lg:hidden text-slate p-1 focus:outline-none" aria-label="Toggle drawer">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Pull-Out Drawing Sheet Drawer -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-[#FAF9F6] border-b border-secondary/30 px-margin-mobile py-6 flex flex-col gap-2">
+    <a href="/home" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">HOME</a>
+    <a href="/about_us" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">ABOUT</a>
+    <a href="/works" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">PORTFOLIO</a>
+    <a href="/blueprints" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">SERVICES</a>
+    <a href="/blog" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-secondary font-bold">BLOG</a>
+    <a href="/contact_us" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">CONTACT</a>
+    <a href="/contact_us" class="mt-4 text-center btn-brass-outline bg-secondary/10">
+      INQUIRE NOW
+    </a>
+  </div>
+</header>
+
+<main class="pt-32 pb-24">
+  
+  <!-- HERO HEADER & TITLE BLOCK -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-16">
+    <div class="border-b border-slate/15 pb-12">
+      <div class="flex items-center gap-3 font-technical-label text-xs text-secondary mb-4">
+        <span>+</span>
+        <span class="tracking-[0.25em] font-semibold">CAD SPEC NO. 05 // INSIGHTS & ESSAYS</span>
+      </div>
+      <h1 class="font-display-lg text-4xl md:text-6xl text-slate font-normal leading-tight tracking-tight">
+        Architectural <span class="italic text-secondary">Monographs & Journal</span>
+      </h1>
+      <p class="mt-6 text-slate/70 text-base md:text-lg max-w-2xl font-light leading-relaxed">
+        Explorations into tactile travertine textures, parametric spatial joinery, acoustic atmosphere formulation, and modern architectural principles.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="mt-10 flex flex-wrap items-center gap-3 font-technical-label text-xs">
+        <button onclick="filterCategory('all')" class="blog-filter-btn active px-4 py-2 border border-slate/20 transition-all hover:border-secondary">ALL INSIGHTS</button>
+        <button onclick="filterCategory('materials')" class="blog-filter-btn px-4 py-2 border border-slate/20 transition-all hover:border-secondary">MATERIAL STUDIES</button>
+        <button onclick="filterCategory('spatial')" class="blog-filter-btn px-4 py-2 border border-slate/20 transition-all hover:border-secondary">SPATIAL DESIGN</button>
+        <button onclick="filterCategory('acoustics')" class="blog-filter-btn px-4 py-2 border border-slate/20 transition-all hover:border-secondary">LIGHTING & ACOUSTICS</button>
+        <button onclick="filterCategory('case-studies')" class="blog-filter-btn px-4 py-2 border border-slate/20 transition-all hover:border-secondary">CASE DISSECTIONS</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED ARTICLE BANNER -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-20">
+    <div class="bg-[#161616] text-[#FAF9F6] border border-slate/20 overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 relative group">
+      
+      <div class="lg:col-span-7 img-cad-frame relative min-h-[340px] md:min-h-[460px]">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80" alt="Featured Article - Volcanic Basalt and Travertine" class="w-full h-full object-cover grayscale opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"/>
+        <div class="absolute top-4 left-4 bg-secondary text-charcoal font-technical-label text-[10px] tracking-[0.2em] font-bold px-3 py-1 uppercase">
+          FLAGSHIP ESSAY
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 p-8 md:p-12 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate/80">
+        <div>
+          <div class="flex items-center gap-4 font-technical-label text-[11px] text-secondary tracking-widest mb-4">
+            <span>MATERIAL STUDY</span>
+            <span>//</span>
+            <span>7 MIN READ</span>
+            <span>//</span>
+            <span>AUG 2026</span>
+          </div>
+          <h2 class="font-display-lg text-2xl md:text-3xl font-normal text-[#FAF9F6] leading-snug group-hover:text-secondary transition-colors">
+            Volcanic Basalt & Tactile Travertine: Formulating Raw Architectural Atmospheres
+          </h2>
+          <p class="mt-6 text-sm text-[#FAF9F6]/75 font-light leading-relaxed">
+            An in-depth investigation into how combining porous stone surfaces with warm metallic brass detailing establishes grounding tension and timeless architectural permanence in luxury residences.
+          </p>
+        </div>
+
+        <div class="mt-10 pt-6 border-t border-[#FAF9F6]/15 flex items-center justify-between">
+          <span class="font-technical-label text-xs text-[#FAF9F6]/60">BY AR. KALANA PERERA</span>
+          <a href="#" class="btn-brass-outline hover:bg-secondary hover:text-charcoal transition-all">
+            READ SPECIFICATION →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ARTICLE CARDS GRID -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+      
+      <!-- Article Card 1 -->
+      <article class="article-item materials bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary">
+        <div>
+          <div class="img-cad-frame mb-6 h-56 w-full">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" alt="Parametric Joinery" class="w-full h-full object-cover grayscale"/>
+          </div>
+          <div class="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
+            <span>SPATIAL DESIGN</span>
+            <span>//</span>
+            <span>5 MIN READ</span>
+          </div>
+          <h3 class="font-display-lg text-xl text-slate group-hover:text-secondary transition-colors leading-snug">
+            Parametric Joinery in Modern Sri Lankan Architecture
+          </h3>
+          <p class="mt-3 text-xs text-slate/70 font-light leading-relaxed">
+            Bridging indigenous timber crafting methods with numerical CAD modeling for custom residential screens and structural partitions.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t border-slate/15 flex items-center justify-between font-technical-label text-[11px]">
+          <span class="text-slate/60">JUL 28, 2026</span>
+          <a href="#" class="text-secondary font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            READ ESSAY <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Article Card 2 -->
+      <article class="article-item acoustics bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary">
+        <div>
+          <div class="img-cad-frame mb-6 h-56 w-full">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Light as a Building Block" class="w-full h-full object-cover grayscale"/>
+          </div>
+          <div class="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
+            <span>LIGHTING & ACOUSTICS</span>
+            <span>//</span>
+            <span>8 MIN READ</span>
+          </div>
+          <h3 class="font-display-lg text-xl text-slate group-hover:text-secondary transition-colors leading-snug">
+            Sculpting Light & Shadow in Double-Height Volumes
+          </h3>
+          <p class="mt-3 text-xs text-slate/70 font-light leading-relaxed">
+            How natural daylight orientation and concealed linear brass illumination alter perceived spatial dimensions during solar transitions.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t border-slate/15 flex items-center justify-between font-technical-label text-[11px]">
+          <span class="text-slate/60">JUL 14, 2026</span>
+          <a href="#" class="text-secondary font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            READ ESSAY <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Article Card 3 -->
+      <article class="article-item case-studies bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary">
+        <div>
+          <div class="img-cad-frame mb-6 h-56 w-full">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Acoustic Engineering" class="w-full h-full object-cover grayscale"/>
+          </div>
+          <div class="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
+            <span>CASE DISSECTIONS</span>
+            <span>//</span>
+            <span>6 MIN READ</span>
+          </div>
+          <h3 class="font-display-lg text-xl text-slate group-hover:text-secondary transition-colors leading-snug">
+            Acoustic Dampening in Glass & Travertine Commercial Spaces
+          </h3>
+          <p class="mt-3 text-xs text-slate/70 font-light leading-relaxed">
+            Resolving reverberation challenges in executive boardrooms using micro-perforated timber ceiling baffles and textile acoustic wall treatments.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t border-slate/15 flex items-center justify-between font-technical-label text-[11px]">
+          <span class="text-slate/60">JUN 30, 2026</span>
+          <a href="#" class="text-secondary font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            READ ESSAY <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Article Card 4 -->
+      <article class="article-item spatial bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary">
+        <div>
+          <div class="img-cad-frame mb-6 h-56 w-full">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Minimalist Blueprint" class="w-full h-full object-cover grayscale"/>
+          </div>
+          <div class="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
+            <span>SPATIAL DESIGN</span>
+            <span>//</span>
+            <span>4 MIN READ</span>
+          </div>
+          <h3 class="font-display-lg text-xl text-slate group-hover:text-secondary transition-colors leading-snug">
+            The Minimalist Blueprint: Eliminating Visual Noise
+          </h3>
+          <p class="mt-3 text-xs text-slate/70 font-light leading-relaxed">
+            Techniques for recessing skirting boards, flush-door jambs, and integrated storage channels to maintain clean spatial geometry.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t border-slate/15 flex items-center justify-between font-technical-label text-[11px]">
+          <span class="text-slate/60">JUN 18, 2026</span>
+          <a href="#" class="text-secondary font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            READ ESSAY <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Article Card 5 -->
+      <article class="article-item case-studies bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary">
+        <div>
+          <div class="img-cad-frame mb-6 h-56 w-full">
+            <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" alt="Restoring Heritage" class="w-full h-full object-cover grayscale"/>
+          </div>
+          <div class="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
+            <span>CASE DISSECTIONS</span>
+            <span>//</span>
+            <span>9 MIN READ</span>
+          </div>
+          <h3 class="font-display-lg text-xl text-slate group-hover:text-secondary transition-colors leading-snug">
+            Colonial Structure Restoration with Steel & Glass Insertions
+          </h3>
+          <p class="mt-3 text-xs text-slate/70 font-light leading-relaxed">
+            Integrating minimalist steel elements into a 120-year-old masonry bungalow without compromising historical structural integrity.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t border-slate/15 flex items-center justify-between font-technical-label text-[11px]">
+          <span class="text-slate/60">MAY 22, 2026</span>
+          <a href="#" class="text-secondary font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            READ ESSAY <span>→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Article Card 6 -->
+      <article class="article-item materials bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary">
+        <div>
+          <div class="img-cad-frame mb-6 h-56 w-full">
+            <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" alt="Coastal Villa Materials" class="w-full h-full object-cover grayscale"/>
+          </div>
+          <div class="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
+            <span>MATERIAL STUDY</span>
+            <span>//</span>
+            <span>6 MIN READ</span>
+          </div>
+          <h3 class="font-display-lg text-xl text-slate group-hover:text-secondary transition-colors leading-snug">
+            Corrosion-Resistant Material Palettes for Coastal Villas
+          </h3>
+          <p class="mt-3 text-xs text-slate/70 font-light leading-relaxed">
+            Selecting marine-grade brass alloys, sealed micro-cement, and treated teak wood engineered for high humidity oceanfront climates.
+          </p>
+        </div>
+        <div class="mt-8 pt-4 border-t border-slate/15 flex items-center justify-between font-technical-label text-[11px]">
+          <span class="text-slate/60">MAY 04, 2026</span>
+          <a href="#" class="text-secondary font-semibold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+            READ ESSAY <span>→</span>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ARCHITECTURAL BRIEFING NEWSLETTER SECTION -->
+  <section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-24">
+    <div class="bg-[#161616] text-[#FAF9F6] p-8 md:p-16 border border-slate/20 relative">
+      <div class="max-w-2xl">
+        <div class="font-technical-label text-xs text-secondary tracking-[0.25em] font-semibold mb-3">
+          + MONOGRAPH SUBSCRIPTION
+        </div>
+        <h2 class="font-display-lg text-2xl md:text-4xl text-[#FAF9F6] font-normal leading-tight">
+          Subscribe to the Design Ark Quarterly Architectural Monograph
+        </h2>
+        <p class="mt-4 text-xs md:text-sm text-[#FAF9F6]/70 font-light leading-relaxed">
+          Receive curated spatial essays, material specification guides, and CAD detail blueprints delivered directly to your inbox every quarter.
+        </p>
+
+        <form onsubmit="event.preventDefault(); alert('Thank you for subscribing to Design Ark Monographs.');" class="mt-8 flex flex-col sm:flex-row gap-4">
+          <input type="email" placeholder="ENTER YOUR EMAIL ADDRESS..." required class="bg-transparent border border-[#FAF9F6]/30 px-5 py-3 text-xs font-technical-label text-[#FAF9F6] placeholder-[#FAF9F6]/40 focus:outline-none focus:border-secondary flex-1"/>
+          <button type="submit" class="btn-brass-solid whitespace-nowrap">
+            JOIN BRIEFING
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- CHARCOAL SLATE ANCHOR FOOTER -->
+<footer class="bg-[#FAF9F6] text-slate border-t border-secondary/40 pt-16 pb-12">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-10">
+    <div class="md:col-span-5 space-y-4">
+      <div class="flex items-center gap-2 font-technical-label text-xs text-secondary">
+        <span>+</span>
+        <span class="tracking-[0.2em] font-bold">DESIGN ARK ARCHITECTURAL STUDIO</span>
+      </div>
+      <p class="font-light text-xs text-slate/70 leading-relaxed max-w-sm">
+        Formulating mathematical atmospheres through volcanic basalt foundations, tactile travertine textures, and precision metallic joinery.
+      </p>
+      <p class="font-technical-label text-[10px] text-secondary opacity-80">
+        LAT: 06°55'12"N // LONG: 79°52'18"E // SPEC.V5
+      </p>
+    </div>
+    
+    <div class="md:col-span-3 space-y-3 font-technical-label text-xs uppercase tracking-wider text-slate/80">
+      <div class="text-secondary font-bold text-[10px] tracking-[0.2em] mb-2">QUICK COORDINATES</div>
+      <p><a href="/home" class="hover:text-secondary transition-colors">01 HOME</a></p>
+      <p><a href="/about_us" class="hover:text-secondary transition-colors">02 ABOUT</a></p>
+      <p><a href="/works" class="hover:text-secondary transition-colors">03 PORTFOLIO</a></p>
+      <p><a href="/blueprints" class="hover:text-secondary transition-colors">04 SERVICES</a></p>
+      <p><a href="/blog" class="hover:text-secondary transition-colors">05 BLOG</a></p>
+      <p><a href="/contact_us" class="hover:text-secondary transition-colors">06 CONTACT</a></p>
+    </div>
+
+    <div class="md:col-span-4 space-y-3 font-technical-label text-xs text-slate/70">
+      <div class="text-secondary font-bold text-[10px] tracking-[0.2em] mb-2">PRACTICE LOCATIONS</div>
+      <p>COLOMBO // 142 Tectonic Way, District 03</p>
+      <p>NEW YORK // 450 Hudson Street, Suite 800</p>
+      <p>ZURICH // Basaltstrasse 12, 8001</p>
+      
+      <!-- CAD Social Annotations -->
+      <div class="pt-4 border-t border-slate/15 flex items-center gap-6 font-technical-label text-[10px] text-slate/70">
+        <a href="https://www.tiktok.com/@designark" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-secondary transition-colors duration-200">
+          <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+          <span class="tracking-[0.15em]">TIKTOK // @DESIGNARK</span>
+        </a>
+        <a href="https://www.facebook.com/share/18vZ3rsKJR/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-secondary transition-colors duration-200">
+          <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          <span class="tracking-[0.15em]">FACEBOOK // OFFICIAL</span>
+        </a>
+      </div>
+
+      <p class="pt-4 text-[10px] text-slate/50">©2026 DESIGN ARK (PVT) LTD. ALL RIGHTS RESERVED.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  }
+
+  function filterCategory(category) {
+    const buttons = document.querySelectorAll('.blog-filter-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    const articles = document.querySelectorAll('.article-item');
+    articles.forEach(article => {
+      if (category === 'all' || article.classList.contains(category)) {
+        article.style.display = 'flex';
+      } else {
+        article.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>DESIGN ARK // Works & Specifications</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --ivory: #FAF9F6;
+      --ivory-alt: #F5F4F0;
+      --slate: #252525;
+      --charcoal: #161616;
+      --brass: #C5A880;
+    }
+    body {
+      background-color: var(--ivory);
+      color: var(--slate);
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Subtle 2% CAD Graph Paper Overlay */
+    .cad-blueprint-grid {
+      background-color: #FAF9F6;
+      background-image: 
+        linear-gradient(to right, rgba(37, 37, 37, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 37, 37, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .panel-ivory-alt {
+      background-color: #F5F4F0;
+    }
+    .line-slate {
+      border-color: rgba(37, 37, 37, 0.15);
+    }
+    .marker-plus::before {
+      content: '+';
+      font-family: 'Geist Mono', monospace;
+      color: var(--brass);
+      font-size: 13px;
+      position: absolute;
+    }
+    /* CAD Dimension Line for Active/Hover Nav Links */
+    .cad-dim-line {
+      position: relative;
+    }
+    .cad-dim-line::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--brass);
+    }
+    .cad-dim-line::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      border-left: 1px solid var(--brass);
+      border-right: 1px solid var(--brass);
+    }
+    /* Fast, smooth hover transitions (150-250ms ease-out) */
+    .smooth-hover {
+      transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-brass-outline {
+      border: 1px solid var(--brass);
+      color: var(--slate);
+      font-family: 'Geist Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      font-weight: 500;
+      transition: all 200ms ease-out;
+    }
+    .btn-brass-outline:hover {
+      background-color: var(--brass);
+      color: #161616;
+    }
+  </style>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#252525",
+            "secondary": "#C5A880",
+            "on-surface": "#252525",
+            "on-surface-variant": "#252525",
+            "background": "#FAF9F6",
+            "surface": "#F5F4F0",
+            "surface-container-low": "#161616",
+            "surface-container-lowest": "#161616"
+          },
+          spacing: {
+            "margin-desktop": "64px",
+            "container-max": "1440px",
+            "margin-mobile": "20px",
+            "gutter": "24px"
+          },
+          fontFamily: {
+            "display-lg": ["Bodoni Moda", "serif"],
+            "headline-md": ["Bodoni Moda", "serif"],
+            "technical-label": ["Geist Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+  
+
+  <!-- STITCH CAD MICRO-ANIMATIONS (60/30/10 SCHEME PRESERVED) -->
+  <style id="stitch-cad-animations">
+    /* 1. CAD Dimension Line Draw-In Animation */
+    .cad-dim-line {
+      position: relative;
+    }
+    .cad-dim-line::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: var(--brass);
+      animation: dimLineExpand 250ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .cad-dim-line::before {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      border-left: 1px solid var(--brass);
+      border-right: 1px solid var(--brass);
+      animation: dimTickFade 300ms ease-out forwards;
+    }
+    @keyframes dimLineExpand {
+      from { width: 0%; opacity: 0; }
+      to { width: 100%; opacity: 1; }
+    }
+    @keyframes dimTickFade {
+      from { opacity: 0; transform: scaleY(0); }
+      to { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* 2. Photo Hover Zoom & Border Draw */
+    .img-cad-frame {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(37, 37, 37, 0.15);
+      transition: border-color 250ms ease-out;
+    }
+    .img-cad-frame:hover {
+      border-color: var(--brass);
+    }
+    .img-cad-frame img {
+      transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), filter 600ms ease-out;
+    }
+    .img-cad-frame:hover img {
+      transform: scale(1.03);
+      filter: grayscale(0%) !important;
+    }
+
+    /* 3. Section Fade-In Keyframe on Initial Load */
+    @keyframes cadSectionFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .cad-load-reveal {
+      animation: cadSectionFadeIn 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* 4. Interactive Scramble / Counter Hover Trigger */
+    .cad-tag-scramble {
+      display: inline-block;
+      transition: color 200ms ease-out;
+    }
+    .cad-tag-scramble:hover {
+      color: var(--brass);
+    }
+  </style>
+
+</head>
+<body class="cad-blueprint-grid">
+
+<!-- ARCHITECTURAL DRAFTING SHEET NAVBAR -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-slate/15">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
+    
+    <!-- Title Block / CAD Reference Tag (Replaces oversized logo) -->
+    <a href="/home" class="flex items-center gap-3 group">
+      <span class="font-technical-label text-secondary text-sm font-bold">+</span>
+      <div class="flex flex-col border-l border-slate/20 pl-3">
+        <span class="font-technical-label text-[11px] font-bold tracking-[0.2em] text-slate">DESIGN ARK</span>
+        <span class="font-technical-label text-[8px] tracking-[0.12em] text-slate/60">COORD: 06°55'12"N // DWG.01</span>
+      </div>
+    </a>
+
+    <!-- CAD Plan Annotations Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-10">
+      <a href="/home" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">HOME</a>
+      <a href="/about_us" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">ABOUT</a>
+      <a href="/works" class="font-technical-label text-[11px] tracking-[0.18em] py-1 cad-dim-line text-slate font-semibold">PORTFOLIO</a>
+      <a href="/blueprints" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">SERVICES</a>
+      <a href="/blog" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">BLOG</a>
+      <a href="/contact_us" class="font-technical-label text-[11px] tracking-[0.18em] py-1 text-slate/70 hover:text-secondary font-medium transition-colors">CONTACT</a>
+    </nav>
+
+    <!-- Right Action CTA & Mobile Drawer Button -->
+    <div class="flex items-center gap-4">
+      
+    <!-- Top-Right CAD Social Annotations -->
+    <div class="hidden md:flex items-center gap-3 pr-4 border-r border-slate/15">
+      <a href="https://www.tiktok.com/@designark" target="_blank" rel="noopener noreferrer" class="text-slate/70 hover:text-secondary transition-colors duration-200" title="TikTok // @designark">
+        <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+      </a>
+      <a href="https://www.facebook.com/share/18vZ3rsKJR/" target="_blank" rel="noopener noreferrer" class="text-slate/70 hover:text-secondary transition-colors duration-200" title="Facebook // Design Ark">
+        <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+      </a>
+    </div>
+
+      <a href="/contact_us" class="btn-brass-outline hidden sm:inline-block">
+        INQUIRE
+      </a>
+      <button onclick="toggleMobileMenu()" class="lg:hidden text-slate p-1 focus:outline-none" aria-label="Toggle drawer">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Pull-Out Drawing Sheet Drawer -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-[#FAF9F6] border-b border-secondary/30 px-margin-mobile py-6 flex flex-col gap-2">
+    <a href="/home" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">HOME</a>
+    <a href="/about_us" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">ABOUT</a>
+    <a href="/works" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-secondary font-bold">PORTFOLIO</a>
+    <a href="/blueprints" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">SERVICES</a>
+    <a href="/blog" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">BLOG</a>
+    <a href="/contact_us" class="font-technical-label text-xs tracking-widest py-3 border-b border-slate/10 text-slate/80 hover:text-secondary">CONTACT</a>
+    <a href="/contact_us" class="mt-4 text-center btn-brass-outline bg-secondary/10">
+      INQUIRE NOW
+    </a>
+  </div>
+</header>
+
+
+<main class="pt-28 pb-24 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+  <!-- Title & Filter Bar -->
+  <section class="py-10 border-b border-slate/15 mb-12">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-8">
+      <div>
+        <span class="font-technical-label text-xs text-secondary tracking-[0.25em] block mb-2">03 // PORTFOLIO MATRIX</span>
+        <h1 class="font-display-lg text-4xl sm:text-5xl text-slate">Selected Works & Specifications</h1>
+      </div>
+      <span class="font-technical-label text-[10px] text-slate/50">FILTER BY CATEGORY // CAD.MAT</span>
+    </div>
+
+    <!-- Clean CAD Filter Buttons -->
+    <div class="flex flex-wrap gap-6 font-technical-label text-xs">
+      <button onclick="filterProjects(event, 'all')" class="project-filter text-secondary font-bold border-b-2 border-secondary pb-1">ALL_PROJECTS</button>
+      <button onclick="filterProjects(event, 'residential')" class="project-filter text-slate/70 hover:text-secondary transition-colors pb-1">RESIDENTIAL</button>
+      <button onclick="filterProjects(event, 'workspace')" class="project-filter text-slate/70 hover:text-secondary transition-colors pb-1">WORKSPACE</button>
+      <button onclick="filterProjects(event, 'commercial')" class="project-filter text-slate/70 hover:text-secondary transition-colors pb-1">COMMERCIAL</button>
+    </div>
+  </section>
+
+  <!-- Project Matrix Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <!-- Project Card 1 -->
+    <div class="project-item border border-slate/15 bg-white p-5 shadow-sm group" data-category="residential">
+      <div class="relative overflow-hidden mb-4 border border-slate/10">
+        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80" alt="Travertine Pavilion" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 smooth-hover"/>
+        <span class="absolute top-3 left-3 bg-[#FAF9F6] px-2 py-1 font-technical-label text-[9px] text-secondary font-bold border border-slate/20">PROJ_01</span>
+      </div>
+      <div class="space-y-2">
+        <div class="flex justify-between items-center font-technical-label text-[10px] text-slate/60">
+          <span>RESIDENTIAL PAVILION</span>
+          <span>LOCATION: ZURICH</span>
+        </div>
+        <h3 class="font-headline-md text-2xl text-slate">Travertine Monolith Pavilion</h3>
+        <p class="text-xs text-slate/70 font-light leading-relaxed">
+          High-altitude residential sanctuary crafted with hand-honed travertine slabs and continuous floor-to-ceiling glass profiles.
+        </p>
+      </div>
+    </div>
+
+    <!-- Project Card 2 -->
+    <div class="project-item border border-slate/15 bg-white p-5 shadow-sm group" data-category="workspace">
+      <div class="relative overflow-hidden mb-4 border border-slate/10">
+        <img src="https://images.unsplash.com/photo-1618219740975-d40978bb7378?auto=format&fit=crop&w=1600&q=80" alt="Basalt Workspace" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 smooth-hover"/>
+        <span class="absolute top-3 left-3 bg-[#FAF9F6] px-2 py-1 font-technical-label text-[9px] text-secondary font-bold border border-slate/20">PROJ_02</span>
+      </div>
+      <div class="space-y-2">
+        <div class="flex justify-between items-center font-technical-label text-[10px] text-slate/60">
+          <span>EXECUTIVE WORKSPACE</span>
+          <span>LOCATION: MANHATTAN</span>
+        </div>
+        <h3 class="font-headline-md text-2xl text-slate">Volcanic Basalt Corporate Suite</h3>
+        <p class="text-xs text-slate/70 font-light leading-relaxed">
+          Private executive suite with dark volcanic stone walling, recessed metallic brass accents, and acoustic wood slabbing.
+        </p>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<!-- CHARCOAL SLATE ANCHOR FOOTER -->
+<footer class="bg-[#FAF9F6] text-slate border-t border-secondary/40 pt-16 pb-12">
+  <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-10">
+    <div class="md:col-span-5 space-y-4">
+      <div class="flex items-center gap-2 font-technical-label text-xs text-secondary">
+        <span>+</span>
+        <span class="tracking-[0.2em] font-bold">DESIGN ARK ARCHITECTURAL STUDIO</span>
+      </div>
+      <p class="font-light text-xs text-slate/70 leading-relaxed max-w-sm">
+        Formulating mathematical atmospheres through volcanic basalt foundations, tactile travertine textures, and precision metallic joinery.
+      </p>
+      <p class="font-technical-label text-[10px] text-secondary opacity-80">
+        LAT: 06°55'12"N // LONG: 79°52'18"E // SPEC.V5
+      </p>
+    </div>
+    
+    <div class="md:col-span-3 space-y-3 font-technical-label text-xs uppercase tracking-wider text-slate/80">
+      <div class="text-secondary font-bold text-[10px] tracking-[0.2em] mb-2">QUICK COORDINATES</div>
+      <p><a href="/home" class="hover:text-secondary transition-colors">01 HOME</a></p>
+      <p><a href="/about_us" class="hover:text-secondary transition-colors">02 ABOUT</a></p>
+      <p><a href="/works" class="hover:text-secondary transition-colors">03 PORTFOLIO</a></p>
+      <p><a href="/blueprints" class="hover:text-secondary transition-colors">04 SERVICES</a></p>
+      <p><a href="/blog" class="hover:text-secondary transition-colors">05 BLOG</a></p>
+      <p><a href="/contact_us" class="hover:text-secondary transition-colors">06 CONTACT</a></p>
+    </div>
+
+    <div class="md:col-span-4 space-y-3 font-technical-label text-xs text-slate/70">
+      <div class="text-secondary font-bold text-[10px] tracking-[0.2em] mb-2">PRACTICE LOCATIONS</div>
+      <p>COLOMBO // 142 Tectonic Way, District 03</p>
+      <p>NEW YORK // 450 Hudson Street, Suite 800</p>
+      <p>ZURICH // Basaltstrasse 12, 8001</p>
+      
+      <!-- CAD Social Annotations -->
+      <div class="pt-4 border-t border-slate/15 flex items-center gap-6 font-technical-label text-[10px] text-slate/70">
+        <a href="https://www.tiktok.com/@designark" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-secondary transition-colors duration-200">
+          <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+          <span class="tracking-[0.15em]">TIKTOK // @DESIGNARK</span>
+        </a>
+        <a href="https://www.facebook.com/share/18vZ3rsKJR/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-secondary transition-colors duration-200">
+          <svg class="w-4 h-4 stroke-current fill-none stroke-[1.5]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          <span class="tracking-[0.15em]">FACEBOOK // OFFICIAL</span>
+        </a>
+      </div>
+
+      <p class="pt-4 text-[10px] text-slate/50">©2026 DESIGN ARK (PVT) LTD. ALL RIGHTS RESERVED.</p>
+    </div>
+  </div>
+</footer>
+
+
+<script>
+  function filterProjects(evt, category) {
+    const items = document.querySelectorAll('.project-item');
+    const filters = document.querySelectorAll('.project-filter');
+    
+    filters.forEach(f => {
+      f.classList.remove('text-secondary', 'font-bold', 'border-b-2', 'border-secondary');
+      f.classList.add('text-slate/70');
+    });
+
+    if (evt && evt.target) {
+      evt.target.classList.remove('text-slate/70');
+      evt.target.classList.add('text-secondary', 'font-bold', 'border-b-2', 'border-secondary');
+    }
+
+    items.forEach(item => {
+      const itemCat = item.getAttribute('data-category');
+      if (category === 'all' || itemCat === category || !itemCat) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    if (menu) menu.classList.toggle('hidden');
+  }
+</script>
+
+  <!-- CAD TAG SCRAMBLE INTERACTION SCRIPT -->
+  <script id="cad-tag-scramble-script">
+    document.addEventListener('DOMContentLoaded', () => {
+      const tags = document.querySelectorAll('.cad-tag-scramble, .font-technical-label');
+      tags.forEach(tag => {
+        const text = tag.innerText;
+        if (!text || text.length > 30 || text.includes('\n')) return;
+        
+        let timer = null;
+        tag.addEventListener('mouseenter', () => {
+          if (timer) clearInterval(timer);
+          let iterations = 0;
+          timer = setInterval(() => {
+            tag.innerText = text
+              .split("")
+              .map((char, i) => {
+                if (i < iterations || char === ' ' || char === '/' || char === ':' || char === '+' || char === '.') {
+                  return text[i];
+                }
+                return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+              })
+              .join("");
+
+            if (iterations >= text.length) {
+              tag.innerText = text;
+              clearInterval(timer);
+            }
+            iterations += 1/2;
+          }, 25);
+        });
+
+        tag.addEventListener('mouseleave', () => {
+          if (timer) clearInterval(timer);
+          tag.innerText = text;
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
