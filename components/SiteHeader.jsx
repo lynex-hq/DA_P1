@@ -62,8 +62,8 @@ export default function SiteHeader() {
     <header ref={headerRef} style={{ opacity: 0 }} className="fixed top-0 left-0 w-full z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-slate/15">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
 
-        {/* Logo only — no wordmark or coordinate line beside it */}
-        <Link href="/" className="flex items-center group" aria-label="Design Ark — home">
+        {/* Logo + wordmark, no coordinate line */}
+        <Link href="/" className="flex items-center gap-3 group" aria-label="Design Ark — home">
           <Image
             src="/images/brand/design-ark-mark.png"
             alt="Design Ark"
@@ -72,6 +72,7 @@ export default function SiteHeader() {
             priority
             className="w-11 h-11 object-contain"
           />
+          <span className="font-technical-label text-[11px] font-bold tracking-[0.2em] text-slate">DESIGN ARK</span>
         </Link>
 
         {/* CAD Plan Annotations Desktop Nav */}
