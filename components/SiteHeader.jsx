@@ -82,9 +82,8 @@ export default function SiteHeader() {
             priority
             className="w-11 h-11 object-contain"
           />
-          <div className="flex flex-col border-l border-slate/20 pl-3">
+          <div className="flex flex-col border-l border-slate/20 pl-3 justify-center">
             <span className="font-technical-label text-[11px] font-bold tracking-[0.2em] text-slate">DESIGN ARK</span>
-            <span className="font-technical-label text-[8px] tracking-[0.12em] text-slate/60">COORD: 06&deg;55&apos;12&quot;N // {dwg}</span>
           </div>
         </Link>
 

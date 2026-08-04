@@ -14,14 +14,12 @@ export default function SiteFooter() {
               height={205}
               className="w-10 h-10 object-contain"
             />
-            <span className="tracking-[0.2em] font-bold">DESIGN ARK ARCHITECTURAL STUDIO</span>
+            <span className="tracking-[0.2em] font-bold">DESIGN ARK</span>
           </div>
           <p className="font-light text-xs text-slate/70 leading-relaxed max-w-sm">
             Formulating mathematical atmospheres through volcanic basalt foundations, tactile travertine textures, and precision metallic joinery.
           </p>
-          <p className="font-technical-label text-[10px] text-secondary opacity-80">
-            LAT: 06&deg;55&apos;12&quot;N // LONG: 79&deg;52&apos;18&quot;E // SPEC.V5
-          </p>
+
         </div>
         
         <div className="md:col-span-3 space-y-3 font-technical-label text-xs uppercase tracking-wider text-slate/80">
