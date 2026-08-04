@@ -504,10 +504,7 @@ export default function HomePage() {
       <section id="sheet-11" className="w-full bg-[#161616] text-[#FAF9F6] border-t border-secondary/30">
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-12 md:py-20">
 
-          <div className="flex items-center gap-3 font-technical-label text-[10px] md:text-xs text-secondary tracking-[0.25em]">
-            <span className="w-8 h-[1px] bg-secondary"></span>
-            <span>SHEET A-11 // COMMENCEMENT</span>
-          </div>
+
 
           <h2 className="font-display-lg text-3xl sm:text-4xl md:text-5xl font-light leading-tight mt-6 max-w-2xl">
             Let&rsquo;s work. <span className="italic text-secondary">Bring us the plot, the plan or the problem.</span>
