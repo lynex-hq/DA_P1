@@ -502,24 +502,24 @@ export default function HomePage() {
 
       {/* ===== SHEET A-11 // LET'S WORK ===== */}
       <section id="sheet-11" className="w-full bg-[#161616] text-[#FAF9F6] border-t border-secondary/30">
-        <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-4">
+        <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-12 md:py-20">
 
-          <div className="flex items-center gap-2 font-technical-label text-[9px] text-secondary tracking-[0.25em]">
-            <span className="w-6 h-[1px] bg-secondary"></span>
+          <div className="flex items-center gap-3 font-technical-label text-[10px] md:text-xs text-secondary tracking-[0.25em]">
+            <span className="w-8 h-[1px] bg-secondary"></span>
             <span>SHEET A-11 // COMMENCEMENT</span>
           </div>
 
-          <h2 className="font-display-lg text-lg sm:text-xl md:text-2xl font-light leading-tight mt-2 max-w-xl">
+          <h2 className="font-display-lg text-3xl sm:text-4xl md:text-5xl font-light leading-tight mt-6 max-w-2xl">
             Let&rsquo;s work. <span className="italic text-secondary">Bring us the plot, the plan or the problem.</span>
           </h2>
       
-          <p className="text-[10px] text-[#FAF9F6]/70 font-light leading-relaxed mt-2 max-w-md">
-            First consultation is a conversation, not a quotation. Tell us the space, the timeline and roughly where the budget sits — we will tell you honestly what is possible.
+          <p className="text-xs md:text-sm text-[#FAF9F6]/70 font-light leading-relaxed mt-5 max-w-lg">
+            First consultation is a conversation, not a quotation. Tell us the space, the timeline and roughly where the budget sits &mdash; we will tell you honestly what is possible.
           </p>
       
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            <a href="/contact_us" className="btn-brass-solid text-[9px] py-1.5 px-3">START A PROJECT</a>
-            <a href="/works" className="btn-brass-on-dark text-[9px] py-1.5 px-3">SEE THE PORTFOLIO</a>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <a href="/contact_us" className="btn-brass-solid text-[11px] py-3 px-6">START A PROJECT</a>
+            <a href="/works" className="btn-brass-on-dark text-[11px] py-3 px-6">SEE THE PORTFOLIO</a>
           </div>
       
         </div>
