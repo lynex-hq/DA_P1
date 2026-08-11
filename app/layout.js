@@ -2,8 +2,6 @@ import { Bodoni_Moda, Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
-import CadScramble from '@/components/CadScramble';
-import ClientDoorLoadingScreen from '@/components/ClientDoorLoadingScreen';
 import WhatsAppButton from '@/components/WhatsAppButton';
 
 const bodoni = Bodoni_Moda({
@@ -43,12 +41,10 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="cad-blueprint-grid">
-        <ClientDoorLoadingScreen />
         <SiteHeader />
         {children}
         <SiteFooter />
         <WhatsAppButton />
-        <CadScramble />
       </body>
     </html>
   );

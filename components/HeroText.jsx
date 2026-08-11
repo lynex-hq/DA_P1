@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 export default function HeroText() {
@@ -8,36 +8,8 @@ export default function HeroText() {
   const line2Ref = useRef(null);
   const paraRef  = useRef(null);
   const btnsRef  = useRef(null);
-  const [triggered, setTriggered] = useState(false);
-  const [skipAnim, setSkipAnim] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem('da_visited')) {
-      setSkipAnim(true);
-      setTriggered(true);
-      return;
-    }
-    // Listen for door-open signal OR fall back after 5 s
-    const go = () => setTriggered(true);
-    const t  = setTimeout(go, 5000);
-    window.addEventListener('designark:door-opened', go, { once: true });
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener('designark:door-opened', go);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!triggered) return;
-
-    if (skipAnim) {
-      if (line1Ref.current) gsap.set(line1Ref.current, { opacity: 1 });
-      if (line2Ref.current) gsap.set(line2Ref.current, { opacity: 1 });
-      if (paraRef.current) gsap.set(paraRef.current, { opacity: 1 });
-      if (btnsRef.current) gsap.set(btnsRef.current, { opacity: 1 });
-      return;
-    }
-
     const splitAndAnimate = (el, delay) => {
       if (!el) return;
       const text = el.dataset.text;
@@ -62,13 +34,13 @@ export default function HeroText() {
     };
 
     splitAndAnimate(line1Ref.current, 0.1);
-    splitAndAnimate(line2Ref.current, 0.7);
+    splitAndAnimate(line2Ref.current, 0.5);
 
     // Paragraph fade-up
     if (paraRef.current) {
       gsap.fromTo(paraRef.current,
         { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, duration: 0.7, delay: 1.4, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 0.7, delay: 0.9, ease: 'power3.out' }
       );
     }
 
@@ -76,10 +48,10 @@ export default function HeroText() {
     if (btnsRef.current) {
       gsap.fromTo(btnsRef.current,
         { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, duration: 0.7, delay: 1.8, ease: 'power3.out' }
+        { opacity: 1, y: 0, duration: 0.7, delay: 1.2, ease: 'power3.out' }
       );
     }
-  }, [triggered]);
+  }, []);
 
   return (
     <>

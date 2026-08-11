@@ -3,8 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import { useState } from 'react';
 
 // href is the canonical route; `match` lists every path that should light this
 // link up (the old Express app served several aliases per page).
@@ -22,44 +21,8 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const isActive = (item) => item.match.includes(pathname);
 
-  const headerRef = useRef(null);
-  const [triggered, setTriggered] = useState(false);
-  const [skipAnim, setSkipAnim] = useState(false);
-
-  useEffect(() => {
-    if (sessionStorage.getItem('da_visited')) {
-      setSkipAnim(true);
-      setTriggered(true);
-      return;
-    }
-    // Listen for door-open signal OR fall back after 5s
-    const go = () => setTriggered(true);
-    const t = setTimeout(go, 5000);
-    window.addEventListener('designark:door-opened', go, { once: true });
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener('designark:door-opened', go);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!triggered) return;
-
-    if (skipAnim) {
-      if (headerRef.current) gsap.set(headerRef.current, { opacity: 1 });
-      return;
-    }
-
-    if (headerRef.current) {
-      gsap.fromTo(headerRef.current,
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 1.0, delay: 0.2, ease: 'power3.out' }
-      );
-    }
-  }, [triggered]);
-
   return (
-    <header ref={headerRef} style={{ opacity: 0 }} className="fixed top-0 left-0 w-full z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-slate/15">
+    <header className="fixed top-0 left-0 w-full z-50 bg-[#FAF9F6]/95 backdrop-blur-md border-b border-slate/15">
       <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
 
         {/* Logo + wordmark, no coordinate line */}

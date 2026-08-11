@@ -313,31 +313,21 @@ body {
   .btn-brass-solid { background-color: var(--brass); color: #161616; }
   .btn-brass-solid:hover { background-color: #b5956a; color: #161616; }
 
-  /* ===== SHEET A-05 // SCROLL-PINNED SLIDER ===== */
-  /* The track is N screens tall; the frame sticks for its whole length, so
-     scrolling through it drives the slides and then releases to the next section. */
-  .slider-scroll-track {
-    position: relative;
-  }
-  .slider-sheet {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
+  /* ===== SHEET A-05 // MANUAL ARROW-CONTROLLED SLIDER ===== */
+  .slider-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    background:
+      linear-gradient(to top, rgba(22,22,22,0.92) 0%, rgba(22,22,22,0.6) 12%, rgba(22,22,22,0.15) 32%, rgba(22,22,22,0) 60%),
+      linear-gradient(to bottom, rgba(22,22,22,0.45) 0%, rgba(22,22,22,0) 25%);
   }
   .slide {
     position: absolute;
     inset: 0;
-    /* Clip to the frame's own box: the media layer is counter-shifted for
-       parallax, so without this the neighbouring frame's image bleeds across
-       the active one. */
     overflow: hidden;
-    transform: translate3d(100%, 0, 0);
-  }
-  /* Two transform layers, both driven straight from scroll position — no CSS
-     transition, or the frames would lag behind the wheel. */
-  .slide,
-  .slide-media {
+    transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -351,12 +341,86 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.06);
-    filter: grayscale(25%);
+    transform: scale(1.04);
+    filter: grayscale(20%);
+    transition: transform 1000ms cubic-bezier(0.16, 1, 0.3, 1);
   }
-  /* The tick fill marks the active frame; scroll position already conveys progress */
+  .slide.is-active img {
+    transform: scale(1.08);
+  }
+  /* Custom CAD line-and-circle arrow controls */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #FAF9F6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 250ms cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 30;
+    padding: 8px;
+    opacity: 0.85;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+  }
+  .slider-arrow:hover {
+    color: var(--brass);
+    background-color: transparent;
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+    filter: drop-shadow(0 2px 12px rgba(197, 168, 128, 0.4));
+  }
+  .slider-arrow:active {
+    transform: translateY(-50%) scale(0.95);
+  }
+  .slider-arrow:focus-visible {
+    outline: 1px solid var(--brass);
+    outline-offset: 4px;
+  }
+  .slider-arrow-prev { left: 16px; }
+  .slider-arrow-next { right: 16px; }
+  @media (min-width: 768px) {
+    .slider-arrow-prev { left: 32px; }
+    .slider-arrow-next { right: 32px; }
+  }
+  /* Tick indicators */
+  .slider-tick {
+    width: 36px;
+    height: 24px;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+  @media (min-width: 768px) {
+    .slider-tick { width: 48px; }
+  }
+  .slider-tick::before,
+  .slider-tick::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    border-radius: 1px;
+  }
+  .slider-tick::before {
+    background-color: rgba(250, 249, 246, 0.3);
+    transition: background-color 250ms ease-out;
+  }
+  .slider-tick:hover::before { background-color: rgba(250, 249, 246, 0.8); }
+  .slider-tick::after {
+    background-color: var(--brass);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
   .slider-tick.is-active::after {
-    animation: none;
     transform: scaleX(1);
   }
 

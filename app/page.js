@@ -57,8 +57,8 @@ export default function HomePage() {
       <main className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
         <section className="sheet-full pt-24 pb-10 border-b border-slate/15">
           {/* Section Title Block */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-end pb-6 border-b border-slate/15">
-            <div className="md:col-span-7 space-y-4">
+          <div className="pb-6 border-b border-slate/15">
+            <div className="space-y-4">
               <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
                 <span className="w-8 h-px bg-secondary"></span>
                 <span>SHEET A-02 // SCOPE OF PRACTICE</span>
@@ -67,11 +67,6 @@ export default function HomePage() {
                 An interior design studio<br />
                 <span className="italic text-secondary">across three disciplines.</span>
               </h2>
-            </div>
-            <div className="md:col-span-5">
-              <p className="text-sm text-slate/80 font-light leading-relaxed">
-                Design Ark crafts inspiring, timeless spaces — from concept and spatial planning through material specification, joinery detailing and site execution. Every commission falls into one of three drawing sets.
-              </p>
             </div>
           </div>
       
@@ -154,8 +149,7 @@ export default function HomePage() {
           </div>
       
           {/* Section Footer Strip */}
-          <div className="pt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <span className="font-technical-label text-[10px] text-slate/50 tracking-[0.15em]">FIG. 02 // DISCIPLINE INDEX — RES / OFF / COM</span>
+          <div className="pt-6 flex justify-end">
             <a href="/contact_us" className="btn-brass-outline">
               REQUEST A CONSULTATION
             </a>
@@ -216,8 +210,8 @@ export default function HomePage() {
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
       
           {/* Title Block */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-end pb-6 border-b border-slate/15">
-            <div className="md:col-span-7 space-y-4">
+          <div className="pb-6 border-b border-slate/15">
+            <div className="space-y-4">
               <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
                 <span className="w-8 h-px bg-secondary"></span>
                 <span>SHEET A-06 // CAPABILITY INDEX</span>
@@ -226,38 +220,53 @@ export default function HomePage() {
                 What we are <span className="italic text-secondary">capable of.</span>
               </h2>
             </div>
-            <div className="md:col-span-5">
-              <p className="text-sm text-slate/80 font-light leading-relaxed">
-                A single studio carries the work from first sketch to final handover — no drawings lost between consultants, no detail left to chance on site.
-              </p>
-            </div>
           </div>
       
-          {/* Capability Strip */}
-          <div className="grid grid-cols-2 md:grid-cols-6 border-l border-slate/15 mb-8">
-            <div className="border-r border-b border-slate/15 px-4 py-4">
-              <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.01</div>
-              <div className="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Concept &amp; Spatial Planning</div>
-            </div>
-            <div className="border-r border-b border-slate/15 px-4 py-4">
-              <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.02</div>
-              <div className="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">3D Visualisation</div>
-            </div>
-            <div className="border-r border-b border-slate/15 px-4 py-4">
-              <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.03</div>
-              <div className="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Material Specification</div>
-            </div>
-            <div className="border-r border-b border-slate/15 px-4 py-4">
-              <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.04</div>
-              <div className="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Joinery Detailing</div>
-            </div>
-            <div className="border-r border-b border-slate/15 px-4 py-4">
-              <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.05</div>
-              <div className="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Lighting Design</div>
-            </div>
-            <div className="border-r border-b border-slate/15 px-4 py-4">
-              <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em]">CAP.06</div>
-              <div className="font-technical-label text-[10px] tracking-[0.12em] text-slate/80 uppercase mt-2">Site Execution</div>
+          {/* Capability Index — Redesigned without boxed rectangle borders */}
+          <div className="py-6 my-6 border-y border-slate/10">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
+              <div className="group relative">
+                <div className="w-5 h-px bg-secondary/60 group-hover:w-full group-hover:bg-secondary transition-all duration-300 mb-2"></div>
+                <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em] font-semibold">CAP.01</div>
+                <div className="font-technical-label text-[11px] tracking-[0.12em] text-slate/85 uppercase mt-1.5 leading-snug group-hover:text-slate transition-colors">
+                  Concept &amp; Spatial Planning
+                </div>
+              </div>
+              <div className="group relative">
+                <div className="w-5 h-px bg-secondary/60 group-hover:w-full group-hover:bg-secondary transition-all duration-300 mb-2"></div>
+                <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em] font-semibold">CAP.02</div>
+                <div className="font-technical-label text-[11px] tracking-[0.12em] text-slate/85 uppercase mt-1.5 leading-snug group-hover:text-slate transition-colors">
+                  3D Visualisation
+                </div>
+              </div>
+              <div className="group relative">
+                <div className="w-5 h-px bg-secondary/60 group-hover:w-full group-hover:bg-secondary transition-all duration-300 mb-2"></div>
+                <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em] font-semibold">CAP.03</div>
+                <div className="font-technical-label text-[11px] tracking-[0.12em] text-slate/85 uppercase mt-1.5 leading-snug group-hover:text-slate transition-colors">
+                  Material Specification
+                </div>
+              </div>
+              <div className="group relative">
+                <div className="w-5 h-px bg-secondary/60 group-hover:w-full group-hover:bg-secondary transition-all duration-300 mb-2"></div>
+                <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em] font-semibold">CAP.04</div>
+                <div className="font-technical-label text-[11px] tracking-[0.12em] text-slate/85 uppercase mt-1.5 leading-snug group-hover:text-slate transition-colors">
+                  Joinery Detailing
+                </div>
+              </div>
+              <div className="group relative">
+                <div className="w-5 h-px bg-secondary/60 group-hover:w-full group-hover:bg-secondary transition-all duration-300 mb-2"></div>
+                <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em] font-semibold">CAP.05</div>
+                <div className="font-technical-label text-[11px] tracking-[0.12em] text-slate/85 uppercase mt-1.5 leading-snug group-hover:text-slate transition-colors">
+                  Lighting Design
+                </div>
+              </div>
+              <div className="group relative">
+                <div className="w-5 h-px bg-secondary/60 group-hover:w-full group-hover:bg-secondary transition-all duration-300 mb-2"></div>
+                <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em] font-semibold">CAP.06</div>
+                <div className="font-technical-label text-[11px] tracking-[0.12em] text-slate/85 uppercase mt-1.5 leading-snug group-hover:text-slate transition-colors">
+                  Site Execution
+                </div>
+              </div>
             </div>
           </div>
       
@@ -319,8 +328,8 @@ export default function HomePage() {
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
       
           {/* Title Block */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-end pb-10 border-b border-slate/15">
-            <div className="md:col-span-7 space-y-4">
+          <div className="pb-10 border-b border-slate/15">
+            <div className="space-y-4">
               <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
                 <span className="w-8 h-px bg-secondary"></span>
                 <span>SHEET A-08 // CLIENT RECORD</span>
@@ -328,11 +337,6 @@ export default function HomePage() {
               <h2 className="font-display-lg text-3xl sm:text-4xl text-slate font-light leading-tight">
                 Signed off by the <span className="italic text-secondary">people who live in them.</span>
               </h2>
-            </div>
-            <div className="md:col-span-5">
-              <p className="text-sm text-slate/80 font-light leading-relaxed">
-                Every commission closes with a handover walkthrough. These are the notes that came back afterwards.
-              </p>
             </div>
           </div>
       
@@ -413,8 +417,8 @@ export default function HomePage() {
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
       
           {/* Title Block */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-end pb-10 border-b border-slate/15">
-            <div className="md:col-span-7 space-y-4">
+          <div className="pb-10 border-b border-slate/15">
+            <div className="space-y-4">
               <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
                 <span className="w-8 h-px bg-secondary"></span>
                 <span>SHEET A-09 // PARTNER REGISTER</span>
@@ -422,11 +426,6 @@ export default function HomePage() {
               <h2 className="font-display-lg text-3xl sm:text-4xl text-slate font-light leading-tight">
                 The brands we <span className="italic text-secondary">build with.</span>
               </h2>
-            </div>
-            <div className="md:col-span-5">
-              <p className="text-sm text-slate/80 font-light leading-relaxed">
-                Developers, hospitality groups and furniture houses we specify alongside — long enough that the detailing is second nature.
-              </p>
             </div>
           </div>
       
@@ -458,9 +457,7 @@ export default function HomePage() {
             </div>
           </div>
       
-          <div className="pt-6">
-            <span className="font-technical-label text-[10px] text-slate/50 tracking-[0.15em]">FIG. 09 // REGISTER OF SPECIFIED PARTNERS</span>
-          </div>
+
         </div>
       </section>
 

@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 /**
  * TextAnimate – word-by-word stagger animation.
  * Words start invisible (via inline style so even SSR renders them hidden).
- * Animation triggers only after `designark:door-opened` custom event fires.
+ * Animation triggers on mount.
  */
 export default function TextAnimate({
   children,
@@ -18,27 +18,8 @@ export default function TextAnimate({
   animation = 'blur-in',
 }) {
   const wrapRef = useRef(null);
-  const [ready, setReady] = useState(false);
 
-  // Step 1 – listen for the door-open signal
   useEffect(() => {
-    const run = () => setReady(true);
-
-    // If the event already fired before this component mounted, the flag
-    // won't be set via the listener — add a generous fallback.
-    const fallback = setTimeout(run, 5000);
-    window.addEventListener('designark:door-opened', run, { once: true });
-
-    return () => {
-      clearTimeout(fallback);
-      window.removeEventListener('designark:door-opened', run);
-    };
-  }, []);
-
-  // Step 2 – once ready, animate all words in
-  useEffect(() => {
-    if (!ready) return;
-
     const words = wrapRef.current?.querySelectorAll('.ta-word');
     if (!words?.length) return;
 
@@ -56,7 +37,7 @@ export default function TextAnimate({
       delay,
       ease: 'power3.out',
     });
-  }, [ready, animation, delay, duration, stagger]);
+  }, [animation, delay, duration, stagger]);
 
   const words = String(children).trim().split(/\s+/);
 

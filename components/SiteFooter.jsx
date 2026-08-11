@@ -19,9 +19,6 @@ export default function SiteFooter() {
           <p className="font-light text-xs text-slate/70 leading-relaxed max-w-sm">
             Formulating mathematical atmospheres through volcanic basalt foundations, tactile travertine textures, and precision metallic joinery.
           </p>
-          <p className="font-technical-label text-[10px] text-secondary opacity-80">
-            LAT: 06&deg;55&apos;12&quot;N // LONG: 79&deg;52&apos;18&quot;E // SPEC.V5
-          </p>
 
         </div>
         
