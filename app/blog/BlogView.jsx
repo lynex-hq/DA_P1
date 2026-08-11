@@ -67,7 +67,7 @@ export default function BlogView() {
       
               <div className="mt-10 pt-6 border-t border-[#FAF9F6]/15 flex items-center justify-between">
                 <span className="font-technical-label text-xs text-[#FAF9F6]/60">BY AR. KALANA PERERA</span>
-                <a href="#" className="btn-brass-outline hover:bg-secondary hover:text-charcoal transition-all">
+                <a href="#" className="border border-secondary text-[#FAF9F6] font-bold text-xs tracking-widest px-6 py-3 bg-[#161616]/90 hover:bg-secondary hover:text-[#161616] transition-all inline-block font-mono">
                   READ SPECIFICATION →
                 </a>
               </div>
