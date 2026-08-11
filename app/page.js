@@ -23,21 +23,6 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black/40 z-10"></div>
         </div>
 
-        {/* Subtle Architectural CAD Column Grid Lines */}
-        <div className="absolute inset-0 z-10 pointer-events-none grid grid-cols-6 md:grid-cols-12 h-full w-full opacity-40">
-          <div className="border-r border-white/20 h-full"></div>
-          <div className="border-r border-white/20 h-full"></div>
-          <div className="border-r border-white/20 h-full"></div>
-          <div className="border-r border-white/20 h-full"></div>
-          <div className="border-r border-white/20 h-full"></div>
-          <div className="border-r border-white/20 h-full"></div>
-          <div className="border-r border-white/20 h-full hidden md:block"></div>
-          <div className="border-r border-white/20 h-full hidden md:block"></div>
-          <div className="border-r border-white/20 h-full hidden md:block"></div>
-          <div className="border-r border-white/20 h-full hidden md:block"></div>
-          <div className="border-r border-white/20 h-full hidden md:block"></div>
-          <div className="h-full hidden md:block"></div>
-        </div>
 
         {/* Ambient Golden Blueprint Spotlight Overlays */}
         <div className="absolute -top-32 -right-32 w-125 h-125 bg-secondary/20 rounded-full blur-3xl pointer-events-none z-10"></div>
@@ -206,7 +191,7 @@ export default function HomePage() {
       
       
       {/* ===== SHEET A-06 // CAPABILITY INDEX + PROJECT GALLERY ===== */}
-      <section id="sheet-06" className="sheet-full cad-blueprint-grid w-full border-t border-slate/15">
+      <section id="sheet-06" className="sheet-full bg-[#FAF9F6] w-full border-t border-slate/15">
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
       
           {/* Title Block */}
@@ -413,7 +398,7 @@ export default function HomePage() {
       
       
       {/* ===== SHEET A-09 // CLIENT & PARTNER REGISTER ===== */}
-      <section id="sheet-09" className="sheet-full cad-blueprint-grid w-full border-t border-slate/15">
+      <section id="sheet-09" className="sheet-full bg-[#FAF9F6] w-full border-t border-slate/15">
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
       
           {/* Title Block */}

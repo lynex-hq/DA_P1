@@ -6,8 +6,6 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 
 const bodoni = Bodoni_Moda({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  style: ['normal', 'italic'],
   variable: '--font-bodoni',
   display: 'swap',
 });
@@ -40,7 +38,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="cad-blueprint-grid">
+      <body className="bg-[#FAF9F6] text-slate selection:bg-[#C5A880] selection:text-white antialiased">
         <SiteHeader />
         {children}
         <SiteFooter />

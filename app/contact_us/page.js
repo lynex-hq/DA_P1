@@ -64,49 +64,21 @@ export default function ContactPage() {
       
             <div className="panel-ivory-alt p-6 border border-slate/15 space-y-3 font-technical-label text-xs">
               <div className="text-secondary font-bold tracking-widest mb-1">GLOBAL COORDINATES</div>
-              {/* Numbers/email/addresses below are placeholder studio data carried
-                  over from the original design brief — swap for the client's real
-                  details, then these tel:/mailto:/maps links keep working as-is. */}
               <p><span className="text-slate/60">COLOMBO:</span> <a href="tel:+94112345678" className="hover:text-secondary transition-colors">+94 11 234 5678</a></p>
-              <p><span className="text-slate/60">NEW YORK:</span> <a href="tel:+12129876543" className="hover:text-secondary transition-colors">+1 212 987 6543</a></p>
-              <p><span className="text-slate/60">ZURICH:</span> <a href="tel:+41441234567" className="hover:text-secondary transition-colors">+41 44 123 4567</a></p>
               <p><span className="text-slate/60">DIRECT:</span> <a href="mailto:inquiry@designark.com" className="hover:text-secondary transition-colors">INQUIRY@DESIGNARK.COM</a></p>
             </div>
 
             <div className="panel-ivory-alt p-6 border border-slate/15 space-y-3 font-technical-label text-xs">
-              <div className="text-secondary font-bold tracking-widest mb-1">STUDIO ADDRESSES</div>
+              <div className="text-secondary font-bold tracking-widest mb-1">STUDIO ADDRESS</div>
               <p>
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=142+Tectonic+Way%2C+Colombo+03%2C+Sri+Lanka"
+                  href="https://maps.app.goo.gl/aTQVSeZcpBsE1vH26"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-secondary transition-colors"
                 >
-                  COLOMBO // 142 Tectonic Way, District 03 ↗
+                  COLOMBO // Design Ark (Pvt) Ltd. ↗
                 </a>
-              </p>
-              <p>
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=450+Hudson+Street%2C+Suite+800%2C+New+York"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-secondary transition-colors"
-                >
-                  NEW YORK // 450 Hudson Street, Suite 800 ↗
-                </a>
-              </p>
-              <p>
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=Basaltstrasse+12%2C+8001+Zurich"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-secondary transition-colors"
-                >
-                  ZURICH // Basaltstrasse 12, 8001 ↗
-                </a>
-              </p>
-              <p className="pt-2 text-[10px] text-slate/50 normal-case tracking-normal">
-                Addresses are placeholder studio locations pending the client&apos;s real details — links open a Google Maps search for the text shown.
               </p>
             </div>
           </div>

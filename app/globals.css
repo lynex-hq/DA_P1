@@ -229,6 +229,23 @@ body {
     border-left: 1px solid var(--brass);
     border-right: 1px solid var(--brass);
   }
+  /* Creative CAD Click Shockwave Ripple Animation */
+  @keyframes cadRipple {
+    0% {
+      transform: translate(-50%, -50%) scale(0.3);
+      opacity: 0.85;
+      border-width: 2px;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2.4);
+      opacity: 0;
+      border-width: 1px;
+    }
+  }
+  .animate-cad-ripple {
+    animation: cadRipple 480ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
   /* Fast, smooth hover transitions (150-250ms ease-out) */
   .smooth-hover {
     transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
