@@ -112,18 +112,10 @@ export default function ServicesView() {
           <span className="w-8 h-[1px] bg-secondary"></span>
           <span>SHEET A-04 // SERVICES CATALOGUE</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-end">
-          <div className="md:col-span-7">
-            <h1 className="font-display-lg text-4xl sm:text-5xl text-slate font-light leading-tight">
-              What we design, <span className="italic text-secondary">and how.</span>
-            </h1>
-          </div>
-          <div className="md:col-span-5">
-            <p className="text-sm text-slate/80 font-light leading-relaxed">
-              One studio carries the work from first sketch to final handover — concept, material
-              specification, joinery detailing and site execution, across three disciplines.
-            </p>
-          </div>
+        <div>
+          <h1 className="font-display-lg text-4xl sm:text-5xl text-slate font-light leading-tight">
+            What we design, <span className="italic text-secondary">and how.</span>
+          </h1>
         </div>
       </section>
 

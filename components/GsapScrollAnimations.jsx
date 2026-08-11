@@ -122,7 +122,13 @@ export default function GsapScrollAnimations() {
       });
 
       // 4. Section Titles & Drawing Labels Reveal
-      const titles = gsap.utils.toArray('h2, .font-technical-label');
+      // The fixed header's nav links, logo wordmark and social icons are all
+      // `.font-technical-label` too — without this exclusion they'd get the same
+      // scroll-triggered opacity tween and fade out as you scroll back up past
+      // the trigger point (toggleActions ends in "reverse").
+      const titles = gsap.utils
+        .toArray('h2, .font-technical-label')
+        .filter((el) => !el.closest('header'));
       titles.forEach((title) => {
         gsap.fromTo(
           title,

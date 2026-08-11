@@ -27,7 +27,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: 'DESIGN ARK // Atelier & Architectural Rigor',
   description:
-    'Design Ark is an interior design studio crafting inspiring, timeless spaces across residential, office and commercial disciplines.',
+    'Formulating mathematical atmospheres through volcanic basalt foundations, tactile travertine textures, and precision metallic joinery.',
 };
 
 export default function RootLayout({ children }) {

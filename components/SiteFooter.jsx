@@ -39,11 +39,7 @@ export default function SiteFooter() {
               COLOMBO // 142 Tectonic Way, District 03
             </a>
           </p>
-          <p>
-            <a href="https://www.google.com/maps/search/?api=1&query=450+Hudson+Street%2C+Suite+800%2C+New+York" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors">
-              NEW YORK // 450 Hudson Street, Suite 800
-            </a>
-          </p>
+
           <p>
             <a href="https://www.google.com/maps/search/?api=1&query=Basaltstrasse+12%2C+8001+Zurich" target="_blank" rel="noopener noreferrer" className="hover:text-secondary transition-colors">
               ZURICH // Basaltstrasse 12, 8001
