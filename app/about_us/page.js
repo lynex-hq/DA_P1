@@ -15,7 +15,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className="md:col-span-7 space-y-5">
               <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
-                <span className="w-8 h-[1px] bg-secondary"></span>
+                <span className="w-8 h-px bg-secondary"></span>
                 <span>STUDIO MANIFESTO & PROFILE</span>
               </div>
               <h1 className="font-display-lg text-4xl sm:text-6xl text-slate font-light leading-tight">

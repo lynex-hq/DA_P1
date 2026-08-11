@@ -109,7 +109,7 @@ export default function ServicesView() {
       {/* Page Title Block */}
       <section className="py-10 border-b border-slate/15 mb-12">
         <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em] mb-4">
-          <span className="w-8 h-[1px] bg-secondary"></span>
+          <span className="w-8 h-px bg-secondary"></span>
           <span>SHEET A-04 // SERVICES CATALOGUE</span>
         </div>
         <div>
@@ -147,7 +147,7 @@ export default function ServicesView() {
               <span>{d.scale}</span>
             </div>
 
-            <div className="img-cad-frame relative w-full h-[220px]">
+            <div className="img-cad-frame relative w-full h-55">
               <Image
                 src={d.image}
                 alt={d.title}
@@ -174,7 +174,7 @@ export default function ServicesView() {
       {/* Process */}
       <section className="py-16 border-b border-slate/15">
         <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em] mb-6">
-          <span className="w-8 h-[1px] bg-secondary"></span>
+          <span className="w-8 h-px bg-secondary"></span>
           <span>FIG. 04 // METHOD OF WORKING</span>
         </div>
         <h2 className="font-display-lg text-3xl text-slate font-light mb-10">
@@ -195,7 +195,7 @@ export default function ServicesView() {
       {/* FAQ */}
       <section className="py-16 border-b border-slate/15">
         <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em] mb-6">
-          <span className="w-8 h-[1px] bg-secondary"></span>
+          <span className="w-8 h-px bg-secondary"></span>
           <span>FIG. 05 // COMMON QUESTIONS</span>
         </div>
 

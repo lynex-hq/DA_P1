@@ -1,22 +1,27 @@
 # Design Ark Website Proposal Assets & Files
 
 ## Project Title
+
 Website Design & Development Proposal for Design Ark
 
 ## Prepared For
+
 Design Ark
 
 ## Prepared By
+
 Lynex
 
 ## Project Summary
+
 Design Ark is an interior design studio focused on crafting inspiring, timeless spaces. The website should present the brand professionally, showcase portfolio work, explain services clearly, and convert visitors into qualified leads.
 
 ---
 
-# 1. Files Needed Before Design Starts
+## 1. Files Needed Before Design Starts
 
-## Brand Files
+### Brand Files
+
 - Logo in PNG, SVG, and AI or EPS format.
 - Favicon version of the logo.
 - Brand color palette.
@@ -24,7 +29,8 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 - Brand guidelines document if available.
 - Social media handles and profile links.
 
-## Content Files
+### Content Files
+
 - Company about text.
 - Studio story and mission.
 - Service descriptions.
@@ -37,7 +43,8 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 - WhatsApp number.
 - Google Maps location link.
 
-## Visual Files
+### Visual Files
+
 - High-resolution project images.
 - Before-and-after images.
 - Team photos.
@@ -46,7 +53,8 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 - Lifestyle or inspiration images.
 - Icons or illustration assets if any.
 
-## Web Copy Files
+### Web Copy Files
+
 - Home page content.
 - About page content.
 - Services page content.
@@ -57,9 +65,10 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 
 ---
 
-# 2. Website Design Files You Need to Create
+## 2. Website Design Files You Need to Create
 
-## Discovery Files
+### Discovery Files
+
 - Project brief.
 - Client questionnaire.
 - Sitemap.
@@ -67,7 +76,8 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 - Competitor reference board.
 - Moodboard.
 
-## Design Files
+### Design Files
+
 - Wireframes for Home page.
 - Wireframes for About page.
 - Wireframes for Services page.
@@ -85,7 +95,8 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 - Typography scale.
 - Color system.
 
-## Development Files
+### Development Files
+
 - Responsive HTML/CSS/JS build.
 - CMS setup files.
 - Image optimization files.
@@ -99,16 +110,18 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 
 ---
 
-# 3. Pages Needed For The Website
+## 3. Pages Needed For The Website
 
-## Core Pages
+### Core Pages
+
 - Home
 - About
 - Services
 - Portfolio
 - Contact
 
-## Optional Pages
+### Optional Pages
+
 - Project Detail Pages
 - FAQ
 - Blog / Insights
@@ -118,7 +131,7 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 
 ---
 
-# 4. Recommended Homepage Sections
+## 4. Recommended Homepage Sections
 
 - Hero section with strong headline.
 - Short brand introduction.
@@ -132,23 +145,26 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 
 ---
 
-# 5. Recommended Service Sections
+## 5. Recommended Service Sections
 
-## Residential Interior Design
+### Residential Interior Design
+
 - House design
 - Apartment design
 - Living room design
 - Kitchen design
 - Bedroom design
 
-## Office Interior Design
+### Office Interior Design
+
 - Workspace planning
 - Reception design
 - Meeting room design
 - Furniture planning
 - Lighting planning
 
-## Commercial Interior Design
+### Commercial Interior Design
+
 - Retail design
 - Showroom design
 - Hospitality design
@@ -157,9 +173,10 @@ Design Ark is an interior design studio focused on crafting inspiring, timeless 
 
 ---
 
-# 6. Portfolio File Requirements
+## 6. Portfolio File Requirements
 
 For every project, collect:
+
 - Project name.
 - Project type.
 - Location.
@@ -173,7 +190,7 @@ For every project, collect:
 
 ---
 
-# 7. Functional Requirements
+## 7. Functional Requirements
 
 - Fully responsive layout.
 - Fast page loading.
@@ -191,16 +208,18 @@ For every project, collect:
 
 ---
 
-# 8. Proposal Structure
+## 8. Proposal Structure
 
-## Cover Page
+### Cover Page
+
 - Project title
 - Client name
 - Prepared by
 - Date
 - Validity period
 
-## Proposal Sections
+### Proposal Sections
+
 1. About Lynex
 2. Project Overview
 3. Project Goals
@@ -219,12 +238,14 @@ For every project, collect:
 
 ---
 
-# 9. Pricing Section
+## 9. Pricing Section
 
-## Starter — LKR 45,000
+### Starter — LKR 45,000
+
 Best for a simple professional presence.
 
 Includes:
+
 - Up to 5 pages
 - Custom responsive design
 - Contact form
@@ -233,10 +254,12 @@ Includes:
 - Mobile optimization
 - 1 revision round
 
-## Professional — LKR 85,000
+### Professional — LKR 85,000
+
 Best for a full portfolio-based studio website.
 
 Includes:
+
 - Up to 8 pages
 - Custom design tailored to the brand
 - Portfolio system
@@ -247,10 +270,12 @@ Includes:
 - Google Analytics setup
 - 2 revision rounds
 
-## Premium — LKR 140,000
+### Premium — LKR 140,000
+
 Best for a high-end fully custom experience.
 
 Includes:
+
 - Expanded page structure
 - Advanced custom interactions
 - Animated elements
@@ -262,14 +287,16 @@ Includes:
 
 ---
 
-# 10. Maintenance Files
+## 10. Maintenance Files
 
-## Optional Monthly Care Plans
+### Optional Monthly Care Plans
+
 - Lite plan
 - Standard plan
 - Pro plan
 
-## Maintenance Includes
+### Maintenance Includes
+
 - Backups
 - Security monitoring
 - Uptime monitoring
@@ -282,9 +309,10 @@ Includes:
 
 ---
 
-# 11. Final Delivery Files
+## 11. Final Delivery Files
 
 When the project is complete, the client should receive:
+
 - Final website link
 - Admin login details
 - CMS access instructions
@@ -296,9 +324,10 @@ When the project is complete, the client should receive:
 
 ---
 
-# 12. Recommended File List Summary
+## 12. Recommended File List Summary
 
-## Must Have
+### Must Have
+
 - Logo files
 - Brand colors
 - Typography
@@ -307,7 +336,8 @@ When the project is complete, the client should receive:
 - Contact details
 - Portfolio details
 
-## Nice to Have
+### Nice to Have
+
 - Team photos
 - Behind-the-scenes images
 - Testimonials
@@ -317,7 +347,7 @@ When the project is complete, the client should receive:
 
 ---
 
-# 13. Notes For The Proposal
+## 13. Notes For The Proposal
 
 - The website should feel premium, elegant, and minimal.
 - The portfolio should be the main conversion driver.
@@ -328,6 +358,6 @@ When the project is complete, the client should receive:
 
 ---
 
-# 14. Next Step
+## 14. Next Step
 
 Use this file as the content checklist and proposal planning guide before moving into wireframes and visual design.
