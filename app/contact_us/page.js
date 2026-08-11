@@ -58,7 +58,7 @@ export default function ContactPage() {
           <div className="md:col-span-5 space-y-6">
             <div className="border border-slate/15 bg-white p-2 shadow-sm overflow-hidden">
               <div className="relative w-full h-64">
-                <Image src={images.contactReception} alt="Studio Reception" fill className="scroll-zoom-img object-cover" />
+                <Image src={images.contactReception} alt="Studio Reception" fill sizes="(min-width: 768px) 42vw, 100vw" className="scroll-zoom-img object-cover" />
               </div>
             </div>
       

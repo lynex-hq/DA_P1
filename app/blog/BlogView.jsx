@@ -42,7 +42,7 @@ export default function BlogView() {
           <div className="bg-[#161616] text-[#FAF9F6] border border-slate/20 overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-0 relative group">
             
             <div className="lg:col-span-7 img-cad-frame relative min-h-[340px] md:min-h-[460px]">
-              <Image src={images.blogFeatured} alt="Featured Article - Volcanic Basalt and Travertine" fill className="object-cover grayscale opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" />
+              <Image src={images.blogFeatured} alt="Featured Article - Volcanic Basalt and Travertine" fill sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover grayscale opacity-90 transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0" />
               <div className="absolute top-4 left-4 bg-secondary text-charcoal font-technical-label text-[10px] tracking-[0.2em] font-bold px-3 py-1 uppercase">
                 FLAGSHIP ESSAY
               </div>
@@ -84,7 +84,7 @@ export default function BlogView() {
             <article className="article-item materials bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary" style={{ display: cat === 'all' || cat === 'materials' ? 'flex' : 'none' }}>
               <div>
                 <div className="img-cad-frame mb-6 h-56 w-full">
-                  <Image src={images.blogParametricJoinery} alt="Parametric Joinery" fill className="object-cover grayscale" />
+                  <Image src={images.blogParametricJoinery} alt="Parametric Joinery" fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover grayscale" />
                 </div>
                 <div className="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
                   <span>SPATIAL DESIGN</span>
@@ -110,7 +110,7 @@ export default function BlogView() {
             <article className="article-item acoustics bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary" style={{ display: cat === 'all' || cat === 'acoustics' ? 'flex' : 'none' }}>
               <div>
                 <div className="img-cad-frame mb-6 h-56 w-full">
-                  <Image src={images.blogLight} alt="Light as a Building Block" fill className="object-cover grayscale" />
+                  <Image src={images.blogLight} alt="Light as a Building Block" fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover grayscale" />
                 </div>
                 <div className="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
                   <span>LIGHTING & ACOUSTICS</span>
@@ -136,7 +136,7 @@ export default function BlogView() {
             <article className="article-item case-studies bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary" style={{ display: cat === 'all' || cat === 'case-studies' ? 'flex' : 'none' }}>
               <div>
                 <div className="img-cad-frame mb-6 h-56 w-full">
-                  <Image src={images.blogAcoustics} alt="Acoustic Engineering" fill className="object-cover grayscale" />
+                  <Image src={images.blogAcoustics} alt="Acoustic Engineering" fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover grayscale" />
                 </div>
                 <div className="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
                   <span>CASE DISSECTIONS</span>
@@ -162,7 +162,7 @@ export default function BlogView() {
             <article className="article-item spatial bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary" style={{ display: cat === 'all' || cat === 'spatial' ? 'flex' : 'none' }}>
               <div>
                 <div className="img-cad-frame mb-6 h-56 w-full">
-                  <Image src={images.blogBlueprint} alt="Minimalist Blueprint" fill className="object-cover grayscale" />
+                  <Image src={images.blogBlueprint} alt="Minimalist Blueprint" fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover grayscale" />
                 </div>
                 <div className="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
                   <span>SPATIAL DESIGN</span>
@@ -188,7 +188,7 @@ export default function BlogView() {
             <article className="article-item case-studies bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary" style={{ display: cat === 'all' || cat === 'case-studies' ? 'flex' : 'none' }}>
               <div>
                 <div className="img-cad-frame mb-6 h-56 w-full">
-                  <Image src={images.blogHeritage} alt="Restoring Heritage" fill className="object-cover grayscale" />
+                  <Image src={images.blogHeritage} alt="Restoring Heritage" fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover grayscale" />
                 </div>
                 <div className="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
                   <span>CASE DISSECTIONS</span>
@@ -214,7 +214,7 @@ export default function BlogView() {
             <article className="article-item materials bg-[#F5F4F0] border border-slate/15 flex flex-col justify-between group p-6 smooth-hover hover:border-secondary" style={{ display: cat === 'all' || cat === 'materials' ? 'flex' : 'none' }}>
               <div>
                 <div className="img-cad-frame mb-6 h-56 w-full">
-                  <Image src={images.blogCoastalVilla} alt="Coastal Villa Materials" fill className="object-cover grayscale" />
+                  <Image src={images.blogCoastalVilla} alt="Coastal Villa Materials" fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover grayscale" />
                 </div>
                 <div className="flex items-center gap-3 font-technical-label text-[10px] text-secondary tracking-widest mb-3">
                   <span>MATERIAL STUDY</span>

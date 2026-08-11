@@ -35,7 +35,7 @@ export default function WorksView() {
           <div className="project-item border border-slate/15 bg-white p-5 shadow-sm group" data-category="residential" style={{ display: cat === 'all' || cat === 'residential' ? 'block' : 'none' }}>
             <div className="relative overflow-hidden mb-4 border border-slate/10">
               <div className="relative w-full h-80">
-                <Image src={images.workTravertinePavilion} alt="Travertine Pavilion" fill className="object-cover grayscale group-hover:grayscale-0 smooth-hover" />
+                <Image src={images.workTravertinePavilion} alt="Travertine Pavilion" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover grayscale group-hover:grayscale-0 smooth-hover" />
               </div>
               <span className="absolute top-3 left-3 bg-[#FAF9F6] px-2 py-1 font-technical-label text-[9px] text-secondary font-bold border border-slate/20">PROJ_01</span>
             </div>
@@ -55,7 +55,7 @@ export default function WorksView() {
           <div className="project-item border border-slate/15 bg-white p-5 shadow-sm group" data-category="workspace" style={{ display: cat === 'all' || cat === 'workspace' ? 'block' : 'none' }}>
             <div className="relative overflow-hidden mb-4 border border-slate/10">
               <div className="relative w-full h-80">
-                <Image src={images.workBasaltWorkspace} alt="Basalt Workspace" fill className="object-cover grayscale group-hover:grayscale-0 smooth-hover" />
+                <Image src={images.workBasaltWorkspace} alt="Basalt Workspace" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover grayscale group-hover:grayscale-0 smooth-hover" />
               </div>
               <span className="absolute top-3 left-3 bg-[#FAF9F6] px-2 py-1 font-technical-label text-[9px] text-secondary font-bold border border-slate/20">PROJ_02</span>
             </div>
@@ -75,7 +75,7 @@ export default function WorksView() {
           <div className="project-item border border-slate/15 bg-white p-5 shadow-sm group" data-category="commercial" style={{ display: cat === 'all' || cat === 'commercial' ? 'block' : 'none' }}>
             <div className="relative overflow-hidden mb-4 border border-slate/10">
               <div className="relative w-full h-80">
-                <Image src={images.projectAtelierNine} alt="Atelier Nine" fill className="object-cover grayscale group-hover:grayscale-0 smooth-hover" />
+                <Image src={images.projectAtelierNine} alt="Atelier Nine" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover grayscale group-hover:grayscale-0 smooth-hover" />
               </div>
               <span className="absolute top-3 left-3 bg-[#FAF9F6] px-2 py-1 font-technical-label text-[9px] text-secondary font-bold border border-slate/20">PROJ_03</span>
             </div>

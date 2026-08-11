@@ -151,7 +151,7 @@ export default function ServicesView() {
               <Image
                 src={d.image}
                 alt={d.title}
-                fill
+                fill sizes="(min-width: 768px) 33vw, 100vw"
                 className="object-cover grayscale smooth-hover"
               />
             </div>

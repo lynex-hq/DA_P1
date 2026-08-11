@@ -16,7 +16,7 @@ export default function HomePage() {
         
         {/* Full-Bleed Edge-to-Edge Architectural Background Photograph */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <Image src={images.heroBackdrop} alt="Full Architectural Hero Backdrop" fill className="hero-bg-img object-cover opacity-75" priority />
+          <Image src={images.heroBackdrop} alt="Full Architectural Hero Backdrop" fill sizes="100vw" className="hero-bg-img object-cover opacity-75" priority />
           
           {/* Subtle CAD Dark Overlay & Vignette for Contrast */}
           <div className="absolute inset-0 bg-linear-to-t from-[#161616] via-[#161616]/60 to-[#161616]/40 z-10"></div>
@@ -80,7 +80,7 @@ export default function HomePage() {
               </div>
       
               <div className="img-cad-frame mt-5">
-                <div className="relative w-full h-32.5"><Image src={images.serviceResidential} alt="Residential interior design" fill className="scroll-zoom-img object-cover" /></div>
+                <div className="relative w-full h-32.5"><Image src={images.serviceResidential} alt="Residential interior design" fill sizes="(min-width: 768px) 33vw, 100vw" className="scroll-zoom-img object-cover" /></div>
               </div>
       
               <h3 className="font-display-lg text-xl text-slate mt-4">Residential Interior Design</h3>
@@ -105,7 +105,7 @@ export default function HomePage() {
               </div>
       
               <div className="img-cad-frame mt-5">
-                <div className="relative w-full h-32.5"><Image src={images.serviceOffice} alt="Office interior design" fill className="scroll-zoom-img object-cover" /></div>
+                <div className="relative w-full h-32.5"><Image src={images.serviceOffice} alt="Office interior design" fill sizes="(min-width: 768px) 33vw, 100vw" className="scroll-zoom-img object-cover" /></div>
               </div>
       
               <h3 className="font-display-lg text-xl text-slate mt-4">Office Interior Design</h3>
@@ -130,7 +130,7 @@ export default function HomePage() {
               </div>
       
               <div className="img-cad-frame mt-5">
-                <div className="relative w-full h-32.5"><Image src={images.serviceCommercial} alt="Commercial interior design" fill className="scroll-zoom-img object-cover" /></div>
+                <div className="relative w-full h-32.5"><Image src={images.serviceCommercial} alt="Commercial interior design" fill sizes="(min-width: 768px) 33vw, 100vw" className="scroll-zoom-img object-cover" /></div>
               </div>
       
               <h3 className="font-display-lg text-xl text-slate mt-4">Commercial Interior Design</h3>
@@ -161,7 +161,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className="md:col-span-6 order-2 md:order-1 relative group">
               <div className="border border-slate/20 p-2 bg-white shadow-lg overflow-hidden">
-                <div className="relative w-full h-100 md:h-[58vh]"><Image src={images.processMaterial} alt="Material Curation Spec" fill className="scroll-zoom-img object-cover" /></div>
+                <div className="relative w-full h-100 md:h-[58vh]"><Image src={images.processMaterial} alt="Material Curation Spec" fill sizes="(min-width: 768px) 50vw, 100vw" className="scroll-zoom-img object-cover" /></div>
               </div>
               <span className="font-technical-label text-[10px] text-secondary mt-2 block">FIG. 03 // MATERIAL CURATION & TEXTURE TINTS</span>
             </div>
@@ -189,7 +189,7 @@ export default function HomePage() {
       
             <div className="md:col-span-6 relative group">
               <div className="border border-slate/20 p-2 bg-white shadow-lg overflow-hidden">
-                <div className="relative w-full h-100 md:h-[58vh]"><Image src={images.processLighting} alt="Lighting Engineering Spec" fill className="scroll-zoom-img object-cover" /></div>
+                <div className="relative w-full h-100 md:h-[58vh]"><Image src={images.processLighting} alt="Lighting Engineering Spec" fill sizes="(min-width: 768px) 50vw, 100vw" className="scroll-zoom-img object-cover" /></div>
               </div>
               <span className="font-technical-label text-[10px] text-secondary mt-2 block">FIG. 04 // LUX FLOW & AMBIENT HARMONY</span>
             </div>
@@ -280,7 +280,7 @@ export default function HomePage() {
             {/* PRJ.01 */}
             <a href="/works" className="group block">
               <div className="img-cad-frame">
-                <div className="relative w-full h-47.5"><Image src={images.projectBasaltHouse} alt="Basalt House residential project" fill className="scroll-zoom-img object-cover" /></div>
+                <div className="relative w-full h-47.5"><Image src={images.projectBasaltHouse} alt="Basalt House residential project" fill sizes="(min-width: 768px) 33vw, 100vw" className="scroll-zoom-img object-cover" /></div>
               </div>
               <div className="flex items-baseline justify-between mt-3">
                 <h3 className="font-display-lg text-lg text-slate group-hover:text-secondary transition-colors">Basalt House</h3>
@@ -292,7 +292,7 @@ export default function HomePage() {
             {/* PRJ.02 */}
             <a href="/works" className="group block">
               <div className="img-cad-frame">
-                <div className="relative w-full h-47.5"><Image src={images.projectMeridian} alt="Meridian Workspace office project" fill className="scroll-zoom-img object-cover" /></div>
+                <div className="relative w-full h-47.5"><Image src={images.projectMeridian} alt="Meridian Workspace office project" fill sizes="(min-width: 768px) 33vw, 100vw" className="scroll-zoom-img object-cover" /></div>
               </div>
               <div className="flex items-baseline justify-between mt-3">
                 <h3 className="font-display-lg text-lg text-slate group-hover:text-secondary transition-colors">Meridian Workspace</h3>
@@ -304,7 +304,7 @@ export default function HomePage() {
             {/* PRJ.03 */}
             <a href="/works" className="group block">
               <div className="img-cad-frame">
-                <div className="relative w-full h-47.5"><Image src={images.projectAtelierNine} alt="Atelier Nine hospitality project" fill className="scroll-zoom-img object-cover" /></div>
+                <div className="relative w-full h-47.5"><Image src={images.projectAtelierNine} alt="Atelier Nine hospitality project" fill sizes="(min-width: 768px) 33vw, 100vw" className="scroll-zoom-img object-cover" /></div>
               </div>
               <div className="flex items-baseline justify-between mt-3">
                 <h3 className="font-display-lg text-lg text-slate group-hover:text-secondary transition-colors">Atelier Nine</h3>
@@ -469,16 +469,16 @@ export default function HomePage() {
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 w-full">
           <div className="aspect-square border border-slate/15 overflow-hidden relative">
-             <Image src={images.detailBed} alt="Bedroom detail from a recent commission" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
+             <Image src={images.detailBed} alt="Bedroom detail from a recent commission" fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
           </div>
           <div className="aspect-square border border-slate/15 overflow-hidden relative">
-             <Image src={images.detailCoffee} alt="Coffee table styling detail" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
+             <Image src={images.detailCoffee} alt="Coffee table styling detail" fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
           </div>
           <div className="aspect-square border border-slate/15 overflow-hidden relative">
-             <Image src={images.detailSink} alt="Kitchen sink and fixture detail" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
+             <Image src={images.detailSink} alt="Kitchen sink and fixture detail" fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
           </div>
           <div className="aspect-square border border-slate/15 overflow-hidden relative">
-             <Image src={images.detailLaptop} alt="Workspace styling detail" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
+             <Image src={images.detailLaptop} alt="Workspace styling detail" fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105" />
           </div>
         </div>
 

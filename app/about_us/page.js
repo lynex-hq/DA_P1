@@ -30,7 +30,7 @@ export default function AboutPage() {
             <div className="md:col-span-5 relative group">
               <div className="border border-slate/20 p-2 bg-white shadow-xl overflow-hidden">
                 <div className="relative w-full h-[380px]">
-                  <Image src={images.studioOffice} alt="Studio Architecture Office" fill className="scroll-zoom-img object-cover" />
+                  <Image src={images.studioOffice} alt="Studio Architecture Office" fill sizes="(min-width: 768px) 40vw, 100vw" className="scroll-zoom-img object-cover" />
                 </div>
               </div>
               <span className="font-technical-label text-[10px] text-secondary mt-2 block">ATELIER HEADQUARTERS // EST. 2018</span>
@@ -82,7 +82,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="flex flex-col sm:flex-row gap-6 p-6 border border-slate/15 bg-white shadow-sm group">
               <div className="w-full sm:w-44 h-56 border border-slate/20 overflow-hidden shrink-0 relative">
-                <Image src={images.teamElenaRoth} alt="Elena Roth" fill className="scroll-zoom-img object-cover" />
+                <Image src={images.teamElenaRoth} alt="Elena Roth" fill sizes="(min-width: 640px) 176px, 100vw" className="scroll-zoom-img object-cover" />
               </div>
               <div className="space-y-3 flex flex-col justify-center">
                 <span className="font-technical-label text-[10px] text-secondary">PRINCIPAL ARCHITECT</span>
@@ -95,7 +95,7 @@ export default function AboutPage() {
       
             <div className="flex flex-col sm:flex-row gap-6 p-6 border border-slate/15 bg-white shadow-sm group">
               <div className="w-full sm:w-44 h-56 border border-slate/20 overflow-hidden shrink-0 relative">
-                <Image src={images.teamMarcusThorne} alt="Marcus Thorne" fill className="scroll-zoom-img object-cover" />
+                <Image src={images.teamMarcusThorne} alt="Marcus Thorne" fill sizes="(min-width: 640px) 176px, 100vw" className="scroll-zoom-img object-cover" />
               </div>
               <div className="space-y-3 flex flex-col justify-center">
                 <span className="font-technical-label text-[10px] text-secondary">DIRECTOR OF TECTONICS</span>

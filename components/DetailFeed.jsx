@@ -106,7 +106,7 @@ export default function DetailFeed() {
                   className={`detail-plate ${plate.h}`}
                   aria-hidden={pass === 1 ? 'true' : undefined}
                 >
-                  <Image src={plate.src} alt={pass === 1 ? '' : plate.alt} fill className="object-cover" />
+                  <Image src={plate.src} alt={pass === 1 ? '' : plate.alt} fill sizes="33vw" className="object-cover" />
                 </figure>
               ))
             )}
