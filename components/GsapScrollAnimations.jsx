@@ -59,10 +59,10 @@ export default function GsapScrollAnimations() {
       }
 
       // 2. Reveal Articles & Cards on Scroll Down
-      // `.slide` is excluded: the A-05 slider frames are <article> elements whose
-      // transform is driven directly by scroll position. GSAP tweening y/opacity
-      // on them overwrites that transform and parks every frame off-screen.
-      const articles = gsap.utils.toArray('article:not(.slide), .gsap-reveal');
+      // `.slide` and `#scope-of-practice` are excluded: section 2 is static without animation.
+      const articles = gsap.utils
+        .toArray('article:not(.slide), .gsap-reveal')
+        .filter((el) => !el.closest('#scope-of-practice'));
       articles.forEach((el) => {
         gsap.fromTo(
           el,
@@ -82,7 +82,9 @@ export default function GsapScrollAnimations() {
       });
 
       // 3. Stagger Image Frames
-      const imageFrames = gsap.utils.toArray('.img-cad-frame');
+      const imageFrames = gsap.utils
+        .toArray('.img-cad-frame')
+        .filter((frame) => !frame.closest('#scope-of-practice'));
       imageFrames.forEach((frame) => {
         gsap.fromTo(
           frame,
@@ -102,7 +104,9 @@ export default function GsapScrollAnimations() {
       });
 
       // 3.5. Image Zoom & Color Reveal
-      const zoomImages = gsap.utils.toArray('.scroll-zoom-img');
+      const zoomImages = gsap.utils
+        .toArray('.scroll-zoom-img')
+        .filter((img) => !img.closest('#scope-of-practice'));
       zoomImages.forEach((img) => {
         gsap.fromTo(
           img,
@@ -122,13 +126,9 @@ export default function GsapScrollAnimations() {
       });
 
       // 4. Section Titles & Drawing Labels Reveal
-      // The fixed header's nav links, logo wordmark and social icons are all
-      // `.font-technical-label` too — without this exclusion they'd get the same
-      // scroll-triggered opacity tween and fade out as you scroll back up past
-      // the trigger point (toggleActions ends in "reverse").
       const titles = gsap.utils
         .toArray('h2, .font-technical-label')
-        .filter((el) => !el.closest('header'));
+        .filter((el) => !el.closest('header') && !el.closest('#scope-of-practice'));
       titles.forEach((title) => {
         gsap.fromTo(
           title,

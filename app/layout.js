@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body className="cad-blueprint-grid">
+      <body className="bg-ivory text-slate antialiased">
         <SiteHeader />
         {children}
         <SiteFooter />

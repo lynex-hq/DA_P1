@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { images } from '@/lib/images';
 import HeroSlider from '@/components/HeroSlider';
@@ -5,6 +6,39 @@ import DetailFeed from '@/components/DetailFeed';
 import GsapScrollAnimations from '@/components/GsapScrollAnimations';
 import HeroText from '@/components/HeroText';
 import HeroBottomBar from '@/components/HeroBottomBar';
+
+const DISCIPLINES = [
+  {
+    key: 'residential',
+    code: 'SVC.01',
+    scale: 'SCALE 1:50',
+    title: 'Residential Interior Design',
+    image: images.serviceResidential,
+    blurb: 'Private homes composed around light, proportion and the way a family actually lives in a space.',
+    scope: ['House Design', 'Apartment Design', 'Living Room', 'Kitchen Design', 'Bedroom Suites'],
+    cta: 'Explore Residential',
+  },
+  {
+    key: 'office',
+    code: 'SVC.02',
+    scale: 'SCALE 1:100',
+    title: 'Office Interior Design',
+    image: images.serviceOffice,
+    blurb: 'Workplaces planned for focus and flow — efficient footprints that still read as considered and calm.',
+    scope: ['Workspace Planning', 'Reception Design', 'Meeting Suites', 'Custom Furniture', 'Lighting Planning'],
+    cta: 'Explore Office',
+  },
+  {
+    key: 'commercial',
+    code: 'SVC.03',
+    scale: 'SCALE 1:200',
+    title: 'Commercial Interior Design',
+    image: images.serviceCommercial,
+    blurb: 'Retail, hospitality and brand environments built to hold attention and carry a brand in three dimensions.',
+    scope: ['Retail Boutiques', 'Showroom Design', 'Hospitality & Dining', 'Brand Experiences', 'Spatial Flow'],
+    cta: 'Explore Commercial',
+  },
+];
 
 export default function HomePage() {
   return (
@@ -55,149 +89,122 @@ export default function HomePage() {
       </section>
 
       <main className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
-        <section className="sheet-full pt-24 pb-10 border-b border-slate/15">
+        <section id="scope-of-practice" className="pt-20 pb-16 border-b border-slate/15">
           {/* Section Title Block */}
-          <div className="pb-6 border-b border-slate/15">
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 font-technical-label text-xs text-secondary tracking-[0.25em]">
-                <span className="w-8 h-px bg-secondary"></span>
-                <span>SHEET A-02 // SCOPE OF PRACTICE</span>
-              </div>
-              <h2 className="font-display-lg text-3xl sm:text-4xl text-slate font-light leading-tight">
-                An interior design studio<br />
-                <span className="italic text-secondary">across three disciplines.</span>
-              </h2>
-            </div>
+          <div className="pb-10 border-b border-slate/15">
+            <h2 className="font-display-lg text-3xl sm:text-4xl lg:text-5xl text-slate font-light leading-tight">
+              An interior design studio<br />
+              <span className="italic text-secondary">across three disciplines.</span>
+            </h2>
           </div>
       
-          {/* Three Discipline Sheets */}
-          <div className="grid grid-cols-1 md:grid-cols-3 border-l border-slate/15">
-            {/* SVC.01 // RESIDENTIAL */}
-            <article className="group border-r border-b border-slate/15 p-6 hover:bg-[#F5F4F0] smooth-hover">
-              <div className="flex items-baseline justify-between font-technical-label text-[10px] tracking-[0.2em] text-slate/50">
-                <span className="text-secondary font-bold">SVC.01</span>
-                <span>SCALE 1:50</span>
-              </div>
-      
-              <div className="img-cad-frame mt-5">
-                <div className="relative w-full h-32.5"><Image src={images.serviceResidential} alt="Residential interior design" fill sizes="(min-width: 768px) 33vw, 100vw" className="scroll-zoom-img object-cover" /></div>
-              </div>
-      
-              <h3 className="font-display-lg text-xl text-slate mt-4">Residential Interior Design</h3>
-              <p className="text-sm text-slate/75 font-light leading-relaxed mt-3">
-                Private homes composed around light, proportion and the way a family actually lives in a space.
-              </p>
-      
-              <ul className="mt-4 space-y-1.5 font-technical-label text-[10px] tracking-[0.14em] text-slate/70 uppercase">
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>House Design</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Apartment Design</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Living Room Design</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Kitchen Design</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Bedroom Design</li>
-              </ul>
-            </article>
-      
-            {/* SVC.02 // OFFICE */}
-            <article className="group border-r border-b border-slate/15 p-6 hover:bg-[#F5F4F0] smooth-hover">
-              <div className="flex items-baseline justify-between font-technical-label text-[10px] tracking-[0.2em] text-slate/50">
-                <span className="text-secondary font-bold">SVC.02</span>
-                <span>SCALE 1:100</span>
-              </div>
-      
-              <div className="img-cad-frame mt-5">
-                <div className="relative w-full h-32.5"><Image src={images.serviceOffice} alt="Office interior design" fill sizes="(min-width: 768px) 33vw, 100vw" className="scroll-zoom-img object-cover" /></div>
-              </div>
-      
-              <h3 className="font-display-lg text-xl text-slate mt-4">Office Interior Design</h3>
-              <p className="text-sm text-slate/75 font-light leading-relaxed mt-3">
-                Workplaces planned for focus and flow — efficient footprints that still read as considered and calm.
-              </p>
-      
-              <ul className="mt-4 space-y-1.5 font-technical-label text-[10px] tracking-[0.14em] text-slate/70 uppercase">
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Workspace Planning</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Reception Design</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Meeting Room Design</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Furniture Planning</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Lighting Planning</li>
-              </ul>
-            </article>
-      
-            {/* SVC.03 // COMMERCIAL */}
-            <article className="group border-r border-b border-slate/15 p-6 hover:bg-[#F5F4F0] smooth-hover">
-              <div className="flex items-baseline justify-between font-technical-label text-[10px] tracking-[0.2em] text-slate/50">
-                <span className="text-secondary font-bold">SVC.03</span>
-                <span>SCALE 1:200</span>
-              </div>
-      
-              <div className="img-cad-frame mt-5">
-                <div className="relative w-full h-32.5"><Image src={images.serviceCommercial} alt="Commercial interior design" fill sizes="(min-width: 768px) 33vw, 100vw" className="scroll-zoom-img object-cover" /></div>
-              </div>
-      
-              <h3 className="font-display-lg text-xl text-slate mt-4">Commercial Interior Design</h3>
-              <p className="text-sm text-slate/75 font-light leading-relaxed mt-3">
-                Retail, hospitality and brand environments built to hold attention and carry a brand in three dimensions.
-              </p>
-      
-              <ul className="mt-4 space-y-1.5 font-technical-label text-[10px] tracking-[0.14em] text-slate/70 uppercase">
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Retail Design</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Showroom Design</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Hospitality Design</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Brand Experience Spaces</li>
-                <li className="flex items-center gap-3 border-t border-slate/10 pt-2"><span className="text-secondary">+</span>Space Optimization</li>
-              </ul>
-            </article>
+          {/* Three Discipline Columns — Normal, Still, Natural Full Color, No Animation */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 py-12">
+            {DISCIPLINES.map((d) => (
+              <article key={d.key} className="flex flex-col justify-between">
+                <div>
+                  {/* Top Meta Label */}
+                  <div className="flex items-baseline justify-between font-technical-label text-xs tracking-[0.2em] text-slate/50 pb-3 border-b border-slate/15">
+                    <span className="text-secondary font-bold">{d.code}</span>
+                    <span className="text-[10px] uppercase text-slate/40">{d.scale}</span>
+                  </div>
+
+                  {/* Clean Frameless Photograph — Still, Normal Natural Full Color */}
+                  <div className="relative w-full h-64 sm:h-72 overflow-hidden my-6 bg-slate/5">
+                    <Image
+                      src={d.image}
+                      alt={d.title}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Title & Blurb */}
+                  <h3 className="font-display-lg text-2xl text-slate">
+                    {d.title}
+                  </h3>
+                  <p className="text-sm text-slate/75 font-light leading-relaxed mt-3">
+                    {d.blurb}
+                  </p>
+
+                  {/* Scope List — Clean Typographic Spec Lines Without Rectangles/Pills */}
+                  <ul className="mt-6 pt-4 border-t border-slate/10 space-y-2 font-technical-label text-[11px] tracking-[0.14em] text-slate/65 uppercase">
+                    {d.scope.map((item) => (
+                      <li key={item} className="flex items-center gap-2.5">
+                        <span className="text-secondary font-bold text-xs">+</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Minimalist Text Link */}
+                <div className="mt-8 pt-4 border-t border-slate/10">
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center gap-2 font-technical-label text-xs tracking-[0.15em] text-slate uppercase font-semibold hover:text-secondary transition-colors"
+                  >
+                    <span>{d.cta}</span>
+                    <span>→</span>
+                  </Link>
+                </div>
+              </article>
+            ))}
           </div>
       
           {/* Section Footer Strip */}
-          <div className="pt-6 flex justify-end">
-            <a href="/contact_us" className="btn-brass-outline">
-              REQUEST A CONSULTATION
-            </a>
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate/15">
+            <span className="font-technical-label text-xs text-slate/60 tracking-wider">
+              READY TO DISCUSS YOUR PROJECT REQUIREMENTS?
+            </span>
+            <Link href="/contact_us" className="btn-brass-outline hover:shadow-lg transition-all">
+              REQUEST A CONSULTATION →
+            </Link>
           </div>
         </section>
-      
+
         {/* Floor Plan Walkthrough Image Flow (Section 1: Left Image, Right Text) */}
         <section className="sheet-full py-16 border-b border-slate/15">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            <div className="md:col-span-6 order-2 md:order-1 relative group">
-              <div className="border border-slate/20 p-2 bg-white shadow-lg overflow-hidden">
-                <div className="relative w-full h-100 md:h-[58vh]"><Image src={images.processMaterial} alt="Material Curation Spec" fill sizes="(min-width: 768px) 50vw, 100vw" className="scroll-zoom-img object-cover" /></div>
+            <div className="md:col-span-6 order-2 md:order-1">
+              <div className="relative w-full h-80 md:h-[58vh] overflow-hidden border border-slate/15">
+                <Image src={images.processMaterial} alt="Material curation and texture specification" fill sizes="(min-width: 768px) 50vw, 100vw" className="scroll-zoom-img object-cover" />
               </div>
-              <span className="font-technical-label text-[10px] text-secondary mt-2 block">FIG. 03 // MATERIAL CURATION & TEXTURE TINTS</span>
+              <span className="font-technical-label text-[10px] text-secondary mt-3 block">FIG. 03 // MATERIAL CURATION &amp; TEXTURE TINTS</span>
             </div>
-      
+
             <div className="md:col-span-6 order-1 md:order-2 space-y-4">
               <span className="font-technical-label text-xs text-secondary tracking-[0.2em]">01 // MATERIAL TACTILITY</span>
-              <h2 className="font-display-lg text-3xl text-slate">Tectonic Purity & Structural Grain</h2>
-              <p className="text-sm text-slate/80 font-light leading-relaxed">
+              <h2 className="font-display-lg text-3xl sm:text-4xl text-slate font-light leading-tight">Tectonic Purity &amp; Structural Grain</h2>
+              <p className="text-sm text-slate/75 font-light leading-relaxed max-w-lg">
                 Sourcing unrefined basalt and hand-honed travertine directly from European quarries. Every surface is specified to age with dignity, absorbing natural daylight to create quiet, atmospheric depth.
               </p>
             </div>
           </div>
         </section>
-      
+
         {/* Floor Plan Walkthrough Image Flow (Section 2: Right Image, Left Text) */}
-        <section className="sheet-full py-16">
+        <section className="sheet-full py-16 border-b border-slate/15">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <div className="md:col-span-6 space-y-4">
               <span className="font-technical-label text-xs text-secondary tracking-[0.2em]">02 // LUX ENGINEERING</span>
-              <h2 className="font-display-lg text-3xl text-slate">Algorithmic Lighting & Shadow Paths</h2>
-              <p className="text-sm text-slate/80 font-light leading-relaxed">
+              <h2 className="font-display-lg text-3xl sm:text-4xl text-slate font-light leading-tight">Algorithmic Lighting &amp; Shadow Paths</h2>
+              <p className="text-sm text-slate/75 font-light leading-relaxed max-w-lg">
                 Precision recessed lighting engineered along golden ratio grid lines. Ambient reflections cast soft twilight hues across metallic brass fixtures throughout the day.
               </p>
             </div>
-      
-            <div className="md:col-span-6 relative group">
-              <div className="border border-slate/20 p-2 bg-white shadow-lg overflow-hidden">
-                <div className="relative w-full h-100 md:h-[58vh]"><Image src={images.processLighting} alt="Lighting Engineering Spec" fill sizes="(min-width: 768px) 50vw, 100vw" className="scroll-zoom-img object-cover" /></div>
+
+            <div className="md:col-span-6">
+              <div className="relative w-full h-80 md:h-[58vh] overflow-hidden border border-slate/15">
+                <Image src={images.processLighting} alt="Lighting engineering and shadow path specification" fill sizes="(min-width: 768px) 50vw, 100vw" className="scroll-zoom-img object-cover" />
               </div>
-              <span className="font-technical-label text-[10px] text-secondary mt-2 block">FIG. 04 // LUX FLOW & AMBIENT HARMONY</span>
+              <span className="font-technical-label text-[10px] text-secondary mt-3 block">FIG. 04 // LUX FLOW &amp; AMBIENT HARMONY</span>
             </div>
           </div>
         </section>
       </main>
-      
-      
+
       {/* ===== SHEET A-05 // FULL-BLEED PROJECT SLIDER ===== */}
       
       <HeroSlider />
@@ -206,7 +213,7 @@ export default function HomePage() {
       
       
       {/* ===== SHEET A-06 // CAPABILITY INDEX + PROJECT GALLERY ===== */}
-      <section id="sheet-06" className="sheet-full cad-blueprint-grid w-full border-t border-slate/15">
+      <section id="sheet-06" className="sheet-full w-full border-t border-slate/15 bg-[#FAF9F6]">
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
       
           {/* Title Block */}
@@ -413,7 +420,7 @@ export default function HomePage() {
       
       
       {/* ===== SHEET A-09 // CLIENT & PARTNER REGISTER ===== */}
-      <section id="sheet-09" className="sheet-full cad-blueprint-grid w-full border-t border-slate/15">
+      <section id="sheet-09" className="sheet-full w-full border-t border-slate/15 bg-[#FAF9F6]">
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-margin-desktop py-16">
       
           {/* Title Block */}

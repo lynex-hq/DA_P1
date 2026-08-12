@@ -185,13 +185,9 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
-  /* Subtle 2% CAD Graph Paper Overlay */
+  /* Clean canvas background */
   .cad-blueprint-grid {
     background-color: #FAF9F6;
-    background-image: 
-      linear-gradient(to right, rgba(37, 37, 37, 0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(37, 37, 37, 0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
   }
   .panel-ivory-alt {
     background-color: #F5F4F0;
@@ -248,37 +244,23 @@ body {
     background-color: var(--brass);
     color: #161616;
   }
-  /* ===== SHEET A-07 // SCROLL-PINNED IMAGE GRID ===== */
-  /* The track is N screens tall; the grid pins for its whole length while the
-     columns travel, then releases to the next section. */
+  /* ===== SHEET A-07 // STATIC IMAGE GRID ===== */
   .detail-scroll-track {
     position: relative;
   }
   .detail-sheet {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100svh;
-    overflow: hidden;
     background-color: #FAF9F6;
+    padding: 8px 0;
   }
   .detail-columns {
-    position: absolute;
-    inset: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    align-items: start;   /* stretch would equalise column heights and break the -50% loop */
+    align-items: start;
     gap: 8px;
     padding: 0 8px;
   }
-  /* Each column holds its plates twice over, so travelling exactly one set
-     lands on an identical frame — the ends of the run match seamlessly and no
-     gap can open. Margins (not flex gap) keep the two halves the same height. */
   .detail-col {
     display: block;
-    will-change: transform;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
   }
 
   /* A plain grid — no hover zoom, dimming or captions. */

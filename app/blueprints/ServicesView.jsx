@@ -138,35 +138,56 @@ export default function ServicesView() {
         </div>
       </section>
 
-      {/* Discipline Cards */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-16 border-b border-slate/15">
+      {/* Discipline Cards — Frameless Editorial Layout */}
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-14 pb-16 border-b border-slate/15">
         {visible.map((d) => (
-          <article key={d.key} className="group flex flex-col">
-            <div className="flex items-baseline justify-between font-technical-label text-[10px] tracking-[0.2em] text-slate/50 mb-4">
-              <span className="text-secondary font-bold">{d.code}</span>
-              <span>{d.scale}</span>
+          <article 
+            key={d.key} 
+            className="group flex flex-col justify-between"
+          >
+            <div>
+              {/* Top Meta Bar */}
+              <div className="flex items-baseline justify-between font-technical-label text-xs tracking-[0.2em] text-slate/50 pb-3 border-b border-slate/15">
+                <span className="text-secondary font-bold">{d.code}</span>
+                <span className="text-[10px] uppercase text-slate/40">{d.scale}</span>
+              </div>
+
+              {/* Clean Frameless Photograph with Hover Zoom */}
+              <div className="relative w-full h-64 sm:h-72 overflow-hidden my-6 bg-slate/5">
+                <Image
+                  src={d.image}
+                  alt={d.title}
+                  fill 
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                />
+              </div>
+
+              {/* Title & Copy */}
+              <h2 className="font-display-lg text-2xl text-slate group-hover:text-secondary transition-colors duration-300">{d.title}</h2>
+              <p className="text-sm text-slate/75 font-light leading-relaxed mt-3">{d.blurb}</p>
+
+              {/* Scope List — Clean Typographic Spec Lines Without Rectangles/Pills */}
+              <ul className="mt-6 pt-4 border-t border-slate/10 space-y-2 font-technical-label text-[11px] tracking-[0.14em] text-slate/65 uppercase">
+                {d.scope.map((item) => (
+                  <li key={item} className="flex items-center gap-2.5">
+                    <span className="text-secondary font-bold text-xs">+</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="img-cad-frame relative w-full h-55">
-              <Image
-                src={d.image}
-                alt={d.title}
-                fill sizes="(min-width: 768px) 33vw, 100vw"
-                className="object-cover grayscale smooth-hover"
-              />
+            {/* Card Action Link */}
+            <div className="mt-8 pt-4 border-t border-slate/10">
+              <Link 
+                href="/contact_us" 
+                className="inline-flex items-center gap-2 font-technical-label text-xs tracking-[0.15em] text-slate uppercase font-semibold group-hover:text-secondary transition-colors duration-300"
+              >
+                <span>Consult on this discipline</span>
+                <span className="transform group-hover:translate-x-1.5 transition-transform duration-300">→</span>
+              </Link>
             </div>
-
-            <h2 className="font-display-lg text-2xl text-slate mt-5">{d.title}</h2>
-            <p className="text-sm text-slate/75 font-light leading-relaxed mt-3">{d.blurb}</p>
-
-            <ul className="mt-5 space-y-1.5 font-technical-label text-[10px] tracking-[0.14em] text-slate/70 uppercase">
-              {d.scope.map((item) => (
-                <li key={item} className="flex items-center gap-3 border-t border-slate/10 pt-2">
-                  <span className="text-secondary">+</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
           </article>
         ))}
       </section>
@@ -177,16 +198,24 @@ export default function ServicesView() {
           <span className="w-8 h-px bg-secondary"></span>
           <span>FIG. 04 // METHOD OF WORKING</span>
         </div>
-        <h2 className="font-display-lg text-3xl text-slate font-light mb-10">
+        <h2 className="font-display-lg text-3xl sm:text-4xl text-slate font-light mb-10">
           Six stages, <span className="italic text-secondary">no drawings lost between them.</span>
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-l border-t border-slate/15">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {STAGES.map((s) => (
-            <div key={s.code} className="border-r border-b border-slate/15 p-6 hover:bg-[#F5F4F0] smooth-hover">
-              <div className="font-technical-label text-[10px] text-secondary tracking-[0.2em]">{s.code}</div>
-              <h3 className="font-display-lg text-xl text-slate mt-3">{s.title}</h3>
-              <p className="text-sm text-slate/75 font-light leading-relaxed mt-2">{s.text}</p>
+            <div 
+              key={s.code} 
+              className="bg-white rounded-2xl p-6 sm:p-7 border border-slate/10 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-xl hover:border-secondary/40 transition-all duration-300 group hover:-translate-y-1"
+            >
+              <div className="flex items-center justify-between">
+                <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-secondary/10 text-secondary font-technical-label text-[10px] tracking-[0.15em] font-semibold">
+                  {s.code}
+                </span>
+                <span className="w-2 h-2 rounded-full bg-secondary/30 group-hover:bg-secondary transition-colors"></span>
+              </div>
+              <h3 className="font-display-lg text-xl text-slate mt-4 group-hover:text-secondary transition-colors duration-300">{s.title}</h3>
+              <p className="text-sm text-slate/75 font-light leading-relaxed mt-2.5">{s.text}</p>
             </div>
           ))}
         </div>
